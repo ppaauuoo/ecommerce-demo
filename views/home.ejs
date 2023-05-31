@@ -4,9 +4,16 @@
 
 <div class="container">
   <div class="row">
-    <%-include("partials/goods.ejs")-%>
-    <%-include("partials/goods.ejs")-%>
-    <%-include("partials/goods.ejs")-%>
+
+    <%goods.forEach((element) => { %>
+      <%-include("partials/goods.ejs",{
+        goodsName: element.goodsName,
+        goodsPrice: element.goodsPrice,
+        goodsDesc: element.goodsDesc,
+        goodsReview: element.goodsReview
+      })-%>
+    <%}) %>
+    
   </div>
 </div>
 
