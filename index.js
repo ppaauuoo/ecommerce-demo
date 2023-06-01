@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 main().catch(err => console.log(err));
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/shopDB');
+    await mongoose.connect('mongodb+srv://vorkna:OpOr2546@cluster0.vvkoeom.mongodb.net/shopDB');
   }
 
 const GoodsSchema = new mongoose.Schema({
