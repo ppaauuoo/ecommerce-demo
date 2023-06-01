@@ -1,9 +1,6 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<%-include("partials/header.ejs")-%>
+
 <div class="container">
 	<table id="cart" class="table table-hover table-condensed">
     				<thead>
@@ -15,40 +12,44 @@
 							<th style="width:10%"></th>
 						</tr>
 					</thead>
-					<%cart.forEach((element)=>{%>
-						<tbody>
-							<tr>
-								<td data-th="Product">
-									<div class="row">
-										<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
-										<div class="col-sm-10">
-											<h4 class="nomargin"><%=element.goodsName%></h4>
-											<p><%=element.goodsDesc%>></p>
+					<form action="/cart/delete" method="post">
+						<%cart.forEach((element)=>{%>
+							<tbody>
+								<tr>
+									<td data-th="Product">
+										<div class="row">
+											<div class="col-sm-2 "><img src="http://placehold.it/200x200" alt="..." class="img-responsive"=/></div>
+											<div class="col-sm-2">
+												<h4 class=""><%=element.goodsName%></h4>
+												<p><%=element.goodsDesc%>></p>
+											</div>
 										</div>
-									</div>
-								</td>
-								<td data-th="Price"><%=element.goodsPrice%> บาท</td>
-								<td data-th="Quantity"><%=element.goodsQuantity%></td>
-								<td data-th="Subtotal" class="text-center"><%=element.goodsSubTotal%> บาท</td>	
-								<td class="actions" data-th="">
-									<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-									<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
-								</td>
-							</tr>
-						</tbody>
-					<%})%>
+									</td>
+									<td class="col-sm-2" data-th="Price"><%=element.goodsPrice%> บาท</td>
+									<td class="col-sm-2" data-th="Quantity"><%=element.goodsQuantity%></td>
+									<td class="col-sm-2" data-th="Subtotal" class="text-center"><%=element.goodsSubTotal%> บาท</td>	
+									<td class="col-sm-2" class="actions" data-th="">
+									<button type="submit" class="btn btn-danger btn-sm" name="selected2DeleteItem" value="<%=element.goodsName%>"><i class="fa fa-trash-o" ></i></button>								
+									</td>
+								</tr>
+							</tbody>
+						<%})%>
+					</form>
+					
 
 
 					<tfoot>
 						<tr class="visible-xs">
-							<td class="text-center"><strong>Total <%=total%></strong></td>
+							<td class="text-center"><strong>Total <%=wallet[0].total%> บาท</strong></td>
 						</tr>
 						<tr>
 							<td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total <%=total%> บาท</strong></td>
-							<td><a href="/" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+							<td class="hidden-xs text-center"><strong>Total <%=wallet[0].total%> บาท</strong></td>
+							<td><a href="/cart/checkout" class="btn btn-success btn-block" name="total">Checkout <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>
 </div>
+
+<%-include("partials/footer.ejs")-%>
