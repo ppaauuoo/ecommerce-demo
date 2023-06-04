@@ -29,29 +29,28 @@ const GoodsSchema = new mongoose.Schema({
 
 const Goods = mongoose.model('Goods', GoodsSchema);
 
-//data placeholder
-const product1 = new Goods({
-    goodsName: "test1",
-    goodsPrice: 2,
-    goodsDesc: "testdesc1",
-    goodsReview: 2
-})
+// //data placeholder
+// const product1 = new Goods({
+//     goodsName: "test1",
+//     goodsPrice: 2,
+//     goodsDesc: "testdesc1",
+//     goodsReview: 2
+// })
 
-const product2 = new Goods({
-    goodsName: "good2",
-    goodsPrice: 25,
-    goodsDesc: "qwertyuiop[]",
-    goodsReview: 65
-})
+// const product2 = new Goods({
+//     goodsName: "good2",
+//     goodsPrice: 25,
+//     goodsDesc: "qwertyuiop[]",
+//     goodsReview: 65
+// })
 
-const product3 = new Goods({
-    goodsName: "good3",
-    goodsPrice: 57,
-    goodsDesc: "qwertyuiop[]",
-    goodsReview: 253
-})
-
-const demoProduct = [product1,product2,product3]
+// const product3 = new Goods({
+//     goodsName: "good3",
+//     goodsPrice: 57,
+//     goodsDesc: "qwertyuiop[]",
+//     goodsReview: 253
+// })
+// const demoProduct = [product1,product2,product3]
 
 //cart
 const CartSchema = new mongoose.Schema({
@@ -83,9 +82,9 @@ app.get('/',async (req,res)=>{
     const product = await Goods.find({})
 
 
-    if(product.length==0){
-        await Goods.insertMany(demoProduct)
-    }
+    // if(product.length==0){
+    //     await Goods.insertMany(demoProduct)
+    // }
 
     if(wallet.length==0){
         await startWallet.save()
@@ -120,7 +119,9 @@ app.post('/', async (req,res) => {
 
     }
     const currentCart = await Cart.find({});
-    await Wallet.findOneAndUpdate({},{total: calculate.totalCalculate(currentCart)},{returnOriginal:false})
+    const updatedTotal = calculate.totalCalculate(currentCart)
+
+    await Wallet.findOneAndUpdate({},{total: updatedTotal},{returnOriginal:false})
     res.redirect('/')
     
 })
@@ -128,7 +129,9 @@ app.post('/', async (req,res) => {
 
 app.get('/cart', async (req,res) => {
     const cart = await Cart.find({})
-    await Wallet.findOneAndUpdate({},{total: calculate.totalCalculate(cart)},{returnOriginal:false})
+    const updatedTotal = calculate.totalCalculate(cart)
+
+    await Wallet.findOneAndUpdate({},{total: updatedTotal},{returnOriginal:false})
     const wallet = await Wallet.find({})
     
     res.render("cart",{
@@ -150,14 +153,21 @@ app.get('/money', async (req,res) => {
 
 app.get('/money/add', async (req,res) => {
     const wallet = await Wallet.find({})
-    await Wallet.findOneAndUpdate({},{money: wallet[0].money+100},{returnOriginal:false})
+
+    const updatedMoney = wallet[0].money+100
+
+    await Wallet.findOneAndUpdate({},{money: updatedMoney},{returnOriginal:false})
     res.redirect('/money')
 })
 
 app.get('/money/transfer', async (req,res) => {
     const wallet = await Wallet.find({})
+
+    const updatedMoney = wallet[0].money+20
+    const updatedPoint = wallet[0].point-100
+
     if(wallet[0].point>=100){
-        await Wallet.findOneAndUpdate({},{money: wallet[0].money+20,point: wallet[0].point-100},{returnOriginal:false})
+        await Wallet.findOneAndUpdate({},{money: updatedMoney,point: updatedPoint},{returnOriginal:false})
         alert("Success!");
         res.redirect('/money')
     }else{
@@ -169,12 +179,16 @@ app.get('/money/transfer', async (req,res) => {
 
 app.get('/cart/checkout', async (req,res) => {
     const wallet = await Wallet.find({})
+    
     if(wallet[0].money<wallet[0].total){
         alert("Not Enough!");
         res.redirect('/cart')
     }else{
         const pointObtained = calculate.pointCalculate(wallet[0].total)
-        await Wallet.findOneAndUpdate({},{money: wallet[0].money-wallet[0].total,point: wallet[0].point+pointObtained},{returnOriginal:false})
+        const updatedMoney = wallet[0].money-wallet[0].total
+        const updatedPoint = wallet[0].point+pointObtained
+
+        await Wallet.findOneAndUpdate({},{money: updatedMoney,point: updatedPoint},{returnOriginal:false})
         await Cart.deleteMany({ goodsSubTotal: { $gte: 0 } });
         alert("you got "+pointObtained+" point!");
         res.redirect('/')
