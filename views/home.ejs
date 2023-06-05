@@ -9,8 +9,9 @@
     <%goods.forEach((element) => { %>
       <%-include("partials/goods.ejs",{
         goodsName: element.goodsName,
-        goodsPrice: element.goodsPrice,
         goodsDesc: element.goodsDesc,
+        goodsImage: element.goodsImage,
+        goodsPrice: element.goodsPrice,
         goodsReview: element.goodsReview
       })-%>
     <%}) %>
