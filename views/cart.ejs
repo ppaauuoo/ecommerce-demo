@@ -18,7 +18,7 @@
 								<tr>
 									<td data-th="Product">
 										<div class="row">
-											<div class="col-sm-2 "><img src="http://placehold.it/200x200" alt="..." class="img-responsive"=/></div>
+											<div class="col-sm-2 "><img src="<%=element.goodsImage%>" alt="..." class="img-responsive"=/></div>
 											<div class="col-sm-2">
 												<h4 class=""><%=element.goodsName%></h4>
 												<p><%=element.goodsDesc%>></p>
@@ -40,12 +40,12 @@
 
 					<tfoot>
 						<tr class="visible-xs">
-							<td class="text-center"><strong>Total <%=wallet[0].total%> บาท</strong></td>
+							<td class="text-center"><strong>Total <%=wallet.total%> บาท</strong></td>
 						</tr>
 						<tr>
 							<td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total <%=wallet[0].total%> บาท</strong></td>
+							<td class="hidden-xs text-center"><strong>Total <%=wallet.total%> บาท</strong></td>
 							<td><a href="/cart/checkout" class="btn btn-success btn-block" name="total">Checkout <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>

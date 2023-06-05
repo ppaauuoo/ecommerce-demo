@@ -61,21 +61,40 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- <li class="active"><a href="./">Cart <span class="sr-only"></span></a></li> -->
 
+            <%if(isLogin){%>
             <li class="col">
               <a href="./money"
-                ><%=wallet[0].money%> บาท <span class="sr-only"></span
+                ><%=wallet.money%> บาท <span class="sr-only"></span
               ></a>
             </li>
             <li class="col">
               <a href="./money"
-                ><%=wallet[0].point%> point <span class="sr-only"></span
+                ><%=wallet.point%> point <span class="sr-only"></span
               ></a>
             </li>
             <li class="col">
               <a href="./cart"
-                >Cart ( <%=wallet[0].total%> บาท ) <span class="sr-only"></span
+                >Cart ( <%=wallet.total%> บาท ) <span class="sr-only"></span
               ></a>
             </li>
+            <li class="col">
+              <a href="./logout"
+                >Log out<span class="sr-only"></span
+              ></a>
+            </li>
+            <%}else{%>
+              <li class="col">
+                <a href="./login"
+                  >Login<span class="sr-only"></span
+                ></a>
+              </li>
+              <li class="col">
+                <a href="./register"
+                  >Register<span class="sr-only"></span
+                ></a>
+              </li>
+              <%}%>
+            
           </ul>
         </div>
       </nav>
