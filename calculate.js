@@ -8,8 +8,17 @@ exports.pointCalculate = (total) => {
 
 exports.totalCalculate = (cart) => {
     let total=0;
-    cart.forEach((element) => {   
-        total+=element.goodsSubTotal
-    })
+    for(var i=0;i<cart.length;i++){
+        total+=cart[i].goodsSubTotal
+    }
     return total;
+}
+
+exports.searchCart = (cart, request) => {
+    for(var i=0; i<cart.length;i++){
+        if(cart[i].goodsName==request){
+            return i;
+        }
+    }
+    return -99;
 }
