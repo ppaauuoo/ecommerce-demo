@@ -1,0 +1,74 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color:whitesmoke;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.top {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.middle{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.bottom {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#bg-img{
+  height: 100%;
+  width: 100%;
+  /* rollback and path to image */
+  background-image: url("../images/pexels-photo-2113556.jpeg");
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  
+  background-position: center 40%;
+  background-size: 100vmax;
+  opacity: 0.5;
+}
+
+#bg-pattern{
+  height: 100vh;
+  width: 100vw;
+
+  background-image: radial-gradient(
+      rgba(2255,255,255,0.1)9%,
+      transparent 9%
+  );
+
+  background-position: 0% 0%;
+  background-size: 12vmin 12vmin;
+
+  opacity: 1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 3;
+}
