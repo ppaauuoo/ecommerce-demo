@@ -25,21 +25,20 @@
     <!-- Custom styles for this template -->
     <style>
       body {
-        min-height: 2000px;
-        padding-top: 200px;
+        padding-top: 75px;
+        padding-bottom: 20px;
+      }
+
+      .navbar {
+        margin-bottom: 20px;
       }
     </style>
-    <!-- Bootstrap core JavaScript
-        ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <link
       href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <link
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
@@ -49,55 +48,63 @@
 
   <body>
     <form action="/cart" method="POST">
-      <!-- Fixed navbar -->
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <ul class="nav navbar-nav navbar-left">
-            <!-- <li class="active"><a href="./">Cart <span class="sr-only"></span></a></li> -->
-            <li class="col">
-              <a href="/"> Home<span class="sr-only"></span></a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <!-- <li class="active"><a href="./">Cart <span class="sr-only"></span></a></li> -->
+      <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar"
+                aria-expanded="false"
+                aria-controls="navbar"
+              >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Paul Demo</a>
+            </div>
 
-            <%if(isLogin){%>
-            <li class="col">
-              <a href="./money"
-                ><%=wallet.money%> บาท <span class="sr-only"></span
-              ></a>
-            </li>
-            <li class="col">
-              <a href="./money"
-                ><%=wallet.point%> point <span class="sr-only"></span
-              ></a>
-            </li>
-            <li class="col">
-              <a href="./cart"
-                >Cart ( <%=wallet.total%> บาท ) <span class="sr-only"></span
-              ></a>
-            </li>
-            <li class="col">
-              <a href="./logout"
-                >Log out<span class="sr-only"></span
-              ></a>
-            </li>
-            <%}else{%>
-              <li class="col">
-                <a href="./login"
-                  >Login<span class="sr-only"></span
-                ></a>
-              </li>
-              <li class="col">
-                <a href="./register"
-                  >Register<span class="sr-only"></span
-                ></a>
-              </li>
-              <%}%>
-            
-          </ul>
-        </div>
-      </nav>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <!-- <li class="active"><a href="./">Cart <span class="sr-only"></span></a></li> -->
+
+                <%if(isLogin){%>
+                <li>
+                  <a href="./money"
+                    ><%=wallet.money%> บาท <span class="sr-only"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="./money"
+                    ><%=wallet.point%> point <span class="sr-only"></span
+                  ></a>
+                </li=>
+                <li>
+                  <a href="./cart"
+                    >Cart ( <%=wallet.total%> บาท ) <span class="sr-only"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="./logout">Log out<span class="sr-only"></span></a>
+                </li>
+                <%}else{%>
+                  <li>
+                  <a href="./login">Login<span class="sr-only"></span></a>
+                </li>
+                <li>
+                  <a href="./register">Register<span class="sr-only"></span></a>
+                </li>
+                <%}%>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- Fixed navbar -->
     </form>
   </body>
 </html>
