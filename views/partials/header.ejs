@@ -23,16 +23,10 @@
     />
 
     <!-- Custom styles for this template -->
-    <style>
-      body {
-        padding-top: 75px;
-        padding-bottom: 20px;
-      }
-
-      .navbar {
-        margin-bottom: 20px;
-      }
-    </style>
+    <link
+      href="/css/style.css"
+      rel="stylesheet"
+    />
 
     <link
       href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
@@ -73,6 +67,11 @@
                 <!-- <li class="active"><a href="./">Cart <span class="sr-only"></span></a></li> -->
 
                 <%if(isLogin){%>
+                  <li>
+                    <a href="./user"
+                      >User <span class="sr-only"></span
+                    ></a>
+                  </li>
                 <li>
                   <a href="./money"
                     ><%=wallet.money%> บาท <span class="sr-only"></span
