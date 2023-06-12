@@ -118,7 +118,7 @@
         <i class="fa-solid fa-user fa-8x"></i>
         <p></p>
 
-        <h1 class="h3 mb-3 fw-bold">Register*</h1>
+        <h1 class="h3 mb-3 fw-bold">Register</h1>
 
         <div class="form-floating">
           <input
@@ -145,7 +145,7 @@
         </div>
         <div class="form-floating">
           <input
-            type="text"
+            type="email"
             name="username"
             class="form-control middle"
             id="floatingInput"
@@ -165,18 +165,21 @@
             />
             <label for="floatingInput">Password*</label>
           </div>
+
           <p></p>
           <div class="form-floating">
             <input
-              type="sponsor"
+              type="text"
               name="sponsor"
               class="form-control"
               id="floatingInput"
               placeholder="Sponsor"
+              value="<%=sponsor%>"
             />
             <label for="floatingInput">Sponsor</label>
           </div>
           <p></p>
+
         <button class="w-100 btn btn-lg btn-primary" type="submit">
           Register
         </button>
