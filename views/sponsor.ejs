@@ -1,0 +1,27 @@
+<%-include("partials/header.ejs")-%>
+
+<div class="row" style="text-align: center">
+  <div class="col-md-12">
+    <a href="../">
+      <i class="fa-solid fa-user fa-8x" style="color: red"></i>
+      <p></p>
+      <h1><%=userName.firstName%></h1>
+    </a>
+
+  </div>
+</div>
+
+<div class="row" style="text-align: center">
+  <%children.forEach((element)=>{%>
+  <div class="col-xs-3">
+    <a href="/user/<%=element._id%>">
+      <i class="fa-solid fa-user fa-4x" style="color: darkorange"></i>
+      <p></p>
+      <h1><%=element.firstName%></h1>
+    </a>
+  </div>
+
+  <%})%>
+</div>
+
+<%-include("partials/footer.ejs")-%>

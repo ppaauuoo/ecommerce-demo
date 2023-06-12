@@ -68,34 +68,34 @@
 
                 <%if(isLogin){%>
                   <li>
-                    <a href="./user"
+                    <a href="/user"
                       >User <span class="sr-only"></span
                     ></a>
                   </li>
                 <li>
-                  <a href="./money"
+                  <a href="/money"
                     ><%=wallet.money%> บาท <span class="sr-only"></span
                   ></a>
                 </li>
                 <li>
-                  <a href="./money"
+                  <a href="/money"
                     ><%=wallet.point%> point <span class="sr-only"></span
                   ></a>
                 </li=>
                 <li>
-                  <a href="./cart"
+                  <a href="/cart"
                     >Cart ( <%=wallet.total%> บาท ) <span class="sr-only"></span
                   ></a>
                 </li>
                 <li>
-                  <a href="./logout">Log out<span class="sr-only"></span></a>
+                  <a href="/logout">Log out<span class="sr-only"></span></a>
                 </li>
                 <%}else{%>
                   <li>
-                  <a href="./login">Login<span class="sr-only"></span></a>
+                  <a href="/login">Login<span class="sr-only"></span></a>
                 </li>
                 <li>
-                  <a href="./register">Register<span class="sr-only"></span></a>
+                  <a href="/register">Register<span class="sr-only"></span></a>
                 </li>
                 <%}%>
               </ul>

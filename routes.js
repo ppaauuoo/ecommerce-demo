@@ -59,7 +59,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   userWallet: WalletSchema,
   userCart: [CartSchema],
-  children: []
+  children: [],
+  sponsor: String
 });
 UserSchema.plugin(passportLocalMongoose);
 //initiialize user model
@@ -193,6 +194,7 @@ router.post("/register", async (req, res) => {
     lastName: req.body.lastName,
     username: req.body.username,
     userWallet: startWallet,
+    sponsor: req.body.sponsor
   });
   const password = req.body.password;
   User.register(newUser, password, function (err, user) {
@@ -333,15 +335,26 @@ router.get("/mlm", async (req, res) => {
 
 router.get("/user", async (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect('/'+req.user._id)
+    res.redirect('/user/'+req.user._id)
   }else{
     res.redirect("/login");
   }
 });
 
-router.get("/:userId", async (req, res) => {
-  const id = new ObjectId(req.params.userId)
+router.get("/user/:userId", async (req, res) => {
+  var id 
+  try{
+    id = new ObjectId(req.params.userId)
+  }
+  catch(err){
+    res.redirect("/");
+    return
+  }
   const currentUser = await User.findById({_id: id})
+  if(!currentUser){
+    res.redirect("/");
+    return
+  }
   var lowerUser1 = {children: []}
   var lowerUser2 = {children: []}
   if(currentUser.children[0]){
@@ -353,9 +366,23 @@ router.get("/:userId", async (req, res) => {
   
 
   res.render('user', {
-    userName: currentUser.firstName,
+    userName: currentUser,
     lowerUser1: lowerUser1,
     lowerUser2: lowerUser2,
+    isLogin: isLogin,
+    wallet: req.user.userWallet
+  })
+});
+
+router.get("/user/:userId/sponsor", async (req, res) => {
+  const id = new ObjectId(req.params.userId)
+  const currentUser = await User.findById({_id: id})
+  const children = await User.find({sponsor: req.params.userId})
+  
+
+  res.render('sponsor', {
+    userName: currentUser,
+    children: children,
     isLogin: isLogin,
     wallet: req.user.userWallet
   })
