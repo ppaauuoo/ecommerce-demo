@@ -185,16 +185,51 @@ router.get("/security", (req,res)=>{
 })
 
 router.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register",{
+    sponsor: null
+  });
+});
+
+router.get("/register/:sponsorId", async (req, res) => {
+  var id
+  try{
+    id = new ObjectId(req.params.sponsorId)
+  }
+  catch(err){
+    res.redirect("/register");
+    return
+  }
+  const temp = await User.findById({_id: id})
+  if(!temp){
+    res.redirect('/register')
+    return
+  }
+  res.render("register",{
+    sponsor: req.params.sponsorId
+  });
 });
 
 router.post("/register", async (req, res) => {
+  var sponsortemp = req.body.sponsor
+  var id
+  var temp
+  try{
+    id = new ObjectId(sponsortemp)
+    temp = await User.findById({_id: id})
+  }
+  catch(err){
+    sponsortemp = null
+  }
+  if(!temp){
+    sponsortemp = null
+  }
+  
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     username: req.body.username,
     userWallet: startWallet,
-    sponsor: req.body.sponsor
+    sponsor: sponsortemp
   });
   const password = req.body.password;
   User.register(newUser, password, function (err, user) {
