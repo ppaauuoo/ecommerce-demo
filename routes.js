@@ -16,7 +16,7 @@ const _ = require("lodash");
 
 router.use(
   session({
-    secret: "secret.",
+    secret: "paulsocoolmakmak",
     resave: false,
     saveUninitialized: false,
   })
@@ -32,18 +32,14 @@ async function main() {
   );
 }
 
+
 //money placeholder
 const WalletSchema = new mongoose.Schema({
   money: Number,
   point: Number,
   total: Number,
 });
-const Wallet = mongoose.model("Wallet", WalletSchema);
-const startWallet = new Wallet({
-  money: 0,
-  point: 0,
-  total: 0,
-});
+
 const CartSchema = new mongoose.Schema({
   goodsName: String,
   goodsPrice: Number,
@@ -51,17 +47,36 @@ const CartSchema = new mongoose.Schema({
   goodsQuantity: Number,
   goodsSubTotal: Number,
 });
+
+const AddressSchema = new mongoose.Schema({
+  address: String,
+  subdistrict: String,
+  district: String,
+  city: String,
+  postCode: Number
+})
+
+const BankSchema = new mongoose.Schema({
+  bookBank: String,
+  bookBankNumber: Number,
+  bookBankBranch: String
+})
 //initialize user
 const UserSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
   username: String,
+  fullName: String,
+  address: AddressSchema,
+  citizen: Number,
+  phoneNumber: Number,
+  bank: BankSchema,
   password: String,
-  userWallet: WalletSchema,
-  userCart: [CartSchema],
   children: [],
-  sponsor: String
+  sponsor: String,
+  userWallet: WalletSchema,
+  userCart: [CartSchema]
 });
+
+
 UserSchema.plugin(passportLocalMongoose);
 //initiialize user model
 const User = mongoose.model("User", UserSchema);
@@ -168,9 +183,14 @@ router.post("/login", function (req, res) {
 
   req.login(user, function (err) {
     if (err) { 
-      alert('Try Again!')
-      return next(err); }
-    return res.redirect('/security');
+      console.log(err)
+      res.redirect('/login');
+    }else{
+      passport.authenticate("local")(req, res, function () {
+        res.redirect('/security');
+      });
+    }
+    
   });
 });
 
@@ -184,9 +204,20 @@ router.get("/security", (req,res)=>{
 
 })
 
-router.get("/register", (req, res) => {
+const ThailandSchema = new mongoose.Schema({
+  TambonThaiShort: String,
+  DistrictThaiShort: String,
+  ProvinceThai: String,
+  PostCodeMain: Number
+});
+const Thailand = mongoose.model("thailand", ThailandSchema);
+
+
+router.get("/register", async (req, res) => {
+  const thailand = await Thailand.find({})
   res.render("register",{
-    sponsor: null
+    sponsor: null,
+    thailand: thailand
   });
 });
 
@@ -204,8 +235,10 @@ router.get("/register/:sponsorId", async (req, res) => {
     res.redirect('/register')
     return
   }
+  const thailand = await Thailand.find({})
   res.render("register",{
-    sponsor: req.params.sponsorId
+    sponsor: req.params.sponsorId,
+    thailand: thailand
   });
 });
 
@@ -224,19 +257,50 @@ router.post("/register", async (req, res) => {
     sponsortemp = null
   }
   
+
+  const Address = mongoose.model("Address", AddressSchema);
+  const newAddress = new Address({
+    address: req.body.address,
+    subdistrict: req.body.subdistrict,
+    district: req.body.district,
+    city: req.body.city,
+    postCode: req.body.postCode
+  })
+  const Bank = mongoose.model("Bank", BankSchema);
+  const newBank = new Bank({
+    bookBank: req.body.bookBank,
+    bookBankNumber: req.body.bookBankNumber,
+    bookBankBranch: req.body.bookBankBranch
+  })
+  const Wallet = mongoose.model("Wallet", WalletSchema);
+  const startWallet = new Wallet({
+    money: 0,
+    point: 0,
+    total: 0,
+  });
   const newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
     username: req.body.username,
+    fullName: req.body.fullName,
+    address: newAddress,
+    citizen: req.body.citizen,
+    phoneNumber: req.body.phoneNumber,
+    bank: newBank,
+    children: [],
+    sponsor: sponsortemp,
     userWallet: startWallet,
-    sponsor: sponsortemp
   });
   const password = req.body.password;
   User.register(newUser, password, function (err, user) {
+    if(err){
+      console.log(err)
+      res.redirect('/register')
+    }else{
+      passport.authenticate("local")(req, res, function () {
+        res.redirect("/mlm");
+      });
+    }
     //A new user was saved
-    passport.authenticate("local")(req, res, function () {
-      res.redirect("/mlm");
-    });
+
   });
 });
 
@@ -358,7 +422,7 @@ router.get("/mlm", async (req, res) => {
     await User.findOneAndUpdate({$expr: {$lt: [{ $size: "$children" }, 2]}},
     { $push: { children: {
       _id: req.user._id,
-      firstName: req.user.firstName
+      username: req.user.username
     }}},
     { returnOriginal: false })
     isLogin = true;
@@ -390,8 +454,8 @@ router.get("/user/:userId", async (req, res) => {
     res.redirect("/");
     return
   }
-  var lowerUser1 = {children: []}
-  var lowerUser2 = {children: []}
+  var lowerUser1
+  var lowerUser2
   if(currentUser.children[0]){
     lowerUser1 = await User.findById({_id: currentUser.children[0]._id})
   }
