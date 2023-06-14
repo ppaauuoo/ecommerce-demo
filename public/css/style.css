@@ -1,70 +1,68 @@
 body {
-    padding-top: 75px;
-    padding-bottom: 200px;
+  padding-top: 75px;
+  padding-bottom: 200px;
 }
 
 footer {
-    background-color: whitesmoke;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
-
-.navbar {
-    background-color: whitesmoke;
-    margin-bottom: 20px;
+  background-color: whitesmoke;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
-
+.navbar {
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+}
 
 #bsr-page-footer {
-    padding: 3rem 2rem 1rem;
-  }
-  
-  hr {
-    border-top: 1px solid rgba(0, 0, 0, .1);
-  }
-  
-  /* Add right borders for the divs... */
-  #bsr-page-footer .bsr-footer-main-links div {
-    border-right: 1px solid rgba(0, 0, 0, .1);
-    padding: 1.25rem;
-  }
-  
-  /* ...except no border on the right-most div */
-  #bsr-page-footer .bsr-footer-main-links div:last-of-type {
-    border: none;
-  }
-  
-  /* Remove bullets for social social icons */
-  #bsr-page-footer .bsr-social-icons {
-    list-style-type: none;
-  }
-  
-  /* Style the social icon list items further */
-  #bsr-page-footer .bsr-social-icons li {
-    margin-left: .25rem;
-    margin-right: .25rem;
-    display: inline;
-  }
-  
-  /* Remove styling on the main columnar links */
-  .bsr-footer-links li {
-    background: transparent;
-    border: 0px;
-    padding: .25rem;
-  }
-  
-  /* Styling for the ancillary links */
-  #bsr-page-footer .bsr-footer-ancillary-links {
-    list-style-type: none;
-  }
-  
-  #bsr-page-footer .bsr-footer-ancillary-links li {
-    display: inline;
-    margin-left: .3rem;
-    margin-right: .3rem;
-    text-align: right;
-    font-size: smaller;
-  }
+  padding: 3rem 2rem 1rem;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Add right borders for the divs... */
+#bsr-page-footer .bsr-footer-main-links div {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+}
+
+/* ...except no border on the right-most div */
+#bsr-page-footer .bsr-footer-main-links div:last-of-type {
+  border: none;
+}
+
+/* Remove bullets for social social icons */
+#bsr-page-footer .bsr-social-icons {
+  list-style-type: none;
+}
+
+/* Style the social icon list items further */
+#bsr-page-footer .bsr-social-icons li {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  display: inline;
+}
+
+/* Remove styling on the main columnar links */
+.bsr-footer-links li {
+  background: transparent;
+  border: 0px;
+  padding: 0.25rem;
+}
+
+/* Styling for the ancillary links */
+#bsr-page-footer .bsr-footer-ancillary-links {
+  list-style-type: none;
+}
+
+#bsr-page-footer .bsr-footer-ancillary-links li {
+  display: inline;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  text-align: right;
+  font-size: smaller;
+}
