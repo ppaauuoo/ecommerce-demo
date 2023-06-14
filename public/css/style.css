@@ -16,7 +16,7 @@ footer {
 }
 
 #bsr-page-footer {
-  padding: 1rem 1rem 1rem;
+  padding: 1rem 2rem 1rem;
 }
 
 hr {
@@ -42,7 +42,7 @@ hr {
 /* Style the social icon list items further */
 #bsr-page-footer .bsr-social-icons li {
   margin-left: 0.25rem;
-  margin-right: 0.25rem;
+
   display: inline;
 }
 
