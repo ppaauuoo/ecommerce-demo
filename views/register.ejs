@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <script src="/docs/5.3/assets/js/color-modes.js"></script>
     <link rel="icon" href="/images/icon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
-    <meta
-      name="author"
-      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
-    />
-    <meta name="generator" content="Hugo 0.111.3" />
-    <title>Register</title>
+    <title>แบบลงทะเบียน</title>
 
     <link
       rel="canonical"
@@ -25,166 +19,318 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
 
-    <!-- Favicons -->
-    <script
-      src="https://kit.fontawesome.com/147e879dd5.js"
-      crossorigin="anonymous"
-    ></script>
 
-    <meta name="theme-color" content="#712cf9" />
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, 0.1);
-        border: solid rgba(0, 0, 0, 0.15);
-        border-width: 1px 0;
-        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -0.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-    </style>
     <!-- Custom styles for this template -->
     <link href="/css/auth_style.css" rel="stylesheet" />
   </head>
   <body class="text-center">
     <main class="form-signin w-100 m-auto">
       <!-- send POST request -->
-      <form action="/register" method="POST">
+      <form action="/register" method="POST" class="needs-validation" autocomplete="off" novalidate>
         <!-- using fontawesome kit -->
         <i class="fa-solid fa-user fa-8x"></i>
         <p></p>
 
-        <h1 class="h3 mb-3 fw-bold">Register</h1>
+        <h1 class="h3 mb-3 fw-bold">แบบลงทะเบียน</h1>
 
-        <div class="form-floating">
-          <input
-            type="text"
-            name="firstName"
-            class="form-control top"
-            id="floatingPassword"
-            placeholder="First Name"
-            required
-            autofocus
-          />
-          <label for="floatingPassword">First Name*</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="text"
-            name="lastName"
-            class="form-control middle"
-            id="floatingPassword"
-            placeholder="Last Name"
-            required
-          />
-          <label for="floatingPassword">Last Name*</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="email"
-            name="username"
-            class="form-control middle"
-            id="floatingInput"
-            placeholder="Email Address"
-            required
-          />
-          <label for="floatingInput">Email address*</label>
-        </div>
-        <div class="form-floating">
-            <input
-              type="password"
-              name="password"
-              class="form-control bottom"
-              id="floatingInput"
-              placeholder="Password"
-              required
-            />
-            <label for="floatingInput">Password*</label>
-          </div>
-
-          <p></p>
+        <div class="input-group">
+          <span class="input-group-text top">001</span>
           <div class="form-floating">
             <input
               type="text"
-              name="sponsor"
-              class="form-control"
-              id="floatingInput"
-              placeholder="Sponsor"
-              value="<%=sponsor%>"
+              name="username"
+              class="form-control top"
+              id="usernamefloatingInput"
+              placeholder="Username"
+              aria-describedby="button-addon2"
+              required 
+              autofocus
             />
-            <label for="floatingInput">Sponsor</label>
+            <label for="usernamefloatingInput">Username</label>
+            
           </div>
-          <p></p>
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Check</button>
+        </div>
+
+        <div class="form-floating">
+          <input
+            type="text"
+            name="fullName"
+            class="form-control middle"
+            id="fullNamefloatingInput"
+            placeholder="Full Name"
+            required
+          />
+          <label for="fullNamefloatingInput">ชื่อ-นามสกุล</label>
+        </div>
+
+        <div class="form-floating">
+          <textarea
+            name="address"
+            class="form-control middle"
+            id="addressfloatingInput"
+            placeholder="Last Name"
+            required
+          ></textarea>
+          <label for="addressfloatingInput">ที่อยู่</label>
+        </div>
+
+        <div class="row g-0">
+          <div class="col-6">
+            
+            <div class="form-floating">
+              <input
+                type="text"
+                name="subdistrict"
+                class="form-control middle"
+                id="subdistrictfloatingSelectGrid"
+                placeholder="Subdistrict"
+                list="list-subdistrict"
+                required
+              />
+              <label for="subdistrictfloatingSelectGrid">ตำบล</label>
+              <datalist id="list-subdistrict">
+                <%thailand.forEach((element)=>{%>
+                  <option><%=element.TambonThaiShort%></option>
+                <%})%>
+              </datalist>
+            </div>
+          </div>
+
+          <div class="col-6">
+            
+            <div class="form-floating">
+              <input
+                type="text"
+                name="district"
+                class="form-control middle"
+                id="districtfloatingSelectGrid"
+                placeholder="District"
+                list="list-district"
+                required
+              />
+              <label for="districtfloatingSelectGrid">อำเภอ</label>
+              <datalist id="list-district">
+                <%var district=[]%>
+                <%thailand.forEach((element)=>{%>
+                  <%district.push(element.DistrictThaiShort)%>
+                <%})%>
+                <%let uniqueDistrict = [...new Set(district)];%>
+                <%uniqueDistrict.forEach((element)=>{%>
+                  <option><%=element%></option>
+                <%})%>
+                
+              </datalist>
+            </div>
+          </div>
+
+        <div class="row g-0">
+
+
+          <div class="col-6">
+
+            <div class="form-floating">
+              <input
+                type="text"
+                name="city"
+                class="form-control bottom"
+                id="cityfloatingSelectGrid"
+                placeholder="City"
+                list="list-city"
+                required
+              />
+              <label for="cityfloatingSelectGrid">จังหวัด</label>
+              <datalist id="list-city">
+                <%var city=[]%>
+                <%thailand.forEach((element)=>{%>
+                  <%city.push(element.ProvinceThai)%>
+                <%})%>
+                <%let uniqueCity = [...new Set(city)];%>
+                <%uniqueCity.forEach((element)=>{%>
+                  <option><%=element%></option>
+                <%})%>
+              </datalist>
+            </div>
+          </div>
+
+          <div class="col-6">
+
+            <div class="form-floating">
+              <input
+                type="text"
+                name="postCode"
+                class="form-control bottom"
+                id="postCodefloatingSelectGrid"
+                placeholder="Post Code"
+                list="list-postcode"
+                required
+              />
+              <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
+              <datalist id="list-postcode">
+
+                <%var postcode=[]%>
+                <%thailand.forEach((element)=>{%>
+                  <%postcode.push(element.PostCodeMain)%>
+                <%})%>
+                <%let uniquepPostcode = [...new Set(postcode)];%>
+                <%uniquepPostcode.forEach((element)=>{%>
+                  <option><%=element%></option>
+                <%})%>
+
+              </datalist>
+            </div>
+          </div>
+        </div>
+          
+
+        <p></p>
+        <div class="form-floating">
+          <input
+            type="tel"
+            name="citizen"
+            class="form-control top"
+            id="citizen"
+            placeholder="Citizen Code"
+            minlength="13"
+            maxlength="13"
+            pattern="[0-9]{13}"
+            required
+          />
+          <label for="citizen">เลขบัตรประชาชน</label>
+          <div class="invalid-tooltip">
+            เลขบัตรประชาชนผิดพลาด.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            type="tel"
+            name="phoneNumber"
+            class="form-control bottom"
+            id="phoneNumber"
+            placeholder="Phone Number"
+            minlength="10"
+            maxlength="10"
+            pattern="[0]{1}[2,6,8,9]{1}[0-9]{8}"
+            required
+          />
+          <label for="phoneNumber">เบอร์โทร</label>
+          <div class="invalid-tooltip">
+            เบอร์โทรผิดพลาด.
+          </div>
+        </div>
+        <p></p>
+
+        <div class="form-floating">
+          <input
+            type="text"
+            name="bookBank"
+            class="form-control top"
+            id="bookBank"
+            placeholder="Book Bank Name"
+            required
+          />
+          <label for="bookBank">ชื่อบัญชีธนาคาร</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="tel"
+            name="bookBankNumber"
+            class="form-control middle"
+            id="bookBankNumber"
+            placeholder="Book Bank Number"
+            minlength="10"
+            maxlength="10"
+            pattern="[0-9]{10}"
+            required
+          />
+          <label for="bookBankNumber">เลขบัญชีธนาคาร</label>
+          <div class="invalid-tooltip">
+            เลขบัญชีธนาคารผิดพลาด.
+          </div>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            name="bookBankBranch"
+            class="form-control bottom"
+            id="bookBankBranch"
+            placeholder="Book Bank Branch"
+            required
+          />
+          <label for="bookBankBranch">สาขาที่เปิดบัญชีธนาคาร</label>
+        </div>
+        <p></p>
+        <div class="form-floating">
+          <input
+            type="password"
+            name="password"
+            class="password form-control top"
+            id="password"
+            placeholder="Password"
+            minlength="4"
+            maxlength="4"
+            required
+          />
+          <label for="password">รหัสผ่าน</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            name="passwordCheck"
+            class="passwordCheck form-control bottom"
+            id="passwordCheck"
+            placeholder="Password"
+            minlength="4"
+            maxlength="4"
+            required
+          />
+          <label for="passwordCheck">ยืนยันรหัสผ่าน</label>
+          <div class="invalid-tooltip">
+            รหัสผ่านไม่ตรง.
+          </div>
+        </div>
+        <p></p>
+        <div class="form-floating">
+          <input
+            type="text"
+            name="sponsor"
+            class=" form-control"
+            id="floatingInput"
+            placeholder="Sponsor"
+            value="<%=sponsor%>"
+            <%if(sponsor){%>
+            readonly 
+            <%}%> 
+            />
+          <label for="floatingInput">Sponsor</label>
+        </div>
+        <p></p>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">
           Register
         </button>
-        <p class="mt-5 mb-3 text-body-secondary">Already Have An Account? <a href="/login">Sign In!</a></p>
+        <p class="mt-5 mb-3 text-body-secondary">
+          Already Have An Account? <a href="/login">Sign In!</a>
+        </p>
       </form>
     </main>
   </body>
+
+
+    <!-- Favicons -->
+    <script
+      src="https://kit.fontawesome.com/147e879dd5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
+
+    <script src="/js/auth_script.js"></script>
 </html>
