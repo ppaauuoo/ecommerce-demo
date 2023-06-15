@@ -37,7 +37,6 @@
         <h1 class="h3 mb-3 fw-bold">แบบลงทะเบียน</h1>
 
         <div class="input-group">
-          <span class="input-group-text top">001</span>
           <div class="form-floating">
             <input
               type="text"
@@ -46,13 +45,16 @@
               id="usernamefloatingInput"
               placeholder="Username"
               aria-describedby="button-addon2"
+              
+              value="000<%=userNum%>"
+              
               required 
               autofocus
+              readonly
             />
             <label for="usernamefloatingInput">Username</label>
             
           </div>
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Check</button>
         </div>
 
         <div class="form-floating">
