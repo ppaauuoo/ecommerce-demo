@@ -1,70 +1,96 @@
 <%-include("partials/header.ejs")-%>
 
+<div class="alert alert-warning">
+  This page is unfinish! ลำดับของลูกหลานไม่ตรงกับพ่อแม่
+</div>
+
 <div class="row" style="text-align: center">
   <div class="col-md-12">
     <a href="/user/<%=userName._id%>/sponsor">
-      <i class="fa-solid fa-user fa-8x" style="color: red"></i>
-      <p></p>
+      <i class="fa-solid fa-user fa-7x" style="color: red"></i>
       <h1><%=userName.username%></h1>
     </a>
   </div>
 </div>
 
 <div class="row" style="text-align: center">
-  <%if(lowerUser1){%>
-  <div class="col-xs-6">
-    <a href="/user/<%=lowerUser1._id%>">
-      <i class="fa-solid fa-user fa-6x"></i>
-      <p></p>
-      <h1><%=lowerUser1.username%></h1>
-    </a>
-  </div>
-  <%}%> <%if(lowerUser2){%>
-  <div class="col-xs-6">
-    <a href="/user/<%=lowerUser2._id%>">
-      <i class="fa-solid fa-user fa-6x"></i>
-      <p></p>
-      <h1><%=lowerUser2.username%></h1>
-    </a>
-  </div>
-  <%}%>
+
+  <%Child.forEach((element)=>{%>
+
+    <%if(element.child==0){%>
+      <div class="col-xs-6">
+        <a href="/user/<%=element._id%>">
+          <i class="fa-solid fa-user fa-6x" style="color: blue"></i>
+          <p style="font-size: 30px"><%=element.username%></p>
+        </a>
+      </div>
+    <%}%>
+  <%})%>
+
 </div>
 
 <div class="row" style="text-align: center">
-  <%if(lowerUser1){%> <%if(lowerUser1.children[0]){%>
-  <div class="col-xs-3">
-    <a href="/user/<%=lowerUser1.children[0]._id%>">
-      <i class="fa-solid fa-user fa-2x" style="color: darkgreen"></i>
-      <p></p>
-      <h1><%=lowerUser1.children[0].username%></h1>
-    </a>
-  </div>
-  <%}%> <%if(lowerUser1.children[1]){%>
-  <div class="col-xs-3">
-    <a href="/user/<%=lowerUser1.children[1]._id%>">
-      <i class="fa-solid fa-user fa-2x" style="color: darkgreen"></i>
-      <p></p>
-      <h1><%=lowerUser1.children[1].username%></h1>
-    </a>
-  </div>
-  <%}%> <%}%> <%if(lowerUser2){%>
-  <%if(lowerUser2.children[0]){%>
-  <div class="col-xs-3">
-    <a href="/user/<%=lowerUser2.children[0]._id%>">
-      <i class="fa-solid fa-user fa-2x" style="color: darkgreen"></i>
-      <p></p>
-      <h1><%=lowerUser2.children[0].username%></h1>
-    </a>
-  </div>
-  <%}%> <%if(lowerUser2.children[1]){%>
-  <div class="col-xs-3">
-    <a href="/user/<%=lowerUser2.children[1]._id%>">
-      <i class="fa-solid fa-user fa-2x" style="color: darkgreen"></i>
-      <p></p>
-      <h1><%=lowerUser2.children[1].username%></h1>
-    </a>
-  </div>
-  <%}%> <%}%>
+
+  <%Child.forEach((element)=>{%>
+
+    <%if(element.child==1){%>
+      <div class="col-xs-3">
+        <a href="/user/<%=element._id%>">
+          <i class="fa-solid fa-user fa-5x" style="color: darkgreen"></i>
+          <p style="font-size: 30px"><%=element.username%></p>
+        </a>
+      </div>
+    <%}%>
+  <%})%>
+
+</div>
+
+<div class="row" style="text-align: center">
+
+  <%Child.forEach((element)=>{%>
+
+    <%if(element.child==2){%>
+      <div class="col-xs-1.5">
+        <a href="/user/<%=element._id%>">
+          <i class="fa-solid fa-user fa-4x" style="color: purple"></i>
+          <p style="font-size: 30px"><%=element.username%></p>
+        </a>
+      </div>
+    <%}%>
+  <%})%>
+
+</div>
+
+<div class="row" style="text-align: center">
+
+  <%Child.forEach((element)=>{%>
+
+    <%if(element.child==3){%>
+      <div class="col-xs-0.75">
+        <a href="/user/<%=element._id%>">
+          <i class="fa-solid fa-user fa-3x" style="color: palevioletred"></i>
+          <p style="font-size: 30px"><%=element.username%></p>
+        </a>
+      </div>
+    <%}%>
+  <%})%>
+
+</div>
+
+<div class="row" style="text-align: center">
+
+  <%Child.forEach((element)=>{%>
+
+    <%if(element.child==4){%>
+      <div class="col-xs-0.375">
+        <a href="/user/<%=element._id%>">
+          <i class="fa-solid fa-user fa-2x" style="color: grey"></i>
+          <p style="font-size: 15px"><%=element.username%></p>
+        </a>
+      </div>
+    <%}%>
+  <%})%>
+
 </div>
 
 <%-include("partials/footer.ejs")-%>
