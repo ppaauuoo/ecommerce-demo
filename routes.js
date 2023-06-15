@@ -215,7 +215,9 @@ const Thailand = mongoose.model("thailand", ThailandSchema);
 
 router.get("/register", async (req, res) => {
   const thailand = await Thailand.find({})
+  const userNum = await User.count()
   res.render("register",{
+    userNum: userNum,
     sponsor: null,
     thailand: thailand
   });
@@ -236,7 +238,9 @@ router.get("/register/:sponsorId", async (req, res) => {
     return
   }
   const thailand = await Thailand.find({})
+  const userNum = await User.count()
   res.render("register",{
+    userNum: userNum,
     sponsor: req.params.sponsorId,
     thailand: thailand
   });
