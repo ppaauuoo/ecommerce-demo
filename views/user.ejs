@@ -14,81 +14,58 @@
 </div>
 
 <div class="row" style="text-align: center">
-
-  <%Child.forEach((element)=>{%>
-
-    <%if(element.child==0){%>
-      <div class="col-xs-6">
-        <a href="/user/<%=element._id%>">
-          <i class="fa-solid fa-user fa-6x" style="color: blue"></i>
-          <p style="font-size: 30px"><%=element.username%></p>
-        </a>
-      </div>
-    <%}%>
-  <%})%>
-
+  <%Child.forEach((element)=>{%> <%if(element.child==0){%>
+  <div class="col-xs-6">
+    <a href="/user/<%=element._id%>">
+      <i class="fa-solid fa-user fa-6x" style="color: blue"></i>
+      <p style="font-size: 30px"><%=element.username%></p>
+    </a>
+  </div>
+  <%}%> <%})%>
 </div>
 
 <div class="row" style="text-align: center">
-
-  <%Child.forEach((element)=>{%>
-
-    <%if(element.child==1){%>
-      <div class="col-xs-3">
-        <a href="/user/<%=element._id%>">
-          <i class="fa-solid fa-user fa-5x" style="color: darkgreen"></i>
-          <p style="font-size: 30px"><%=element.username%></p>
-        </a>
-      </div>
-    <%}%>
-  <%})%>
-
+  <%Child.forEach((element)=>{%> <%if(element.child==1){%>
+  <div class="col-xs-3">
+    <a href="/user/<%=element._id%>">
+      <i class="fa-solid fa-user fa-5x" style="color: darkgreen"></i>
+      <p style="font-size: 30px"><%=element.username%></p>
+    </a>
+  </div>
+  <%}%> <%})%>
 </div>
 
 <div class="row" style="text-align: center">
-  <%Child.forEach((element)=>{%>
-    <%if(element.child==2){%>
-      <div class="col-xs-1"  style="width: 12.499999995%">
-        <a href="/user/<%=element._id%>">
-          <i class="fa-solid fa-user fa-4x" style="color: purple"></i>
-          <p style="font-size: 30px"><%=element.username%></p>
-        </a>
-      </div>
-    <%}%>
-  <%})%>
-
+  <%Child.forEach((element)=>{%> <%if(element.child==2){%>
+  <div class="col-xs-1" style="width: 12.499999995%">
+    <a href="/user/<%=element._id%>">
+      <i class="fa-solid fa-user fa-4x" style="color: purple"></i>
+      <p style="font-size: 20px"><%=element.username%></p>
+    </a>
+  </div>
+  <%}%> <%})%>
 </div>
 
 <div class="row" style="text-align: center">
-
-  <%Child.forEach((element)=>{%>
-
-    <%if(element.child==3){%>
-      <div class="col-xs-1"style="width: 6.2499999975%">
-        <a href="/user/<%=element._id%>">
-          <i class="fa-solid fa-user fa-3x" style="color: palevioletred"></i>
-          <p style="font-size: 30px"><%=element.username%></p>
-        </a>
-      </div>
-    <%}%>
-  <%})%>
-
+  <%Child.forEach((element)=>{%> <%if(element.child==3){%>
+  <div class="col-xs-1" style="width: 6.2499999975%">
+    <a href="/user/<%=element._id%>">
+      <i class="fa-solid fa-user fa-2x" style="color: palevioletred"></i>
+      <p style="font-size: 12px"><%=element.username%></p>
+    </a>
+  </div>
+  <%}%> <%})%>
 </div>
 
 <div class="row" style="text-align: center">
-
-  <%Child.forEach((element)=>{%>
-
-    <%if(element.child==4){%>
-      <div class="col-xs-1" style="width: 3.1249999988%">
-        <a href="/user/<%=element._id%>">
-          <i class="fa-solid fa-user fa-2x" style="color: grey"></i>
-          <p style="font-size: 15px"><%=element.username%></p>
-        </a>
-      </div>
-    <%}%>
-  <%})%>
-
+  <%Child.forEach((element)=>{%> <%if(element.child==4){%>
+  <div class="col-xs-1" style="width: 3.1249999988%">
+    <a href="/user/<%=element._id%>">
+      <i class="fa-solid fa-user fa-2x" style="color: grey"></i>
+      <p style="font-size: 10px"><%=element.username%></p>
+    </a>
+  </div>
+  <%}%> <%})%>
 </div>
 
 <%-include("partials/footer.ejs")-%>
