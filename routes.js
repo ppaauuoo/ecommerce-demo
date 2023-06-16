@@ -13,6 +13,7 @@ const calculate = require(__dirname + "/calculate.js");
 const _ = require("lodash");
 
 const $ = require('jquery')
+const date = require(__dirname+"/date.js")
 
 router.use(
   session({
@@ -548,10 +549,13 @@ router.get("/user/:userId", async (req, res) => {
   ]);
 
 
+  const day = date.getDate();
+
   res.render("user", {
     userName: currentUser,
     Child: Tree,
     isLogin: isLogin,
+    day: day,
     wallet: req.user.userWallet || null,
   });
 });

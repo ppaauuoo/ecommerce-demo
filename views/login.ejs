@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="auto">
   <head>
     <script src="/docs/5.3/assets/js/color-modes.js"></script>
-    <link rel="icon" href="/images/icon.png" />
+    <link rel="icon" href="/images/logo1.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
@@ -111,14 +111,15 @@
     <link href="/css/auth_style.css" rel="stylesheet" />
   </head>
   <body class="text-center">
-    <main class="form-signin w-100 m-auto">
+    <main class="form-signin w-50 m-auto">
       <!-- send POST request -->
       <form action="/login" method="POST">
         <!-- using fontawesome kit -->
-        <i class="fa-solid fa-user fa-8x"></i>
+        <img src="/images/logo1.png" style="margin-left: 50px; height: auto; width: 250px;">
+        <!-- <i class="fa-solid fa-user fa-8x"></i> -->
         <p></p>
 
-        <h1 class="h3 mb-3 fw-bold">Login</h1>
+        <h1 class="h3 mb-3 fw-bold">เข้าสู่ระบบ</h1>
         <div class="form-floating">
             <input
               type="text"
@@ -126,11 +127,15 @@
               class="form-control top"
               id="floatingInput"
               placeholder="Username"
+              maxlength="4"
+              minlength="4"
               required
               autofocus
+              autocomplete="off"
             />
             <label for="floatingInput">Username</label>
           </div>
+          
           <div class="form-floating">
               <input
                 type="password"
@@ -138,14 +143,16 @@
                 class="form-control bottom"
                 id="floatingInput"
                 placeholder="Password"
+                maxlength="4"
+                minlength="4"
                 required
               />
               <label for="floatingInput">Password</label>
             </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">
-          Login
+          ล๊อกอิน
         </button>
-        <p class="mt-5 mb-3 text-body-secondary">Dont' Have An Account? <a href="/register">Sign Up!</a></p>
+        <p class="mt-5 mb-3 text-body-secondary">ยังไม่มีบัญชีผู้ใช้? <a href="/register">สมัครสมาชิก!</a></p>
       </form>
     </main>
   </body>

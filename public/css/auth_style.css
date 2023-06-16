@@ -8,8 +8,32 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color:whitesmoke;
+  background-color:#B8F170;
 }
+
+label{
+  color: white  ;
+}
+
+.btn{
+  background-color: #BC17F7;
+}
+
+.form-floating{
+  color: #1C3F1C;
+}
+
+.form-control{
+  background-color: #1C3F1C;
+  color: white;
+}
+
+.form-control:focus{
+  background-color: #1C3F1C;
+  color: white;
+}
+
+
 
 .form-signin {
   max-width: 500px;

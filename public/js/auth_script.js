@@ -30,7 +30,18 @@ $(document).ready(()=> {
     }
   });
 
+  $('#cityfloatingSelectGrid').on('click', ()=> {
+
+  });
+
+
+  console.log( "ready!" );
+
 });
+
+
+
+
 
 function reverse(s){
   return s.split("").reverse().join("");

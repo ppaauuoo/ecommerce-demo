@@ -1,18 +1,41 @@
 body {
-  padding-top: 75px;
+  padding-top: 50px;
+  padding-bottom: 200px;
+  background-color: #B8F170
+  ;
 }
 
 footer {
   background-color: whitesmoke;
-  position: relative;
-  bottom: 100;
-  width: 100%;
+
+  width: auto;
   height: 200px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
 }
 
 .navbar {
   background-color: whitesmoke;
+}
+
+.daybox{
+  font-family: 'Roboto', sans-serif;
+  font-size: 15.45px;
+  font-weight: 400;
+  line-height: 18.1px;
+
+
+  margin-left: 50px;
+  background-color: #1C3F1C;
+  color: white;
+  text-align: center;
+
+  width: 248px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #bsr-page-footer {
@@ -26,7 +49,6 @@ hr {
 /* Add right borders for the divs... */
 #bsr-page-footer .bsr-footer-main-links div {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1.25rem;
 }
 
 /* ...except no border on the right-most div */
@@ -41,8 +63,6 @@ hr {
 
 /* Style the social icon list items further */
 #bsr-page-footer .bsr-social-icons li {
-  margin-left: 0.25rem;
-
   display: inline;
 }
 
@@ -50,7 +70,6 @@ hr {
 .bsr-footer-links li {
   background: transparent;
   border: 0px;
-  padding: 0.25rem;
 }
 
 /* Styling for the ancillary links */
@@ -60,7 +79,6 @@ hr {
 
 #bsr-page-footer .bsr-footer-ancillary-links li {
   display: inline;
-  margin-left: 0.3rem;
   margin-right: 0.3rem;
   text-align: right;
   font-size: smaller;
