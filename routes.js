@@ -67,6 +67,8 @@ const UserSchema = new mongoose.Schema({
   bank: BankSchema,
   password: String,
   children: [],
+  parent: ObjectId,
+  branch: Number,
   sponsor: String,
   userWallet: WalletSchema,
   userCart: [CartSchema],
@@ -223,7 +225,7 @@ router.get("/register/:sponsorId", async (req, res) => {
     return;
   }
   const thailand = await Thailand.find({});
-  const userNum = await User.count();
+  const userNum = (await User.count()).toString().padStart(4, "0");
   res.render("register", {
     userNum: userNum,
     sponsor: req.params.sponsorId,
@@ -265,6 +267,10 @@ router.post("/register", async (req, res) => {
     point: 0,
     total: 0,
   });
+  
+  const latest = await User.find().limit(1).sort({$natural:-1}) 
+  const counttemp = latest.count + 1
+  
   const newUser = new User({
     username: req.body.username,
     fullName: req.body.fullName,
@@ -273,6 +279,7 @@ router.post("/register", async (req, res) => {
     phoneNumber: req.body.phoneNumber,
     bank: newBank,
     children: [],
+    count: counttemp,
     sponsor: sponsortemp,
     userWallet: startWallet,
   });
@@ -417,7 +424,7 @@ router.post("/cart/delete", async (req, res) => {
 
 router.get("/mlm", async (req, res) => {
   if (req.isAuthenticated()) {
-    await User.findOneAndUpdate(
+    const parent = await User.findOneAndUpdate(
       { $expr: { $lt: [{ $size: "$children" }, 2] } },
       {
         $push: {
@@ -429,6 +436,20 @@ router.get("/mlm", async (req, res) => {
       },
       { returnOriginal: false }
     );
+
+
+    await User.findOneAndUpdate(
+      { _id: req.user._id },
+      {
+        $set: {
+          parent: parent._id,
+          branch: parent.children.count
+        },
+      },
+      { returnOriginal: false,
+        upsert: true }
+    );
+        
     isLogin = true;
     res.redirect("/");
   } else {
@@ -466,36 +487,51 @@ router.get("/user/:userId", async (req, res) => {
   }
 
   var Tree = await User.aggregate([
-    { $match: {
-      _id: id
-    }},
     {
-      $graphLookup:
-        {
-          from: "users",
-          startWith: "$children._id",
-          connectFromField: "children._id",
-          connectToField: "_id",
-          as: "tree",
-          maxDepth: 5,
-          depthField: "child",
-        },
+      $match: {
+        _id: id,
+      },
     },
-     {
-      $sort: {
-        _id: 1,
-        "tree.username": 1
-      }
-     },
-    { $unset: [ "fullName","address","citizen","phoneNumber","bank",
-    "children","sponsor","userWallet","userCart","salt","hash",
-    "tree.fullName","tree.address","tree.citizen","tree.phoneNumber","tree.bank",
-    "tree.children","tree.sponsor","tree.userWallet","tree.userCart","tree.salt","tree.hash"
-    ] }
+    {
+      $graphLookup: {
+        from: "users",
+        startWith: "$children._id",
+        connectFromField: "children._id",
+        connectToField: "_id",
+        as: "tree",
+        maxDepth: 5,
+        depthField: "child",
+      },
+    },
+    {
+      $unset: [
+        "fullName",
+        "address",
+        "citizen",
+        "phoneNumber",
+        "bank",
+        "children",
+        "sponsor",
+        "userWallet",
+        "userCart",
+        "salt",
+        "hash",
+        "tree.fullName",
+        "tree.address",
+        "tree.citizen",
+        "tree.phoneNumber",
+        "tree.bank",
+        "tree.children",
+        "tree.sponsor",
+        "tree.userWallet",
+        "tree.userCart",
+        "tree.salt",
+        "tree.hash",
+      ],
+    }
   ]);
 
-  console.log(Tree[0].tree)
-
+  console.log(Tree[0].tree);
 
   res.render("user", {
     userName: currentUser,
@@ -521,5 +557,18 @@ router.get("/user/:userId/sponsor", async (req, res) => {
     wallet: req.user.userWallet || null,
   });
 });
+
+router.get("/test", async(req,res)=>{
+  const parent = await User.findOne(
+    { $expr: { $lt: [{ $size: "$children" }, 2] } }
+
+  );
+
+
+  var test = parent.children.length
+
+  console.log(parseInt('0009'),)
+})
+
 
 module.exports = router;
