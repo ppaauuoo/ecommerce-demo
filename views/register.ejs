@@ -81,6 +81,35 @@
         </div>
 
         <div class="row g-0">
+
+          <div class="col-6">
+
+            <div class="form-floating">
+              <input
+                type="text"
+                name="city"
+                class="form-control middle"
+                id="cityfloatingSelectGrid"
+                placeholder="City"
+                list="list-city"
+                required
+              />
+              <label for="cityfloatingSelectGrid">จังหวัด</label>
+              <datalist id="list-city">
+                <%var city=[]%>
+                <%thailand.forEach((element)=>{%>
+                  <%city.push(element.ProvinceThai)%>
+                <%})%>
+                <%let uniqueCity = [...new Set(city)];%>
+                <%uniqueCity.forEach((element)=>{%>
+                  <option><%=element%></option>
+                <%})%>
+              </datalist>
+            </div>
+          </div>
+
+
+
           <div class="col-6">
             
             <div class="form-floating">
@@ -102,13 +131,18 @@
             </div>
           </div>
 
+
+
+        <div class="row g-0">
+
+
           <div class="col-6">
             
             <div class="form-floating">
               <input
                 type="text"
                 name="district"
-                class="form-control middle"
+                class="form-control bottom"
                 id="districtfloatingSelectGrid"
                 placeholder="District"
                 list="list-district"
@@ -125,35 +159,6 @@
                   <option><%=element%></option>
                 <%})%>
                 
-              </datalist>
-            </div>
-          </div>
-
-        <div class="row g-0">
-
-
-          <div class="col-6">
-
-            <div class="form-floating">
-              <input
-                type="text"
-                name="city"
-                class="form-control bottom"
-                id="cityfloatingSelectGrid"
-                placeholder="City"
-                list="list-city"
-                required
-              />
-              <label for="cityfloatingSelectGrid">จังหวัด</label>
-              <datalist id="list-city">
-                <%var city=[]%>
-                <%thailand.forEach((element)=>{%>
-                  <%city.push(element.ProvinceThai)%>
-                <%})%>
-                <%let uniqueCity = [...new Set(city)];%>
-                <%uniqueCity.forEach((element)=>{%>
-                  <option><%=element%></option>
-                <%})%>
               </datalist>
             </div>
           </div>
@@ -244,9 +249,8 @@
             class="form-control middle"
             id="bookBankNumber"
             placeholder="Book Bank Number"
-            minlength="10"
-            maxlength="10"
-            pattern="[0-9]{10}"
+            minlength="8"
+            pattern="[0-9]"
             required
           />
           <label for="bookBankNumber">เลขบัญชีธนาคาร</label>
