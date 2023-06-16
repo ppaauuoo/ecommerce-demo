@@ -46,11 +46,9 @@
 </div>
 
 <div class="row" style="text-align: center">
-
   <%Child.forEach((element)=>{%>
-
     <%if(element.child==2){%>
-      <div class="col-xs-1.5">
+      <div class="col-sm-1"  style="width: 12.499999995%">
         <a href="/user/<%=element._id%>">
           <i class="fa-solid fa-user fa-4x" style="color: purple"></i>
           <p style="font-size: 30px"><%=element.username%></p>
@@ -66,7 +64,7 @@
   <%Child.forEach((element)=>{%>
 
     <%if(element.child==3){%>
-      <div class="col-xs-0.75">
+      <div class="col-xs-1"style="width: 6.2499999975%">
         <a href="/user/<%=element._id%>">
           <i class="fa-solid fa-user fa-3x" style="color: palevioletred"></i>
           <p style="font-size: 30px"><%=element.username%></p>
@@ -82,7 +80,7 @@
   <%Child.forEach((element)=>{%>
 
     <%if(element.child==4){%>
-      <div class="col-xs-0.375">
+      <div class="col-xs-1" style="width: 3.1249999988%">
         <a href="/user/<%=element._id%>">
           <i class="fa-solid fa-user fa-2x" style="color: grey"></i>
           <p style="font-size: 15px"><%=element.username%></p>
