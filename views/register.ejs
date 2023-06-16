@@ -109,6 +109,35 @@
           </div>
 
 
+          <div class="form-floating">
+            <input
+              type="text"
+              name="district"
+              class="form-control middle"
+              id="districtfloatingSelectGrid"
+              placeholder="District"
+              list="list-district"
+              required
+            />
+            <label for="districtfloatingSelectGrid">อำเภอ</label>
+            <datalist id="list-district">
+              <%var district=[]%>
+              <%thailand.forEach((element)=>{%>
+                <%district.push(element.DistrictThaiShort)%>
+              <%})%>
+              <%let uniqueDistrict = [...new Set(district)];%>
+              <%uniqueDistrict.forEach((element)=>{%>
+                <option><%=element%></option>
+              <%})%>
+              
+            </datalist>
+          </div>
+        </div>
+
+
+
+
+        <div class="row g-0">
 
           <div class="col-6">
             
@@ -116,7 +145,7 @@
               <input
                 type="text"
                 name="subdistrict"
-                class="form-control middle"
+                class="form-control bottom"
                 id="subdistrictfloatingSelectGrid"
                 placeholder="Subdistrict"
                 list="list-subdistrict"
@@ -131,37 +160,9 @@
             </div>
           </div>
 
-
-
-        <div class="row g-0">
-
-
           <div class="col-6">
             
-            <div class="form-floating">
-              <input
-                type="text"
-                name="district"
-                class="form-control bottom"
-                id="districtfloatingSelectGrid"
-                placeholder="District"
-                list="list-district"
-                required
-              />
-              <label for="districtfloatingSelectGrid">อำเภอ</label>
-              <datalist id="list-district">
-                <%var district=[]%>
-                <%thailand.forEach((element)=>{%>
-                  <%district.push(element.DistrictThaiShort)%>
-                <%})%>
-                <%let uniqueDistrict = [...new Set(district)];%>
-                <%uniqueDistrict.forEach((element)=>{%>
-                  <option><%=element%></option>
-                <%})%>
-                
-              </datalist>
-            </div>
-          </div>
+
 
           <div class="col-6">
 
