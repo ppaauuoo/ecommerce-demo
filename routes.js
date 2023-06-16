@@ -12,6 +12,8 @@ const alert = require("alert");
 const calculate = require(__dirname + "/calculate.js");
 const _ = require("lodash");
 
+const $ = require('jquery')
+
 router.use(
   session({
     secret: "paulsocoolmakmak",
@@ -202,12 +204,18 @@ const ThailandSchema = new mongoose.Schema({
 const Thailand = mongoose.model("thailand", ThailandSchema);
 
 router.get("/register", async (req, res) => {
-  const thailand = await Thailand.find({});
+  const tambon = await Thailand.find({},'TambonThaiShort DistrictThaiShort').exec();
+  const district = await Thailand.find({},'DistrictThaiShort ProvinceThai').exec();
+  const province = await Thailand.find({},'ProvinceThai').exec();
+  const postcode = await Thailand.find({},'PostCodeMain TambonThaiShort').exec();
   const userNum = (await User.count()).toString().padStart(4, "0");
   res.render("register", {
     userNum: userNum,
     sponsor: null,
-    thailand: thailand,
+    tambon: tambon,
+    district: district,
+    province: province,
+    postcode: postcode,
   });
 });
 
@@ -267,10 +275,10 @@ router.post("/register", async (req, res) => {
     point: 0,
     total: 0,
   });
-  
-  const latest = await User.find().limit(1).sort({$natural:-1}) 
-  const counttemp = latest.count + 1
-  
+
+  const latest = await User.find().limit(1).sort({ $natural: -1 });
+  const counttemp = latest.count + 1;
+
   const newUser = new User({
     username: req.body.username,
     fullName: req.body.fullName,
@@ -437,19 +445,17 @@ router.get("/mlm", async (req, res) => {
       { returnOriginal: false }
     );
 
-
     await User.findOneAndUpdate(
       { _id: req.user._id },
       {
         $set: {
           parent: parent._id,
-          branch: parent.children.count
+          branch: parent.children.count,
         },
       },
-      { returnOriginal: false,
-        upsert: true }
+      { returnOriginal: false, upsert: true }
     );
-        
+
     isLogin = true;
     res.redirect("/");
   } else {
@@ -528,14 +534,23 @@ router.get("/user/:userId", async (req, res) => {
         "tree.salt",
         "tree.hash",
       ],
-    }
+    },
+    {
+      $unwind: {
+        path: "$tree",
+      },
+    },
+    {
+      $sort: {
+        "tree.count": 1,
+      },
+    },
   ]);
 
-  console.log(Tree[0].tree);
 
   res.render("user", {
     userName: currentUser,
-    Child: Tree[0].tree,
+    Child: Tree,
     isLogin: isLogin,
     wallet: req.user.userWallet || null,
   });
@@ -558,17 +573,8 @@ router.get("/user/:userId/sponsor", async (req, res) => {
   });
 });
 
-router.get("/test", async(req,res)=>{
-  const parent = await User.findOne(
-    { $expr: { $lt: [{ $size: "$children" }, 2] } }
-
-  );
-
-
-  var test = parent.children.length
-
-  console.log(parseInt('0009'),)
-})
-
+router.get("/test", async (req, res) => {
+  res.redirect('/')
+});
 
 module.exports = router;
