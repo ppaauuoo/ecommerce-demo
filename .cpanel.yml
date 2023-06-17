@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home2/cp906134/public_html/design7thai.com/vorkna/testdeploy
-    - /bin/cp -r * $DEPLOYPATH
+       - export DEPLOYPATH=/home/user/public-html/design7thai.com
+       - /bin/cp -R * $DEPLOYPATH
