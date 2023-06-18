@@ -30,19 +30,19 @@ $(()=> {
     }
   });
 
-  $('#cityfloatingSelectGrid').on('change', ()=> {
+  $('#cityfloatingSelectGrid').on('input', ()=> {
     var selected = $('#cityfloatingSelectGrid').val();
     $("#districtfloatingSelectGrid optgroup").show()
     $("#districtfloatingSelectGrid  optgroup").not(this[id=selected]).hide()
   });
 
-  $('#districtfloatingSelectGrid').on('change', ()=> {
+  $('#districtfloatingSelectGrid').on('input', ()=> {
     var selected = $('#districtfloatingSelectGrid').val();
     $("#subdistrictfloatingSelectGrid optgroup").show()
     $("#subdistrictfloatingSelectGrid  optgroup").not(this[id=selected]).hide()
   });
 
-  $('#cityfloatingSelectGrid').on('change', ()=> {
+  $('#cityfloatingSelectGrid').on('input', ()=> {
     var selected = $('#cityfloatingSelectGrid').val();
     $("#postCodefloatingSelectGrid optgroup").show()
     $("#postCodefloatingSelectGrid  optgroup").not(this[id=selected]).hide()
