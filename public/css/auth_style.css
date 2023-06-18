@@ -33,6 +33,16 @@ label{
   color: white;
 }
 
+.form-select{
+  background-color: #1C3F1C;
+  color: white;
+}
+
+.form-select:focus{
+  background-color: #1C3F1C;
+  color: white;
+}
+
 
 
 .form-signin {

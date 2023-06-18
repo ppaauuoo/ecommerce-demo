@@ -1,4 +1,4 @@
-$(document).ready(()=> {
+$(()=> {
   $('#passwordCheck').on('input', ()=> {
     var passwordCheckValue = $('#passwordCheck').val();
     var passwordValue = $('#password').val();
@@ -30,13 +30,25 @@ $(document).ready(()=> {
     }
   });
 
-  $('#cityfloatingSelectGrid').on('click', ()=> {
-
+  $('#cityfloatingSelectGrid').on('change', ()=> {
+    var selected = $('#cityfloatingSelectGrid').val();
+    $("#districtfloatingSelectGrid optgroup").show()
+    $("#districtfloatingSelectGrid  optgroup").not(this[id=selected]).hide()
   });
 
+  $('#districtfloatingSelectGrid').on('change', ()=> {
+    var selected = $('#districtfloatingSelectGrid').val();
+    $("#subdistrictfloatingSelectGrid optgroup").show()
+    $("#subdistrictfloatingSelectGrid  optgroup").not(this[id=selected]).hide()
+  });
 
-  console.log( "ready!" );
+  $('#cityfloatingSelectGrid').on('change', ()=> {
+    var selected = $('#cityfloatingSelectGrid').val();
+    $("#postCodefloatingSelectGrid optgroup").show()
+    $("#postCodefloatingSelectGrid  optgroup").not(this[id=selected]).hide()
+  });
 
+  
 });
 
 

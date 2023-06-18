@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <link rel="icon" href="/images/icon.png" />
+    <link rel="icon" href="/images/logo1.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
@@ -25,19 +25,14 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/auth_style.css" rel="stylesheet" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-
-
-    </script>
   </head>
   <body class="text-center">
     <main class="form-signin w-100 m-auto">
       <!-- send POST request -->
       <form action="/register" method="POST" class="needs-validation" autocomplete="off" novalidate>
+        <img src="/images/logo1.png" style="margin-left: 50px; height: auto; width: 250px;">
         <!-- using fontawesome kit -->
-        <i class="fa-solid fa-user fa-8x"></i>
+        <!-- <i class="fa-solid fa-user fa-8x"></i> -->
         <p></p>
 
         <h1 class="h3 mb-3 fw-bold">แบบลงทะเบียน</h1>
@@ -47,11 +42,10 @@
             <input
               type="text"
               name="username"
-              class="form-control top"
+              class="form-control top w-50"
               id="usernamefloatingInput"
               placeholder="Username"
-              aria-describedby="button-addon2"
-              
+              style="text-align: center;"
               value="<%=userNum%>"
               
               required 
@@ -67,7 +61,7 @@
           <input
             type="text"
             name="fullName"
-            class="form-control middle"
+            class="form-control top"
             id="fullNamefloatingInput"
             placeholder="Full Name"
             required
@@ -91,55 +85,53 @@
           <div class="col-6">
 
             <div class="form-floating">
-              <select 
+              <input
+                type="text"
                 name="city"
-                class="form-select middle"
+                class="form-control middle"
                 id="cityfloatingSelectGrid"
                 placeholder="City"
+                list="list-city"
                 required
-              >
-
-              <%var city=[]%>
-              <%province.forEach((element)=>{%>
-                <%city.push(element.ProvinceThai)%>
-              <%})%>
+              />
+              <label for="cityfloatingSelectGrid">จังหวัด</label>
+              <datalist id="list-city">
+                <%var city=[]%>
+                <%province.forEach((element)=>{%>
+                  <%city.push(element.ProvinceThai)%>
+                <%})%>
                 <%let uniqueCity = [...new Set(city)];%>
                 <%uniqueCity.forEach((element)=>{%>
-                    <option><%=element%></option>
-                    <%})%>
-              
-                </select>
-                <label for="cityfloatingSelectGrid">จังหวัด</label>
+                  <option><%=element%></option>
+                <%})%>
+              </datalist>
             </div>
           </div>
 
-          <div class="col-6">
-            <div class="form-floating">
-              <select
-                name="district"
-                class="form-select middle"
-                id="districtfloatingSelectGrid"
-                placeholder="District"
-                required
-              >
-
-              <%var selectedProvince = document.getElementById("cityfloatingSelectGrid")%>
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              name="district"
+              class="form-control middle"
+              id="districtfloatingSelectGrid"
+              placeholder="District"
+              list="list-district"
+              required
+            />
+            <label for="districtfloatingSelectGrid">อำเภอ</label>
+            <datalist id="list-district">
               <%var districtlist=[]%>
               <%district.forEach((element)=>{%>
-                <%if(element.ProvinceThai==selectedProvince.text){%>
-                  <%districtlist.push(element.DistrictThaiShort)%>
-                <%}%>
+                <%districtlist.push(element.DistrictThaiShort)%>
               <%})%>
               <%let uniqueDistrict = [...new Set(districtlist)];%>
               <%uniqueDistrict.forEach((element)=>{%>
                 <option><%=element%></option>
               <%})%>
-
-            </select>
-            <label for="districtfloatingSelectGrid">อำเภอ</label>
-            </div>
+              
+            </datalist>
           </div>
-
         </div>
 
 
@@ -150,43 +142,52 @@
           <div class="col-6">
             
             <div class="form-floating">
-              <select
+              <input
+                type="text"
                 name="subdistrict"
-                class="form-select bottom"
+                class="form-control bottom"
                 id="subdistrictfloatingSelectGrid"
                 placeholder="Subdistrict"
+                list="list-subdistrict"
                 required
-              >
-              <%tambon.forEach((element)=>{%>
-                <option><%=element.TambonThaiShort%></option>
-              <%})%>
-              </select>
+              />
               <label for="subdistrictfloatingSelectGrid">ตำบล</label>
+              <datalist id="list-subdistrict">
+                <%tambon.forEach((element)=>{%>
+                  <option><%=element.TambonThaiShort%></option>
+                <%})%>
+              </datalist>
             </div>
           </div>
+
             
 
 
           <div class="col-6">
 
             <div class="form-floating">
-              <select
+              <input
+                type="text"
                 name="postCode"
-                class="form-select bottom"
+                class="form-control bottom"
                 id="postCodefloatingSelectGrid"
                 placeholder="Post Code"
+                list="list-postcode"
                 required
-              >
-                <%var postlist=[]%>
+              />
+              <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
+              <datalist id="list-postcode">
+
+                <%var postcodelist=[]%>
                 <%postcode.forEach((element)=>{%>
-                  <%postlist.push(element.PostCodeMain)%>
+                  <%postcodelist.push(element.PostCodeMain)%>
                 <%})%>
-                <%let uniquepPostcode = [...new Set(postlist)];%>
+                <%let uniquepPostcode = [...new Set(postcodelist)];%>
                 <%uniquepPostcode.forEach((element)=>{%>
                   <option><%=element%></option>
                 <%})%>
-              </select>
-              <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
+
+              </datalist>
             </div>
           </div>
         </div>
@@ -315,10 +316,10 @@
         <p></p>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">
-          Register
+          ลงทะเบียน
         </button>
         <p class="mt-5 mb-3 text-body-secondary">
-          Already Have An Account? <a href="/login">Sign In!</a>
+          มีบัญชีอยู่แล้ว? <a href="/login">เข้าสู่ระบบ!</a>
         </p>
       </form>
     </main>
@@ -330,13 +331,11 @@
       src="https://kit.fontawesome.com/147e879dd5.js"
       crossorigin="anonymous"
     ></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
 
-
     <script src="/js/auth_script.js"></script>
-
 </html>
