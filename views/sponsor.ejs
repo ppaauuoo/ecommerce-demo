@@ -1,27 +1,37 @@
 <%-include("partials/header.ejs")-%>
 
+<h3 style="color: black; margin-left: 75px;">วันที่</h3>
+<div class="panel panel-default daybox">
+  
+  <div class="panel-body">
+    <%=day%>
+  </div>
+</div>
+
+
 <div class="row" style="text-align: center">
   <div class="col-md-12">
     <a href="./">
-      <i class="fa-solid fa-user fa-8x" style="color: red"></i>
-      <p></p>
+      <i class="fa-solid fa-person fa-7x" style="color: red"></i>
       <h1><%=userName.username%></h1>
     </a>
-
   </div>
 </div>
+
+
+
 
 <div class="row" style="text-align: center">
   <%children.forEach((element)=>{%>
-  <div class="col-xs-3">
+  <div class="col-xs-1" style="width: 12.499999995%">
     <a href="/user/<%=element._id%>">
-      <i class="fa-solid fa-user fa-4x" style="color: darkorange"></i>
-      <p></p>
-      <h1><%=element.username%></h1>
+      <i class="fa-solid fa-person fa-6x" style="color: darkorange"></i>
+      <p style="font-size: 30px"><%=element.username%></p>
     </a>
   </div>
-
   <%})%>
 </div>
+
+
 
 <%-include("partials/footer.ejs")-%>

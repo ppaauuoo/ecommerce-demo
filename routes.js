@@ -114,6 +114,7 @@ router.get("/", async (req, res) => {
   } else {
     res.render("home", {
       goods: product,
+      wallet: null,
       isLogin: isLogin,
     });
   }
@@ -568,11 +569,12 @@ router.get("/user/:userId/sponsor", async (req, res) => {
   const id = new ObjectId(req.params.userId);
   const currentUser = await User.findById({ _id: id });
   const children = await User.find({ sponsor: req.params.userId });
-
+  const day = date.getDate();
   res.render("sponsor", {
     userName: currentUser,
     children: children,
     isLogin: isLogin,
+    day: day,
     wallet: req.user.userWallet || null,
   });
 });
