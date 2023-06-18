@@ -75,6 +75,7 @@ const UserSchema = new mongoose.Schema({
   sponsor: String,
   userWallet: WalletSchema,
   userCart: [CartSchema],
+  isAdmin: Boolean
 });
 
 UserSchema.plugin(passportLocalMongoose);
@@ -98,26 +99,25 @@ let isLogin = false;
 
 router.get("/", async (req, res) => {
   const product = await Goods.find({});
-  if (req.isAuthenticated()) {
-    const updatedTotal = await calculate.totalCalculate(req.user.userCart);
-    const updating = await User.findOneAndUpdate(
-      { _id: req.user._id },
-      { $set: { "userWallet.total": updatedTotal } },
-      { returnOriginal: false, returnNewDocument: true }
-    );
-    const wallet = updating.userWallet;
+  if (!req.isAuthenticated()) {
     res.render("home", {
       goods: product,
-      wallet: wallet,
-      isLogin: isLogin,
+      user: null
     });
-  } else {
-    res.render("home", {
-      goods: product,
-      wallet: null,
-      isLogin: isLogin,
-    });
+    return
   }
+  const updatedTotal = await calculate.totalCalculate(req.user.userCart);
+  const updating = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: { "userWallet.total": updatedTotal } },
+    { returnOriginal: false, returnNewDocument: true }
+  );
+  const wallet = updating.userWallet;
+  res.render("home", {
+    goods: product,
+    wallet: wallet,
+    user: req.user
+  });
 });
 
 router.post("/", async (req, res) => {
@@ -206,18 +206,13 @@ const ThailandSchema = new mongoose.Schema({
 const Thailand = mongoose.model("thailand", ThailandSchema);
 
 router.get("/register", async (req, res) => {
-  const tambon = await Thailand.find({},'TambonThaiShort DistrictThaiShort').exec();
-  const district = await Thailand.find({},'DistrictThaiShort ProvinceThai').exec();
-  const province = await Thailand.find({},'ProvinceThai').exec();
-  const postcode = await Thailand.find({},'PostCodeMain TambonThaiShort').exec();
+  
+  const thailand = await Thailand.find({}).exec();
   const userNum = (await User.count()).toString().padStart(4, "0");
   res.render("register", {
     userNum: userNum,
     sponsor: null,
-    tambon: tambon,
-    district: district,
-    province: province,
-    postcode: postcode,
+    thailand: thailand
   });
 });
 
@@ -321,7 +316,7 @@ router.get("/money", async (req, res) => {
   if (req.isAuthenticated()) {
     res.render("money", {
       wallet: req.user.userWallet,
-      isLogin: isLogin,
+      user: req.user,
     });
   } else {
     res.redirect("/login");
@@ -378,7 +373,7 @@ router.get("/cart", async (req, res) => {
     res.render("cart", {
       cart: cart,
       wallet: wallet,
-      isLogin: isLogin,
+      user: req.user,
     });
   } else {
     res.redirect("/login");
@@ -465,12 +460,31 @@ router.get("/mlm", async (req, res) => {
   }
 });
 
+
 router.get("/user", async (req, res) => {
-  if (req.isAuthenticated()) {
-    res.redirect("/user/" + req.user._id);
-  } else {
+  if (!req.isAuthenticated()) {
     res.redirect("/login");
+    return
   }
+  if(req.user.isAdmin){
+    res.redirect("/admin")
+    return
+  }
+  res.redirect("/user/" + req.user._id);
+});
+
+router.get("/admin", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  const day = date.getDate()
+  const userData = await User.find({isAdmin: { $ne: 1 }})
+  res.render("admin", {
+    user: req.user,
+    day: day,
+    userData: userData
+  });
 });
 
 router.get("/user/:userId", async (req, res) => {
@@ -555,7 +569,7 @@ router.get("/user/:userId", async (req, res) => {
   res.render("user", {
     userName: currentUser,
     Child: Tree,
-    isLogin: isLogin,
+    user: req.user,
     day: day,
     wallet: req.user.userWallet || null,
   });
@@ -573,7 +587,7 @@ router.get("/user/:userId/sponsor", async (req, res) => {
   res.render("sponsor", {
     userName: currentUser,
     children: children,
-    isLogin: isLogin,
+    user: req.user,
     day: day,
     wallet: req.user.userWallet || null,
   });
