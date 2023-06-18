@@ -308,7 +308,7 @@
       
 
       uniqueCity.forEach((province)=>{
-      $('#districtfloatingSelectGrid').append('<optgroup label='+province+' id='+province+'></optgroup>')
+      $('#districtfloatingSelectGrid').append('<optgroup label='+province+' data-id='+province+'></optgroup>')
         const district=[]
         thailand.forEach((element)=>{
           if(element.ProvinceThai==province){
@@ -317,30 +317,30 @@
         })
         const sortDistrict = [...new Set(district)];
         sortDistrict.forEach((element)=>{
-          $('#districtfloatingSelectGrid optgroup[id="'+province+'"]').append('<option value='+element+'>'+element+'</option>')
+          $('#districtfloatingSelectGrid optgroup[data-id="'+province+'"]').append('<option value='+element+'>'+element+'</option>')
         })
       })
 
       uniqueDistrict.forEach((district)=>{
-      $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' id='+district+'></optgroup>')
+      $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
         thailand.forEach((element)=>{
           if(element.DistrictThaiShort==district){
-            $('#subdistrictfloatingSelectGrid optgroup[id="'+district+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
+            $('#subdistrictfloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
           }
         })
       })
 
-      uniqueCity.forEach((province)=>{
-      $('#postCodefloatingSelectGrid').append('<optgroup label='+province+' id='+province+'></optgroup>')
+      uniqueDistrict.forEach((district)=>{
+      $('#postCodefloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
         const postlist=[]
         thailand.forEach((element)=>{
-          if(element.ProvinceThai==province){
+          if(element.DistrictThaiShort==district){
             postlist.push(element.PostCodeMain)
           }
         })
         const sortPostcode = [...new Set(postlist)];
         sortPostcode.forEach((element)=>{
-          $('#postCodefloatingSelectGrid optgroup[id="'+province+'"]').append('<option value='+element+'>'+element+'</option>')
+          $('#postCodefloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element+'>'+element+'</option>')
         })
       })
       

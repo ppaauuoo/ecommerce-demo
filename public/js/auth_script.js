@@ -30,22 +30,34 @@ $(()=> {
     }
   });
 
-  $('#cityfloatingSelectGrid').on('input', ()=> {
+  $('#cityfloatingSelectGrid').on('change', ()=> {
     var selected = $('#cityfloatingSelectGrid').val();
     $("#districtfloatingSelectGrid optgroup").show()
-    $("#districtfloatingSelectGrid  optgroup").not(this[id=selected]).hide()
-  });
-
-  $('#districtfloatingSelectGrid').on('input', ()=> {
+    $("#districtfloatingSelectGrid  optgroup").not("[data-id='" + selected + "']").hide()
+    $("#districtfloatingSelectGrid optgroup[data-id='" + selected + "'] option").attr('selected','selected');
     var selected = $('#districtfloatingSelectGrid').val();
     $("#subdistrictfloatingSelectGrid optgroup").show()
-    $("#subdistrictfloatingSelectGrid  optgroup").not(this[id=selected]).hide()
+    $("#subdistrictfloatingSelectGrid  optgroup").not("[data-id='" + selected + "']").hide()
+    $("#subdistrictfloatingSelectGrid optgroup[data-id='" + selected + "'] option").attr('selected','selected');
+    var selected = $('#districtfloatingSelectGrid').val();
+    $("#postCodefloatingSelectGrid optgroup").show()
+    $("#postCodefloatingSelectGrid optgroup").not("[data-id='" + selected + "']").hide()
+    $("#postCodefloatingSelectGrid optgroup[data-id='" + selected + "'] option").attr('selected','selected');
   });
 
-  $('#cityfloatingSelectGrid').on('input', ()=> {
-    var selected = $('#cityfloatingSelectGrid').val();
+
+  $('#districtfloatingSelectGrid').on('change', ()=> {
+    var selected = $('#districtfloatingSelectGrid').val();
+    $("#subdistrictfloatingSelectGrid optgroup").show()
+    $("#subdistrictfloatingSelectGrid  optgroup").not("[data-id='" + selected + "']").hide()
+    $("#subdistrictfloatingSelectGrid optgroup[data-id='" + selected + "'] option").attr('selected','selected');
+  });
+
+  $('#districtfloatingSelectGrid').on('change', ()=> {
+    var selected = $('#districtfloatingSelectGrid').val();
     $("#postCodefloatingSelectGrid optgroup").show()
-    $("#postCodefloatingSelectGrid  optgroup").not(this[id=selected]).hide()
+    $("#postCodefloatingSelectGrid optgroup").not("[data-id='" + selected + "']").hide()
+    $("#postCodefloatingSelectGrid optgroup[data-id='" + selected + "'] option").attr('selected','selected');
   });
 
   
