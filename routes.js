@@ -210,13 +210,11 @@ const Bank = mongoose.model("bank", ThailandSchema);
 router.get("/register", async (req, res) => {
   
   const thailand = await Thailand.find({}).exec();
-  const bank = await Bank.find({}).exec();
   const userNum = (await User.count()).toString().padStart(4, "0");
   res.render("register", {
     userNum: userNum,
     sponsor: null,
     thailand: thailand,
-    bank: bank
   });
 });
 
@@ -234,13 +232,11 @@ router.get("/register/:sponsorId", async (req, res) => {
     return;
   }
   const thailand = await Thailand.find({});
-  const bank = await Bank.find({}).exec();
   const userNum = (await User.count()).toString().padStart(4, "0");
   res.render("register", {
     userNum: userNum,
     sponsor: req.params.sponsorId,
     thailand: thailand,
-    bank: bank
   });
 });
 
@@ -268,6 +264,7 @@ router.post("/register", async (req, res) => {
   });
   const Bank = mongoose.model("Bank", BankSchema);
   const newBank = new Bank({
+    bank: req.body.bank,
     bookBank: req.body.bookBank,
     bookBankNumber: req.body.bookBankNumber,
     bookBankBranch: req.body.bookBankBranch,
