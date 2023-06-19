@@ -24,6 +24,7 @@
 </div>
 
 <div class="row" style="text-align: center">
+  <%var count=0%>
   <%Child.forEach((element)=>{%> <%if(element.tree.child==0){%>
   <div class="col-xs-6">
     <a href="/user/<%=element.tree._id%>">
@@ -31,10 +32,18 @@
       <p style="font-size: 30px"><%=element.tree.username%></p>
     </a>
   </div>
-  <%}%> <%})%>
+  <%count++}})%>
+  
+  <%for(var i=count;i<2;i++){%>
+    <div class="col-xs-6">
+      <i class="fa-solid fa-person fa-6x" style="color: white"></i>
+        <p></p>
+    </div>
+  <%}%>
 </div>
 
 <div class="row" style="text-align: center">
+  <%var count=0%>
   <%Child.forEach((element)=>{%> <%if(element.tree.child==1){%>
   <div class="col-xs-3">
     <a href="/user/<%=element.tree._id%>">
@@ -42,10 +51,18 @@
       <p style="font-size: 30px"><%=element.tree.username%></p>
     </a>
   </div>
-  <%}%> <%})%>
+  <%count++}})%>
+  
+  <%for(var i=count;i<4;i++){%>
+    <div class="col-xs-3">
+      <i class="fa-solid fa-person fa-5x" style="color: white"></i>
+        <p></p>
+    </div>
+  <%}%>
 </div>
 
 <div class="row" style="text-align: center">
+  <%var count=0%>
   <%Child.forEach((element)=>{%> <%if(element.tree.child==2){%>
   <div class="col-xs-1" style="width: 12.499999995%">
     <a href="/user/<%=element.tree._id%>">
@@ -53,10 +70,18 @@
       <p style="font-size: 20px"><%=element.tree.username%></p>
     </a>
   </div>
-  <%}%> <%})%>
+  <%count++}})%>
+  
+  <%for(var i=count;i<8;i++){%>
+    <div class="col-xs-1" style="width: 12.499999995%">
+        <i class="fa-solid fa-person fa-4x" style="color: white"></i>
+        <p></p>
+    </div>
+  <%}%>
 </div>
 
 <div class="row" style="text-align: center">
+  <%var count=0%>
   <%Child.forEach((element)=>{%> <%if(element.tree.child==3){%>
   <div class="col-xs-1" style="width: 6.2499999975%">
     <a href="/user/<%=element.tree._id%>">
@@ -64,18 +89,36 @@
       <p style="font-size: 12px"><%=element.tree.username%></p>
     </a>
   </div>
-  <%}%> <%})%>
+  <%count++}})%>
+  
+  <%for(var i=count;i<16;i++){%>
+    <div class="col-xs-1" style="width: 6.2499999975%">
+        <i class="fa-solid fa-person fa-3x" style="color: white"></i>
+        <p></p>
+    </div>
+  <%}%>
+
 </div>
 
 <div class="row" style="text-align: center">
-  <%Child.forEach((element)=>{%> <%if(element.tree.child==4){%>
+  <%var count=0%>
+  <%Child.forEach((element, index)=>{ if(element.tree.child==4){%>
   <div class="col-xs-1" style="width: 3.1249999988%">
     <a href="/user/<%=element.tree._id%>">
       <i class="fa-solid fa-person fa-2x" style="color: grey"></i>
       <p style="font-size: 10px"><%=element.tree.username%></p>
     </a>
   </div>
-  <%}%> <%})%>
+  
+  <%count++}})%>
+  
+  <%for(var i=count;i<32;i++){%>
+    <div class="col-xs-1" style="width: 3.1249999988%">
+        <i class="fa-solid fa-person fa-2x" style="color: white"></i>
+        <p></p>
+    </div>
+  <%}%>
+
 </div>
 
 <%-include("partials/footer.ejs")-%>
