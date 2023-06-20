@@ -1,70 +1,187 @@
 <%-include("partials/header.ejs")-%>
 
-
-
-<h3 style="color: black; margin-left: 75px;">วันที่</h3>
+<h3 style="color: black; margin-left: 75px">วันที่</h3>
 <div class="panel panel-default daybox">
-  
-  <div class="panel-body">
-    <%=day%>
-  </div>
+  <div class="panel-body"><%=day%></div>
 </div>
 
-<div class="alert alert-warning">
-  This page is unfinish!
-</div>
+<div class="alert alert-warning">This page is unfinish!</div>
 
 <div class="panel panel-default">
-
-  <input type="text" class="form-control" id="searchbar">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Users Data</div>
-    <!-- Table -->
-    <table class="table">
-        <tr>
+  <span id="message"></span>
+  <div class="card">
+    <div class="card-header">
+      <div class="panel-heading">Users Data</div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <input type="text" class="form-control" id="searchbar" />
+        <!-- Table -->
+        <table class="table table-striped table-bordered" id="sample_data">
+          <tr>
             <th>Username</th>
             <th>ชื่อ-นามสกุล</th>
             <th>ที่อยู่</th>
             <th>ธนาคาร</th>
             <th>เงิน</th>
             <th>พ้อย</th>
-        </tr>
-        <tbody id="dataTable">
-          <%userData.forEach((element)=>{%>   
+            <th>การแก้ไข</th>
+          </tr>
+          <tbody id="dataTable">
+            <%userData.forEach((element)=>{%>
             <tr>
-                <td>
-                    <!-- <div class="input-group">
-                        <input type="text" class="form-control" value="">
-                        <span class="input-group-btn">
-                          <button class="btn btn-default" type="submit">Edit</button>
-                        </span>
-                      </div>/input-group -->
-                      <%=element.username%>
-                </td>
-                <td><%=element.fullName%></td>
-                <td><%=element.address.address%> / <%=element.address.subdistrict%> / <%=element.address.district%> / <%=element.address.city%> / <%=element.address.postCode%></td>
-                <td><%=element.bank.bank%> / <%=element.bank.bookBank%> / <%=element.bank.bookBankNumber%> / <%=element.bank.bookBankBranch%></td>
-                <td><%=element.userWallet.money%></td>
-                <td><%=element.userWallet.point%></td>
+              <td>
+                <!-- <div class="input-group">
+                          <input type="text" class="form-control" value="">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Edit</button>
+                          </span>
+                        </div>/input-group -->
+                <%=element.username%>
+              </td>
+              <td><%=element.fullName%></td>
+              <td>
+                <%=element.address.address%> / <%=element.address.subdistrict%>
+                / <%=element.address.district%> / <%=element.address.city%> /
+                <%=element.address.postCode%>
+              </td>
+              <td>
+                <%=element.bank.bank%> / <%=element.bank.bookBank%> /
+                <%=element.bank.bookBankNumber%> /
+                <%=element.bank.bookBankBranch%>
+              </td>
+              <td><%=element.userWallet.money%></td>
+              <td><%=element.userWallet.point%></td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-warning btn-sm edit"
+                  data-id="<%=element._id%>"
+                >
+                  Edit
+                </button>
+              </td>
             </tr>
-        <%})%>
-
-        </tbody>
-        
-    </table>
+            <%})%>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      $("#searchbar").on("input", function() {
-        var value = $(this).val().toLowerCase();
-        $("#dataTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
+</div>
+
+<div class="modal" tabindex="-1" id="action_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" id="form">
+        <div class="modal-header" id="dynamic_modal_title">
+          <h5 class="modal-title"></h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <%-include("partials/register_form.ejs")-%>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" name="id" id="id" />
+          <input type="hidden" name="action" id="action" value="Add" />
+          <button type="submit" class="btn btn-primary" id="action_button">
+            แก้ไข
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+  $(() => {
+    $("#searchbar").on("input", function () {
+      var value = $(this).val().toLowerCase();
+      $("#dataTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
       });
     });
-    </script>
+  });
+</script>
+<script>
+  $("#form").on("submit", function (event) {
+    event.preventDefault();
 
-  </body>
-  </html>
+    $.ajax({
+      url: "/admin",
+      method: "POST",
+      data: $("#form").serialize(),
+      dataType: "JSON",
+      beforeSend: function () {
+        $("#action_button").attr("disabled", "disabled");
+      },
+      success: function (data) {
+        $("#action_button").attr("disabled", false);
+
+        $("#message").html(
+          '<div class="alert alert-success">' + data.message + "</div>"
+        );
+
+        $("#action_modal").modal("hide");
+
+        load_data();
+
+        setTimeout(function () {
+          $("#message").html("");
+        }, 5000);
+      },
+    });
+  });
+
+  $(".edit").on("click", (event) => {
+  var button = event.target;
+  var dataId = $(button).data("id");
+
+    $("#dynamic_modal_title").text("Edit Data");
+
+    $("#action").val("Edit");
+
+    $("#action_modal").modal("show");
+
+    
+
+    $.ajax({
+      url: "/admin",
+      method: "POST",
+      data: { id: dataId, action: "fetch_single" },
+      dataType: "JSON",
+      success: (data) => {
+        $("#fullNamefloatingInput").val(data.fullName);
+        $("#addressfloatingInput").val(data.address.address);
+        $("#districtfloatingSelectGrid").val(data.address.district);
+        $("#subdistrictfloatingSelectGrid").val(data.address.subdistrict);
+        $("#cityfloatingSelectGrid").val(data.address.city);
+        $("#postCodefloatingSelectGrid").val(data.address.postCode);
+        $("#citizen").val(data.citizen);
+        $("#phoneNumber").val(data.phoneNumber);
+        $("#bankfloatingSelectGrid").val(data.bank.bank);
+        $("#bookBank").val(data.bank.bookBank);
+        $("#bookBankBranch").val(data.bank.bookBankBranch);
+        $("#bookBankNumber").val(data.bank.bookBankNumber);
+        $("#id").val(data.bank._id);
+        
+      },
+    });
+  });
+</script>
+
+<%-include("partials/footer.ejs")-%>
