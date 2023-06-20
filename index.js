@@ -1,15 +1,8 @@
 const express = require("express");
-const ejs = require("ejs");
-const bodyParser = require("body-parser");
-
 const app = express();
-app.use(express.static("public"));
-app.use(express.json());
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
 
-
-routes = require('./routes')
+routes = require(__dirname + '/routes')
 app.use('/', routes);
 
 

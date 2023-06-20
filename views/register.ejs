@@ -37,11 +37,15 @@
         autocomplete="off"
         novalidate
       >
-      <div class="row">
-        <div clsas="col">
-          <img src="/images/logo1.png" class="img-fluid" style="margin-left: 50px; height: auto; width: 250px;">
+        <div class="row">
+          <div clsas="col">
+            <img
+              src="/images/logo1.png"
+              class="img-fluid"
+              style="margin-left: 50px; height: auto; width: 250px"
+            />
+          </div>
         </div>
-      </div>
         <p></p>
 
         <h1 class="h3 mb-3 fw-bold">แบบลงทะเบียน</h1>
@@ -64,192 +68,8 @@
           </div>
         </div>
 
-        <div class="form-floating">
-          <input
-            type="text"
-            name="fullName"
-            class="form-control middle"
-            id="fullNamefloatingInput"
-            placeholder="Full Name"
-            required
-          />
-          <label for="fullNamefloatingInput">ชื่อ-นามสกุล</label>
-        </div>
+        <%-include("partials/register_form.ejs")-%>
 
-        <div class="form-floating">
-          <textarea
-            name="address"
-            class="form-control middle"
-            id="addressfloatingInput"
-            placeholder="Last Name"
-            required
-          ></textarea>
-          <label for="addressfloatingInput">ที่อยู่</label>
-        </div>
-
-        <div class="row g-0">
-          <div class="col-6">
-            <div class="form-floating">
-              <select
-                name="city"
-                class="form-select middle"
-                id="cityfloatingSelectGrid"
-                placeholder="City"
-                
-                required
-              ></select>
-              <label for="cityfloatingSelectGrid">จังหวัด</label>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-floating">
-              <select
-                name="district"
-                class="form-select middle"
-                id="districtfloatingSelectGrid"
-                placeholder="District"
-                required
-              ></select>
-              <label for="districtfloatingSelectGrid">อำเภอ</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-0">
-          <div class="col-6">
-            <div class="form-floating">
-              <select
-                name="subdistrict"
-                class="form-select bottom"
-                id="subdistrictfloatingSelectGrid"
-                placeholder="Subdistrict"
-                required
-              ></select>
-              <label for="subdistrictfloatingSelectGrid">ตำบล</label>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="form-floating">
-              <select
-                name="postCode"
-                class="form-select bottom"
-                id="postCodefloatingSelectGrid"
-                placeholder="Post Code"
-                required
-              ></select>
-              <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
-            </div>
-          </div>
-        </div>
-
-        <p></p>
-        <div class="form-floating">
-          <input
-            type="tel"
-            name="citizen"
-            class="form-control top"
-            id="citizen"
-            placeholder="Citizen Code"
-            minlength="13"
-            maxlength="13"
-            pattern="[0-9]{13}"
-            required
-          />
-          <label for="citizen">เลขบัตรประชาชน</label>
-          <div class="invalid-tooltip">เลขบัตรประชาชนผิดพลาด.</div>
-        </div>
-
-        <div class="form-floating">
-          <input
-            type="tel"
-            name="phoneNumber"
-            class="form-control bottom"
-            id="phoneNumber"
-            placeholder="Phone Number"
-            minlength="10"
-            maxlength="10"
-            pattern="[0]{1}[2,6,8,9]{1}[0-9]{8}"
-            required
-          />
-          <label for="phoneNumber">เบอร์โทร</label>
-          <div class="invalid-tooltip">เบอร์โทรผิดพลาด.</div>
-        </div>
-        <p></p>
-        <p></p>
-          <div class="form-floating">
-            <select
-              name="bank"
-              class="form-select top"
-              id="bankfloatingSelectGrid"
-              placeholder="Bank"
-              required
-            >
-              <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
-              <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
-              <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
-              <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
-              <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
-              <option value="ธนาคารซีไอเอ็มบี">ธนาคารซีไอเอ็มบี</option>
-              <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
-              <option value="ธนาคารสแตนดาร์ดชาร์เตอร์ด">ธนาคารสแตนดาร์ดชาร์เตอร์ด</option>
-              <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
-              <option value="ธนาคารทิสโก้">ธนาคารทิสโก้</option>
-              <option value="ธนาคารเกียรตินาคินภัทร">ธนาคารเกียรตินาคินภัทร</option>
-              <option value="ธนาคารแลนด์ แอนด์ เฮ้าส์
-              ">ธนาคารแลนด์ แอนด์ เฮ้าส์
-            </option>
-              <option value="ธนาคารไอซีบีซี">ธนาคารไอซีบีซี</option>
-              <option value="ธนาคารไทยเครดิต">ธนาคารไทยเครดิต</option>
-              <option value="ธนาคารเมกะ สากลพาณิชย์
-              ">ธนาคารเมกะ สากลพาณิชย์
-            </option>
-              <option value="ธนาคารแห่งประเทศจีน">ธนาคารแห่งประเทศจีน</option>
-              <option value="ธนาคารซูมิโตโมมิตซุยทรัสต์">ธนาคารซูมิโตโมมิตซุยทรัสต์</option>
-
-            </select>
-            <label for="bankfloatingSelectGrid">ธนาคาร</label>
-          </div>
-        </div>
-      
-
-        <div class="form-floating">
-          <input
-            type="text"
-            name="bookBank"
-            class="form-control middle"
-            id="bookBank"
-            placeholder="Book Bank Name"
-            required
-          />
-          <label for="bookBank">ชื่อบัญชีธนาคาร</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="tel"
-            name="bookBankNumber"
-            class="form-control middle"
-            id="bookBankNumber"
-            placeholder="Book Bank Number"
-            minlength="8"
-            required
-          />
-          <label for="bookBankNumber">เลขบัญชีธนาคาร</label>
-          <div class="invalid-tooltip">เลขบัญชีธนาคารผิดพลาด.</div>
-        </div>
-        <div class="form-floating">
-          <input
-            type="text"
-            name="bookBankBranch"
-            class="form-control bottom"
-            id="bookBankBranch"
-            placeholder="Book Bank Branch"
-            required
-          />
-          <label for="bookBankBranch">สาขาที่เปิดบัญชีธนาคาร</label>
-        </div>
-        <p></p>
         <div class="form-floating">
           <input
             type="password"
@@ -294,6 +114,11 @@
         </div>
         <p></p>
 
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
+          Register
+        </button>
+        
         <button class="w-100 btn btn-lg btn-primary" type="submit">
           Register
         </button>
@@ -324,7 +149,6 @@
   ></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
-
 
   <script>
     $(()=> {
@@ -380,9 +204,9 @@
           $('#postCodefloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element+'>'+element+'</option>')
         })
       })
-      
+
     })
   </script>
 
-<script src="/js/auth_script.js"></script>
+  <script src="/js/auth_script.js"></script>
 </html>

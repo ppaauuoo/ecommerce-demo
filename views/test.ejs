@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        function loadDoc() {
+           $.ajax({
+            url:"http://localhost:8888/test/",
+            method:"POST",
+            data:{action:'fetch'},
+            dataType:'JSON',
+            success:(data)=>{
+                const testdat = data.test
+                testdat.forEach((element)=>{
+                    $('#demo').append('<h1>'+element.goodsName+'</h1>')
+                })
+                
+            }
+           })
+        }
+    </script>
+</head>
+<body>
+
+    <div id="demo">
+      <h2>Let AJAX change this text</h2>
+      <button type="button" onclick="loadDoc()"><%=test%></button>
+    </div>
+    
+    </body>
+</html>
