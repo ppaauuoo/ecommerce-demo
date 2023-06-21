@@ -28,19 +28,20 @@ router.get("/", async (req, res) => {
 
   router.post("/", async (req, res) => {
     var action = req.body.action;
-    
-    
+    if(action == 'fetch'){
+      const userData = await User.find({isAdmin: { $ne: 1 }})
+      res.json(userData);
+    }
+
     if(action == 'fetch_single')
     {  
       var id = new ObjectId(req.body.id);
       var user = await User.findById(id)
-
       res.json(user);
     }
   
     if(action == 'Edit')
     {
-
       const newAddress = new Address({
         address: req.body.address,
         subdistrict: req.body.subdistrict,
@@ -62,27 +63,22 @@ router.get("/", async (req, res) => {
       //   total: req.body.total,
       // });
 
-      id = new ObjectId(req.body.id)
-      const test = await User.findOneAndUpdate({_id: id},
-        {
-        username: req.body.username,
-        fullName: req.body.fullName,
-        address: newAddress,
-        citizen: req.body.citizen,
-        phoneNumber: req.body.phoneNumber,
-        bank: newBank,
-        //sponsor: req.body.sponsor,
-        //userWallet: newWallet,
-      },{
-        returnOriginal: false
-      });
       
-      console.log(req.body)
-      console.log(test)
-      console.log(id)
-
+      await User.findOneAndUpdate({_id: req.body.id},
+        {
+          username: req.body.username,
+          fullName: req.body.fullName,
+          address: newAddress,
+          citizen: req.body.citizen,
+          phoneNumber: req.body.phoneNumber,
+          bank: newBank,
+          //sponsor: req.body.sponsor,
+          //userWallet: newWallet,
+        },{
+          returnOriginal: false
+        });      
       res.json({
-        message : 'Data Edited'
+        message : 'ข้อมูลถูกแก้ไข'
       });
     }
   
