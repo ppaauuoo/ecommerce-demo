@@ -28,37 +28,37 @@ $(() => {
             `</td>
               <td>
                 ` +
-            element.address.address +
+            element.address +
             ` / ` +
-            element.address.subdistrict +
+            element.subdistrict +
             `
                 / ` +
-            element.address.district +
+            element.district +
             ` / ` +
-            element.address.city +
+            element.city +
             ` /
                 ` +
-            element.address.postCode +
+            element.postCode +
             `
               </td>
               <td>
                 ` +
-            element.bank.bank +
+            element.bank +
             ` / ` +
-            element.bank.bookBank +
+            element.bookBank +
             ` /
                 ` +
-            element.bank.bookBankNumber +
+            element.bookBankNumber +
             ` /
                 ` +
-            element.bank.bookBankBranch +
+            element.bookBankBranch +
             `
               </td>
               <td>` +
-            element.userWallet.money +
+            element.money +
             `</td>
               <td>` +
-            element.userWallet.point +
+            element.point +
             `</td>
               <td>
                 <button
@@ -124,18 +124,19 @@ $(() => {
       data: { id: dataId, action: "fetch_single" },
       dataType: "JSON",
       success: (data) => {
+        console.log(data)
         $("#fullNamefloatingInput").val(data.fullName);
-        $("#addressfloatingInput").val(data.address.address);
-        $("#districtfloatingSelectGrid").val(data.address.district);
-        $("#subdistrictfloatingSelectGrid").val(data.address.subdistrict);
-        $("#cityfloatingSelectGrid").val(data.address.city);
-        $("#postCodefloatingSelectGrid").val(data.address.postCode);
+        $("#addressfloatingInput").val(data.address);
+        $("#districtfloatingSelectGrid").val(data.district);
+        $("#subdistrictfloatingSelectGrid").val(data.subdistrict);
+        $("#cityfloatingSelectGrid").val(data.city);
+        $("#postCodefloatingSelectGrid").val(data.postCode);
         $("#citizen").val(data.citizen);
         $("#phoneNumber").val("0" + data.phoneNumber);
-        $("#bankfloatingSelectGrid").val(data.bank.bank);
-        $("#bookBank").val(data.bank.bookBank);
-        $("#bookBankBranch").val(data.bank.bookBankBranch);
-        $("#bookBankNumber").val(data.bank.bookBankNumber);
+        $("#bankfloatingSelectGrid").val(data.bank);
+        $("#bookBank").val(data.bookBank);
+        $("#bookBankBranch").val(data.bookBankBranch);
+        $("#bookBankNumber").val(data.bookBankNumber);
         $("#id").val(data._id);
       },
     });
