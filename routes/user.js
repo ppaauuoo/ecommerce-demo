@@ -6,6 +6,40 @@ const ObjectId = require("mongodb").ObjectId;
 
 const User = mongoose.model("User");
 
+var con = require("../database");
+
+const getId = async (id) => {
+  return await new Promise((resolve, reject) => {
+    con.query(
+      "SELECT * FROM users WHERE _id='" +
+        id +
+        "'",
+      (err, rows) => {
+        resolve(rows[0]);
+      }
+    );
+  });
+};
+
+const getTree = async (id) =>{
+  return await new Promise((resolve, reject) => {
+    con.query(
+      "SELECT node.username, node._id"+
+      "FROM users AS node,"+
+              "users AS parent"+
+      "WHERE node.childrenL BETWEEN parent.childrenL AND parent.childrenR"+
+              "AND parent._id = '"+id+"'"+
+      "ORDER BY node.childrenL;"
+      ,(err, rows) => {
+        resolve(rows);
+      }
+    );
+  });
+
+
+
+
+}
 
 
 router.get("/", async (req, res) => {
@@ -27,22 +61,17 @@ router.get("/", async (req, res) => {
       res.redirect("/login");
       return;
     }
-    var id;
-    try {
-      id = new ObjectId(req.params.userId);
-    } catch (err) {
-      res.redirect("/");
-      return;
-    }
-    const currentUser = await User.findById(
-      { _id: id },
-      { username: 1, children: 1 }
-    ).exec();
+    const currentUser = await getId(req.params.userId)
     if (!currentUser) {
       res.redirect("/");
       return;
     }
-  
+
+    const sqlTree = await getTree(req.params.userId)
+    console.log(sqlTree)
+
+
+    var id = new ObjectId(req.params.userId);
     var Tree = await User.aggregate([
       {
         $match: {

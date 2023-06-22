@@ -1,17 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const mongoose = require("mongoose");
-const ObjectId = require("mongodb").ObjectId;
+
 
 const date = require("../helper/date.js");
 
 var con = require("../database");
 
-const User = mongoose.model("User");
-const Address = mongoose.model("Address");
-const Bank = mongoose.model("Bank");
-const Wallet = mongoose.model("Wallet");
 
 const getData = async () => {
   return await new Promise((resolve, reject) => {
