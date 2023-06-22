@@ -6,6 +6,8 @@ const ObjectId = require("mongodb").ObjectId;
 
 const date = require("../helper/date.js")
 
+var con = require("../database");
+
 const User = mongoose.model("User");
 const Address = mongoose.model("Address");
 const Bank = mongoose.model("Bank");
@@ -18,7 +20,14 @@ router.get("/", async (req, res) => {
       return;
     }
     const day = date.getDate()
-    const userData = await User.find({isAdmin: { $ne: 1 }})
+    //const userData = await User.find({isAdmin: { $ne: 1 }})
+    const userData = await new Promise((resolve, reject) => {
+      con.query("SELECT * FROM users u INNER JOIN addresses a ON u.address_id=a.address_id INNER JOIN banks b ON u.bank_id=b.bank_id WHERE u.isAdmin!=1", (err, rows) => {
+        resolve(rows);
+      });
+    });
+
+    console.log(userData)
     res.render("admin", {
       user: req.user,
       day: day,

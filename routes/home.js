@@ -17,11 +17,10 @@ router.get("/", async (req, res) => {
       resolve(rows);
     });
   });
-  console.log(goods)
   if (!req.isAuthenticated()) {
     setTimeout(() => {
       res.render("home", {
-        goods: goods||null,
+        goods: goods,
         user: null,
       });},100);
     return;
@@ -39,7 +38,7 @@ router.get("/", async (req, res) => {
   // });
   const wallet = updating.userWallet;
   res.render("home", {
-    goods: product,
+    goods: goods,
     wallet: wallet,
     user: req.user,
   });
