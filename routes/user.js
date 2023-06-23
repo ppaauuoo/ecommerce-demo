@@ -24,13 +24,12 @@ const getId = async (id) => {
 const getTree = async (id) =>{
   return await new Promise((resolve, reject) => {
     con.query(
-      "SELECT node.username, node._id"+
-      "FROM users AS node,"+
-              "users AS parent"+
-      "WHERE node.childrenL BETWEEN parent.childrenL AND parent.childrenR"+
-              "AND parent._id = '"+id+"'"+
-      "ORDER BY node.childrenL;"
+      "SELECT t1.username AS lev1, t1._id AS lev1id, t2.username AS lev2, t2._id AS lev2id, t3.username AS lev3, t3._id AS lev3id, t4.username AS lev4, t4._id AS lev4id, t5.username AS lev5, t5._id AS lev5id, t6.username AS lev6, t6._id AS lev6id FROM users t1 LEFT JOIN users t2 ON t2._id = t1.childrenL OR t2._id = t1.childrenR LEFT JOIN users t3 ON t3._id = t2.childrenL OR t3._id = t2.childrenR LEFT JOIN users t4 ON t4._id = t3.childrenL OR t4._id = t3.childrenR LEFT JOIN users t5 ON t5._id = t4.childrenL OR t5._id = t4.childrenR LEFT JOIN users t6 ON t6._id = t5.childrenL OR t6._id = t5.childrenR WHERE t1._id = '"+id+"'"
       ,(err, rows) => {
+        if(err){
+          console.log(err)
+        }
+          
         resolve(rows);
       }
     );
@@ -71,68 +70,14 @@ router.get("/", async (req, res) => {
     console.log(sqlTree)
 
 
-    var id = new ObjectId(req.params.userId);
-    var Tree = await User.aggregate([
-      {
-        $match: {
-          _id: id,
-        },
-      },
-      {
-        $graphLookup: {
-          from: "users",
-          startWith: "$children._id",
-          connectFromField: "children._id",
-          connectToField: "_id",
-          as: "tree",
-          maxDepth: 5,
-          depthField: "child",
-        },
-      },
-      {
-        $unset: [
-          "fullName",
-          "address",
-          "citizen",
-          "phoneNumber",
-          "bank",
-          "children",
-          "sponsor",
-          "userWallet",
-          "userCart",
-          "salt",
-          "hash",
-          "tree.fullName",
-          "tree.address",
-          "tree.citizen",
-          "tree.phoneNumber",
-          "tree.bank",
-          "tree.children",
-          "tree.sponsor",
-          "tree.userWallet",
-          "tree.userCart",
-          "tree.salt",
-          "tree.hash",
-        ],
-      },
-      {
-        $unwind: {
-          path: "$tree",
-        },
-      },
-      {
-        $sort: {
-          "tree.count": 1,
-        },
-      },
-    ]);
+ 
   
   
     const day = date.getDate();
   
     res.render("user", {
       userName: currentUser,
-      Child: Tree,
+      Child: sqlTree,
       user: req.user,
       day: day,
       wallet: req.user.userWallet || null,

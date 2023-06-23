@@ -25,14 +25,14 @@
 
 <div class="row" style="text-align: center">
   <%var count=0%>
-  <%Child.forEach((element)=>{%> <%if(element.tree.child==0){%>
+  <%for(var i=0; i<2;i++){%>
   <div class="col-xs-6">
-    <a href="/user/<%=element.tree._id%>">
+    <a href="/user/<%=Child.lev2id%>">
       <i class="fa-solid fa-person fa-6x" style="color: blue"></i>
-      <p style="font-size: 30px"><%=element.tree.username%></p>
+      <p style="font-size: 30px"><%=Child.lev2%></p>
     </a>
   </div>
-  <%count++}})%>
+  <%count++}%>
   
   <%for(var i=count;i<2;i++){%>
     <div class="col-xs-6">
@@ -44,14 +44,14 @@
 
 <div class="row" style="text-align: center">
   <%var count=0%>
-  <%Child.forEach((element)=>{%> <%if(element.tree.child==1){%>
+  <%for(var i=0; i<2;i++){%>
   <div class="col-xs-3">
-    <a href="/user/<%=element.tree._id%>">
+    <a href="/user/<%=Child.lev2id%>">
       <i class="fa-solid fa-person fa-5x" style="color: darkgreen"></i>
-      <p style="font-size: 30px"><%=element.tree.username%></p>
+      <p style="font-size: 30px"><%=Child.lev2%></p>
     </a>
   </div>
-  <%count++}})%>
+  <%count++}%>
   
   <%for(var i=count;i<4;i++){%>
     <div class="col-xs-3">
@@ -63,14 +63,14 @@
 
 <div class="row" style="text-align: center">
   <%var count=0%>
-  <%Child.forEach((element)=>{%> <%if(element.tree.child==2){%>
+  <%for(var i=0; i<2;i++){%>
   <div class="col-xs-1" style="width: 12.499999995%">
-    <a href="/user/<%=element.tree._id%>">
+    <a href="/user/<%=Child.lev2id%>">
       <i class="fa-solid fa-person fa-4x" style="color: purple"></i>
-      <p style="font-size: 20px"><%=element.tree.username%></p>
+      <p style="font-size: 20px"><%=Child.lev2%></p>
     </a>
   </div>
-  <%count++}})%>
+  <%count++}%>
   
   <%for(var i=count;i<8;i++){%>
     <div class="col-xs-1" style="width: 12.499999995%">
@@ -82,14 +82,14 @@
 
 <div class="row" style="text-align: center">
   <%var count=0%>
-  <%Child.forEach((element)=>{%> <%if(element.tree.child==3){%>
+  <%for(var i=0; i<Child.length;i++){%>
   <div class="col-xs-1" style="width: 6.2499999975%">
-    <a href="/user/<%=element.tree._id%>">
+    <a href="/user/<%=Child[i].lev5id%>">
       <i class="fa-solid fa-person fa-3x" style="color: palevioletred"></i>
-      <p style="font-size: 12px"><%=element.tree.username%></p>
+      <p style="font-size: 12px"><%=Child[i].lev5%></p>
     </a>
   </div>
-  <%count++}})%>
+  <%count++}%>
   
   <%for(var i=count;i<16;i++){%>
     <div class="col-xs-1" style="width: 6.2499999975%">
@@ -100,25 +100,49 @@
 
 </div>
 
-<div class="row" style="text-align: center">
-  <%var count=0%>
-  <%Child.forEach((element, index)=>{ if(element.tree.child==4){%>
-  <div class="col-xs-1" style="width: 3.1249999988%">
-    <a href="/user/<%=element.tree._id%>">
-      <i class="fa-solid fa-person fa-2x" style="color: grey"></i>
-      <p style="font-size: 10px"><%=element.tree.username%></p>
-    </a>
-  </div>
-  
-  <%count++}})%>
-  
-  <%for(var i=count;i<32;i++){%>
-    <div class="col-xs-1" style="width: 3.1249999988%">
-        <i class="fa-solid fa-person fa-2x" style="color: white"></i>
-        <p></p>
-    </div>
-  <%}%>
+<div id="lev6" class="row" data-id="lev6" style="text-align: center">
 
+  
 </div>
+
+<script>
+   $(()=>{
+    const Child = <%-JSON.stringify(Child)%>;
+      const lev2=[]
+      const lev3=[]
+      const lev4=[]
+      const lev5=[]
+      const lev6=[]
+      Child.forEach((element)=>{
+        lev2.push({name: element.lev2,id: element.lev2id})
+        lev3.push({name: element.lev3,id: element.lev3id})
+        lev4.push({name: element.lev4,id: element.lev4id})
+        lev5.push({name: element.lev5,id: element.lev5id})
+        lev6.push({name: element.lev6,id: element.lev6id})
+      })
+      lev2=[...new Set(lev2)];
+      lev3=[...new Set(lev3)];
+      lev4=[...new Set(lev4)];
+      lev5=[...new Set(lev5)];
+      lev6=[...new Set(lev6)];
+
+      lev6.forEach((element)=>{
+        var temp = '<div class="col-xs-1" style="width: 3.1249999988%">'+
+    '<a href="/user/'+element.id+'">'+
+      '<i class="fa-solid fa-person fa-2x" style="color: grey"></i>'+
+      '<p style="font-size: 10">'+element.name+'</p>'+
+    '</a>'+
+  '</div>'
+      $("lev6").html(temp)
+      })
+
+
+      
+
+
+   })
+   
+
+</script>
 
 <%-include("partials/footer.ejs")-%>
