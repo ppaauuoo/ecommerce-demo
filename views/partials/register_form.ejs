@@ -1,45 +1,49 @@
 
 <div class="form-floating">
+  <label for="fullNamefloatingInput">ชื่อ-นามสกุล</label>
   <input
     type="text"
     name="fullName"
     class="form-control middle"
     id="fullNamefloatingInput"
     placeholder="ชื่อ-นามสกุล"
-    
+    maxlength="50"
   />
 </div>
 
 <div class="form-floating">
+  <label for="addressfloatingInput">ที่อยู่</label>
   <textarea
     name="address"
     class="form-control middle"
     id="addressfloatingInput"
     placeholder="ที่อยู่"
-    
+    maxlength="50"
   ></textarea>
 </div>
 
 
     <div class="form-floating">
+  <label for="cityfloatingSelectGrid">จังหวัด</label>
       <input
         name="city"
         class="form-control middle"
         id="cityfloatingSelectGrid"
         placeholder="จังหวัด"
-        
+        maxlength="50"
       ></input>
     </div>
 
 
 
     <div class="form-floating">
+  <label for="districtfloatingSelectGrid">อำเภอ</label>
       <input
         name="district"
         class="form-control middle"
         id="districtfloatingSelectGrid"
         placeholder="อำเภอ"
-        
+        maxlength="50"
       ></input>
     </div>
 
@@ -47,30 +51,36 @@
 
 
     <div class="form-floating">
+  <label for="subdistrictfloatingSelectGrid">ตำบล</label>
       <input
         name="subdistrict"
         class="form-control bottom"
         id="subdistrictfloatingSelectGrid"
         placeholder="ตำบล"
-        
+        maxlength="50"
       ></input>
     </div>
 
 
 
     <div class="form-floating">
+  <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
       <input
+        type="tel"
         name="postCode"
         class="form-control bottom"
         id="postCodefloatingSelectGrid"
         placeholder="รหัสไปรษณีย์"
-        
+        minlength="5"
+        maxlength="5"
+        pattern="[0-9]{5}"
       ></input>
     </div>
 
 
 <p></p>
 <div class="form-floating">
+  <label for="citizen">เลขบัตรประชาชน</label>
   <input
     type="tel"
     name="citizen"
@@ -85,6 +95,7 @@
 </div>
 
 <div class="form-floating">
+  <label for="phoneNumber">เบอร์โทร</label>
   <input
     type="tel"
     name="phoneNumber"
@@ -94,18 +105,18 @@
     minlength="10"
     maxlength="10"
     pattern="[0]{1}[2,6,8,9]{1}[0-9]{8}"
-    
   />
 </div>
 <p></p>
 <p></p>
   <div class="form-floating">
+  <label for="bankfloatingSelectGrid">ธนาคาร</label>
     <input
       name="bank"
       class="form-control top"
       id="bankfloatingSelectGrid"
       placeholder="ธนาคาร"
-      
+      maxlength="50"
     >
 
     </input>
@@ -113,34 +124,40 @@
 
 
 <div class="form-floating">
+  <label for="bookBank">ชื่อบัญชีธนาคาร</label>
+  
   <input
     type="text"
     name="bookBank"
     class="form-control middle"
     id="bookBank"
     placeholder="ชื่อบัญชีธนาคาร"
-    
+    maxlength="50"
   />
 </div>
 <div class="form-floating">
+  <label for="bookBankNumber">เลขบัญชีธนาคาร</label>
   <input
     type="tel"
     name="bookBankNumber"
     class="form-control middle"
     id="bookBankNumber"
     placeholder="เลขบัญชีธนาคาร"
-    minlength="8"
-    
+    pattern="[0-9]{8,15}"
+    maxlength="15"
   />
+  
 </div>
 <div class="form-floating">
+  <label for="bookBankBranch">สาขาที่เปิดบัญชีธนาคาร</label>
   <input
     type="text"
     name="bookBankBranch"
     class="form-control bottom"
     id="bookBankBranch"
     placeholder="สาขาที่เปิดบัญชีธนาคาร"
-    
+    maxlength="50"
   />
+  
 </div>
 <p></p>

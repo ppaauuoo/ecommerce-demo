@@ -38,7 +38,6 @@ router.get("/", async (req, res) => {
     return;
   }
   const day = date.getDate();
-  //const userData = await User.find({isAdmin: { $ne: 1 }})
   const userData = await getData();
 
   res.render("admin", {
@@ -62,44 +61,9 @@ router.post("/", async (req, res) => {
   }
 
   if (action == "Edit") {
-    // const newAddress = new Address({
-    //   address: req.body.address,
-    //   subdistrict: req.body.subdistrict,
-    //   district: req.body.district,
-    //   city: req.body.city,
-    //   postCode: req.body.postCode,
-    // });
-
-    // const newBank = new Bank({
-    //   bank: req.body.bank,
-    //   bookBank: req.body.bookBank,
-    //   bookBankNumber: req.body.bookBankNumber,
-    //   bookBankBranch: req.body.bookBankBranch,
-    // });
-
-    // const newWallet = new Wallet({
-    //   money: req.body.money,
-    //   point: req.body.point,
-    //   total: req.body.total,
-    // });
-
-    // await User.findOneAndUpdate({_id: req.body.id},
-    //   {
-    //     username: req.body.username,
-    //     fullName: req.body.fullName,
-    //     address: newAddress,
-    //     citizen: req.body.citizen,
-    //     phoneNumber: req.body.phoneNumber,
-    //     bank: newBank,
-    //     //sponsor: req.body.sponsor,
-    //     //userWallet: newWallet,
-    //   },{
-    //     returnOriginal: false
-    //   });
-    console.log(req.body)
     await new Promise((resolve, reject) => {
       con.query(
-        "UPDATE users u LEFT JOIN addresses a ON u.address_id=a.address_id LEFT JOIN banks b ON u.bank_id=b.bank_id LEFT JOIN wallets w ON u.userWallet_id=w.userWallet_id SET a.address='" +
+        "UPDATE users u LEFT JOIN addresses a ON u.address_id=a.address_id LEFT JOIN banks b ON u.bank_id=b.bank_id SET a.address='" +
           req.body.address +
           "', a.subdistrict='" +
           req.body.subdistrict +
@@ -117,24 +81,22 @@ router.post("/", async (req, res) => {
           req.body.bookBankNumber +
           ", b.bookBankBranch='" +
           req.body.bookBankBranch +
-          "', u.username='" +
-          req.body.username +
           "', u.fullName='" +
           req.body.fullName +
           "', u.citizen='" +
           req.body.citizen +
           "', u.phoneNumber=" +
           req.body.phoneNumber +
-          ", w.money=" +
-          req.body.money +
-          ", w.point=" +
-          req.body.point +
           " WHERE u._id='" +
           req.body.id +
           "'",
         (err, rows) => {
+          if(err){
+            throw(err)
+            
+          }
+            
           resolve(rows);
-          console.log(rows)
         }
       );
     });
