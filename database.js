@@ -1,9 +1,9 @@
 const mysql = require('mysql')
 const con = mysql.createConnection({
-  host: 'cpanel14wh.bkk1.cloud.z.com',
-  user: 'cp906134_vorkna',
-  password: 'OpOr2546',
-  database: 'cp906134_test'
+  host: 'ps01.zwhhosting.com',
+  user: 'zqfpszwh_vorkna',
+  password: 'OpOr2546-9',
+  database: 'zqfpszwh_test'
 })
 
 // connection.connect()
