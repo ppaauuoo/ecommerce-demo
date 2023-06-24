@@ -65,7 +65,7 @@ $(() => {
                   type="button"
                   class="btn btn-warning btn-sm edit"
                   data-id="` +
-            element._id +
+            element.username +
             `"
                 >
                   Edit
@@ -81,7 +81,6 @@ $(() => {
 
   $("#form").on("submit", function (event) {
     event.preventDefault();
-
     $.ajax({
       url: "/admin",
       method: "POST",
@@ -98,7 +97,7 @@ $(() => {
         );
 
         $("#action_modal").modal("hide");
-
+        console.log('dog')
         load_data();
 
         setTimeout(function () {
@@ -114,17 +113,14 @@ $(() => {
 
     $("#dynamic_modal_title").text("Edit Data");
 
-    $("#action").val("Edit");
-
     $("#action_modal").modal("show");
-
+    
     $.ajax({
       url: "/admin",
       method: "POST",
       data: { id: dataId, action: "fetch_single" },
       dataType: "JSON",
       success: (data) => {
-        console.log(data)
         $("#fullNamefloatingInput").val(data.fullName);
         $("#addressfloatingInput").val(data.address);
         $("#districtfloatingSelectGrid").val(data.district);
@@ -137,7 +133,7 @@ $(() => {
         $("#bookBank").val(data.bookBank);
         $("#bookBankBranch").val(data.bookBankBranch);
         $("#bookBankNumber").val(data.bookBankNumber);
-        $("#id").val(data._id);
+        $("#username").val(data.username);
       },
     });
   });

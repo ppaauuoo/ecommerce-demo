@@ -31,12 +31,6 @@
             <%userData.forEach((element)=>{%>
             <tr>
               <td>
-                <!-- <div class="input-group">
-                          <input type="text" class="form-control" value="">
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">Edit</button>
-                          </span>
-                        </div>/input-group -->
                 <%=element.username%>
               </td>
               <td><%=element.fullName%></td>
@@ -56,7 +50,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-sm edit"
-                  data-id="<%=element._id%>"
+                  data-id="<%=element.username%>"
                 >
                   Edit
                 </button>
@@ -75,20 +69,14 @@
     <div class="modal-content">
       <form method="post" id="form">
         <div class="modal-header" id="dynamic_modal_title">
-          <h5 class="modal-title"></h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <h5 class="modal-title">Edit Data</h5>
         </div>
         <div class="modal-body">
           <%-include("partials/register_form.ejs")-%>
         </div>
         <div class="modal-footer">
-          <input type="hidden" name="id" id="id" />
-          <input type="hidden" name="action" id="action" value="Add" />
+          <input type="hidden" name="username" id="username" />
+          <input type="hidden" name="action" id="action" value="Edit" />
           <button type="submit" class="btn btn-primary" id="action_button">
             แก้ไข
           </button>
