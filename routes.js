@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
 const session = require("express-session");
 
 const bodyParser = require("body-parser");
@@ -40,7 +39,10 @@ router.use('/cart', cart);
 money = require('./routes/money.js')
 router.use('/money', money);
 
-auth = require('./routes/auth.js')
+// auth = require('./routes/auth.js')
+// router.use('/', auth);
+
+auth = require('./routes/sqlauth.js')
 router.use('/', auth);
 
 home = require('./routes/home.js')
