@@ -1,48 +1,38 @@
 const express = require("express");
 const router = express.Router();
 
+const sql = require("../helper/sqlCommand.js");
 
 router.get("/", async (req, res) => {
-    if (req.isAuthenticated()) {
-      res.render("money", {
-        wallet: req.user.userWallet,
-        user: req.user,
-      });
-    } else {
-      res.redirect("/login");
+    if (!req.isAuthenticated()) {
+      res.redirect('/login')
+      return
     }
+    const user = await sql.getUser(req.user.username)
+    const wallet = await sql.getWallet(user.walletId)
+    res.render("money", {
+      wallet: wallet,
+      user: user
+    });
   });
   
   router.get("/add", async (req, res) => {
-    const wallet = req.user.userWallet;
+    const user = await sql.getUser(req.user.username)
+    const wallet = await sql.getWallet(user.walletId)
     const updatedMoney = wallet.money + 100;
-    await User.findOneAndUpdate(
-      { _id: req.user._id },
-      { $set: { "userWallet.money": updatedMoney } },
-      { returnOriginal: false }
-    );
+    await sql.queryPromise("UPDATE wallets SET money = ? WHERE walletId = ?",[updatedMoney,wallet.walletId])
     res.redirect("/money");
   });
   
   router.get("/transfer", async (req, res) => {
-    const wallet = req.user.userWallet;
+    const user = await sql.getUser(req.user.username)
+    const wallet = await sql.getWallet(user.walletId)
     const updatedMoney = wallet.money + 20;
     const updatedPoint = wallet.point - 100;
     if (wallet.point >= 100) {
-      await User.findOneAndUpdate(
-        { _id: req.user._id },
-        {
-          $set: {
-            "userWallet.money": updatedMoney,
-            "userWallet.point": updatedPoint,
-          },
-        },
-        { returnOriginal: false }
-      );
-      alert("Success!");
+      await sql.queryPromise("UPDATE wallets SET money = ?,point = ? WHERE walletId = ?",[updatedMoney,updatedPoint,wallet.walletId])
       res.redirect("/money");
     } else {
-      alert("Not Enough!");
       res.redirect("/money");
     }
   });

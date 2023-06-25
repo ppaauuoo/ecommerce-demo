@@ -1,55 +1,75 @@
-
 <%-include("partials/header.ejs")-%>
 
-<div class="container" style="padding: 25px;">
-	<table id="cart" class="table table-hover table-condensed">
-    				<thead>
-						<tr>
-							<th style="width:50%">Product</th>
-							<th style="width:10%">Price</th>
-							<th style="width:8%">Quantity</th>
-							<th style="width:22%" class="text-center">Subtotal</th>
-							<th style="width:10%"></th>
-						</tr>
-					</thead>
-					<form action="/cart/delete" method="post">
-						<%cart.forEach((element)=>{%>
-							<tbody>
-								<tr>
-									<td data-th="Product">
-										<div class="row">
-											<div class="col-sm-2 "><img src="<%=element.goodsImage%>" alt="..." class="img-responsive"=/></div>
-											<div class="col-sm-2">
-												<h4 class=""><%=element.goodsName%></h4>
-												<p><%=element.goodsDesc%>></p>
-											</div>
-										</div>
-									</td>
-									<td class="col-sm-2" data-th="Price"><%=element.goodsPrice%> บาท</td>
-									<td class="col-sm-2" data-th="Quantity"><%=element.goodsQuantity%></td>
-									<td class="col-sm-2" data-th="Subtotal" class="text-center"><%=element.goodsSubTotal%> บาท</td>	
-									<td class="col-sm-2" class="actions" data-th="">
-									<button type="submit" class="btn btn-danger btn-sm" name="selected2DeleteItem" value="<%=element.goodsName%>"><i class="fa fa-trash-o" ></i></button>								
-									</td>
-								</tr>
-							</tbody>
-						<%})%>
-					</form>
-					
+<div class="container" style="padding: 25px">
+  <table id="cart" class="table" style="background-color: white; border: 100px; border-radius: 25px;">
+    <thead>
+      <tr>
+        <th style="width: 50%">Product</th>
+        <th style="width: 10%">Price</th>
+        <th style="width: 8%">Quantity</th>
+        <th style="width: 22%" class="text-center">Subtotal</th>
+        <th style="width: 10%"></th>
+      </tr>
+    </thead>
+    <form action="/cart/delete" method="post">
+      <%cart.forEach((element)=>{%>
+      <tbody>
+        <tr>
+          <td class="col-sm-2" data-th="Product">
+            <img src="<%=element.goodsImage%>" alt="..."
+            class="img-responsive">
+          </td>
+          <td class="col-sm-2" data-th="Product">
+            <h4 class=""><%=element.goodsName%></h4>
+            <p><%=element.goodsDesc%></p>
+          </td>
+          <td class="col-sm-2" data-th="Price"><%=element.goodsPrice%> บาท</td>
+          <td class="col-sm-2" data-th="Quantity"><%=element.quantity%></td>
+          <td class="col-sm-2" data-th="Subtotal" class="text-center">
+            <%=element.goodsPrice*element.quantity%> บาท
+          </td>
+          <td class="col-sm-2" class="actions" data-th="">
+            <button
+              type="submit"
+              class="btn btn-danger btn-sm"
+              name="selectedItem"
+              value="<%=element.goodsName%>"
+            >
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <%})%>
+    </form>
 
-
-					<tfoot>
-						<tr class="visible-xs">
-							<td class="text-center"><strong>Total <%=wallet.total%> บาท</strong></td>
-						</tr>
-						<tr>
-							<td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total <%=wallet.total%> บาท</strong></td>
-							<td><a href="/cart/checkout" class="btn btn-success btn-block" name="total">Checkout <i class="fa fa-angle-right"></i></a></td>
-						</tr>
-					</tfoot>
-				</table>
+    <tfoot>
+      <tr class="visible-xs">
+        <td class="text-center">
+          <strong>Total <%=wallet.total%> บาท</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/" class="btn btn-warning"
+            ><i class="fa fa-angle-left"></i> Continue Shopping</a
+          >
+        </td>
+        <td colspan="2" class="hidden-xs"></td>
+        <td class="hidden-xs text-center">
+          <strong>Total <%=wallet.total%> บาท</strong>
+        </td>
+        <td>
+          <a
+            href="/cart/checkout"
+            class="btn btn-success btn-block"
+            name="total"
+            >Checkout <i class="fa fa-angle-right"></i
+          ></a>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
 
 <%-include("partials/footer.ejs")-%>

@@ -1,75 +1,121 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const calculate = require("../helper/calculate.js")
 
-const User = mongoose.model("User");
+const calculate = require("../helper/calculate.js");
+const sql = require("../helper/sqlCommand.js");
+
+const getCart = async (user) => {
+  return await sql.queryPromise(
+    "SELECT * FROM cart c INNER JOIN goods g ON c.goodId = g.goodId WHERE username = ?",
+    [user.username]
+  );
+};
+
+const getItem = async (item) => {
+  return await sql.queryPromise("SELECT * FROM goods WHERE goodsName = ?", [
+    item,
+  ]);
+};
+
+const updateWallet = async (UserCart, wallet) => {
+  var updatedTotal = 0;
+  UserCart.forEach((e) => {
+    updatedTotal += e.goodsPrice * e.quantity;
+  });
+  await sql.queryPromise("UPDATE wallets SET total = ? WHERE walletId = ?", [
+    updatedTotal,
+    wallet.walletId,
+  ]);
+};
 
 router.get("/", async (req, res) => {
-  if (req.isAuthenticated()) {
-    const updatedTotal = await calculate.totalCalculate(req.user.userCart);
-    const updating = await User.findOneAndUpdate(
-      { _id: req.user._id },
-      { $set: { "userWallet.total": updatedTotal } },
-      { returnOriginal: false, returnNewDocument: true }
-    );
-    const wallet = updating.userWallet;
-    const cart = updating.userCart;
-
-    res.render("cart", {
-      cart: cart,
-      wallet: wallet,
-      user: req.user,
-    });
-  } else {
+  if (!req.isAuthenticated()) {
     res.redirect("/login");
+    return;
   }
+  const user = await sql.getUser(req.user.username);
+  const wallet = await sql.getWallet(user.walletId);
+  const UserCart = await getCart(user);
+
+  await updateWallet(UserCart, wallet);
+
+  res.render("cart", {
+    cart: UserCart,
+    wallet: wallet,
+    user: user,
+  });
 });
 
-router.post("/", function (req, res) {
-  res.redirect("/cart");
+router.post("/", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+
+  const user = await sql.getUser(req.user.username);
+  const wallet = await sql.getWallet(user.walletId);
+  const selectedItem = await getItem(req.body.selectedItem);
+  const UserCart = await getCart(user);
+
+  var dupe = 0;
+  UserCart.forEach(async (e) => {
+    if (e.goodId == selectedItem[0].goodId) {
+      dupe++;
+    }
+  });
+  if (dupe) {
+    await sql.queryPromise(
+      "UPDATE cart SET quantity = quantity + 1 WHERE goodId = ?",
+      [selectedItem[0].goodId]
+    );
+  } else {
+    await sql.queryPromise("INSERT INTO cart (username, goodId) VALUES (?,?)", [
+      user.username,
+      selectedItem[0].goodId,
+    ]);
+  }
+
+  await updateWallet(UserCart, wallet)
+  res.redirect("/");
 });
+
 
 router.get("/checkout", async (req, res) => {
-  const wallet = req.user.userWallet;
+  const user = await sql.getUser(req.user.username);
+  const wallet = await sql.getWallet(user.walletId);
 
   if (wallet.money < wallet.total) {
-    alert("Not Enough!");
     res.redirect("/cart");
   } else {
     const pointObtained = calculate.pointCalculate(wallet.total);
     const updatedMoney = wallet.money - wallet.total;
     const updatedPoint = wallet.point + pointObtained;
 
-    await User.findOneAndUpdate(
-      { _id: req.user._id },
-      {
-        userWallet: {
-          money: updatedMoney,
-          point: updatedPoint,
-          total: wallet.total,
-        },
-      },
-      { returnOriginal: false }
+    await sql.queryPromise(
+      "UPDATE wallets SET money = ?,point = ? WHERE walletId = ?",
+      [updatedMoney, updatedPoint, wallet.walletId]
     );
 
-    await User.findOneAndUpdate(
-      { _id: req.user._id },
-      { $set: { userCart: [] } },
-      { returnOriginal: false }
-    );
-    alert("you got " + pointObtained + " point!");
+    await sql.queryPromise("DELETE FROM cart WHERE username = ?", [
+      user.username,
+    ]);
+
+    await sql.queryPromise("UPDATE wallets SET total = ? WHERE walletId = ?", [
+      0,
+      wallet.walletId,
+    ]);
+
     res.redirect("/");
   }
 });
 
 router.post("/delete", async (req, res) => {
-  const request2DeleteGoods = req.body.selected2DeleteItem;
-  await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { $pull: { userCart: { goodsName: request2DeleteGoods } } },
-    { returnOriginal: false }
-  );
+  const selectedItem = await getItem(req.body.selectedItem);
+
+  await sql.queryPromise("DELETE FROM cart WHERE goodId = ?", [
+    selectedItem[0].goodId,
+  ]);
+
   res.redirect("/cart");
 });
 

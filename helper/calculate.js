@@ -1,7 +1,7 @@
 
 exports.pointCalculate = (total) => {
     if(total>=100)
-        return Math.floor(total%100)
+        return Math.floor(total/100)
     else
         return 0
 }
