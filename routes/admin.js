@@ -1,46 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-
+var con = require("../database");
+const sql = require("../helper/sqlCommand.js");
 
 const date = require("../helper/date.js");
-
-var con = require("../database");
-
-
-const getData = async () => {
-  return await new Promise((resolve, reject) => {
-    con.query(
-      "SELECT * FROM users u LEFT JOIN addresses a ON u.addressId=a.addressId LEFT JOIN banks b ON u.bankId=b.bankId LEFT JOIN wallets w ON u.walletId=w.walletId WHERE u.isAdmin!=1",
-      (err, rows) => {
-        resolve(rows);
-      }
-    );
-  });
-};
-
-const getId = async (username) => {
-  return await new Promise((resolve, reject) => {
-    con.query(
-      "SELECT * FROM users u LEFT JOIN addresses a ON u.addressId=a.addressId LEFT JOIN banks b ON u.bankId=b.bankId LEFT JOIN wallets w ON u.walletId=w.walletId WHERE u.username=?",
-       [username],
-      (err, rows) => {
-        resolve(rows[0]);
-      }
-    );
-  });
-};
-
-const getUser = async (username) => {
-  return await new Promise((resolve, reject) => {
-    con.query(
-      "SELECT * FROM users WHERE username=?",[username],
-      (err, rows) => {
-        resolve(rows[0]);
-      }
-    );
-  });
-};
 
 router.get("/", async (req, res) => {
   if (!req.isAuthenticated()) {
@@ -48,8 +12,8 @@ router.get("/", async (req, res) => {
     return;
   }
   const day = date.getDate();
-  const userData = await getData();
-  const user = await getUser(req.user.username)
+  const userData = await sql.getData();
+  const user = await sql.getUser(req.user.username)
   res.render("admin", {
     user: user,
     day: day,
@@ -60,12 +24,12 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   var action = req.body.action;
   if (action == "fetch") {
-    const userData = await getData();
+    const userData = await sql.getData();
     res.json(userData);
   }
 
   if (action == "fetch_single") {
-    const user = await getId(req.body.id);
+    const user = await sql.getUserData(req.body.id);
     res.json(user);
   }
 
