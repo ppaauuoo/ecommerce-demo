@@ -11,8 +11,20 @@ exports.getUser = async (username) => {
       );
     });
   };
-  
-  exports.getWallet = async (walletId) => {
+
+  exports.getLength = async () => {
+    return await new Promise((resolve, reject) => {
+      con.query(
+        "SELECT COUNT(*) AS length FROM users",
+        (err, rows) => {
+          if(rows){resolve(rows[0])};
+          resolve(null)
+        }
+      );
+    });
+  };
+
+exports.getWallet = async (walletId) => {
     return await new Promise((resolve, reject) => {
       con.query(
         "SELECT * FROM wallets WHERE walletId=?",[walletId],
@@ -73,3 +85,87 @@ exports.getData = async () => {
       );
     });
   };
+
+exports.sponsorChild = async (sponsor) =>{
+    return await new Promise((resolve, reject) => {
+      con.query(
+        `SELECT COUNT(*) AS length FROM users WHERE sponsor = ?`,
+        [sponsor],
+        (err, rows) => {
+          resolve(rows[0]);
+        }
+      );
+    });
+  };
+
+  exports.getChild = async (userid) => {
+    return new Promise((resolve, reject) => {
+      const childLQuery = `SELECT COUNT(childrenL) AS length FROM users WHERE childrenL IS NOT NULL`;
+      const childRQuery = `SELECT COUNT(childrenR) AS length FROM users WHERE childrenR IS NOT NULL`;
+  
+      const childLPromise = new Promise((resolve, reject) => {
+        con.query(childLQuery, (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result[0].length);
+          }
+        });
+      });
+  
+      const childRPromise = new Promise((resolve, reject) => {
+        con.query(childRQuery, (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result[0].length);
+          }
+        });
+      });
+  
+      Promise.all([childLPromise, childRPromise])
+        .then(([childLlength, childRlength]) => {
+          if (childLlength > childRlength) {
+            con.query(
+              "UPDATE users SET childrenR = ? WHERE childrenR IS NULL ORDER BY username ASC LIMIT 1",
+              [userid],
+              (err, rows) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(rows);
+                }
+              }
+            );
+          } else {
+            con.query(
+              "UPDATE users SET childrenL = ? WHERE childrenL IS NULL ORDER BY username ASC LIMIT 1",
+              [userid],
+              (err, rows) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(rows);
+                }
+              }
+            );
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  
+  exports.queryPromise = (query, values) => {
+    return new Promise((resolve, reject) => {
+      con.query(query, values, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  };
+  
