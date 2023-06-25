@@ -36,41 +36,54 @@ module.exports = function(passport) {
 	// by default, if there was no name, it would just be called 'local'
 
     passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with username
-        usernameField : 'username',
+        usernameField: 'username',
         passwordField: 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
-    },
-    function(req, username, password, done) {
-
-		// find a user whose username is the same as the forms username
-		// we are checking to see if the user trying to login already exists
-        connection.query("select * from auth where username = '"+username+"'",async (err,rows)=>{
-			if (err)
-                return done(err);
-			 if (rows.length) {
-                return done(null, false);
+        passReqToCallback: true
+      }, function(req, username, password, done) {
+        // find a user whose username is the same as the forms username
+        // we are checking to see if the user trying to login already exists
+        new Promise((resolve, reject) => {
+          connection.query("SELECT * FROM auth WHERE username = ?", [username], (err, rows) => {
+            if (err) {
+              reject(err);
             } else {
-
-				// if there is no user with that username
-                // create the user
-                var newUserMysql = new Object();
-				
-				newUserMysql.username = username;
+              resolve(rows);
+            }
+          });
+        })
+        .then(rows => {
+          if (rows.length) {
+            // User with the provided username already exists
+            return done(null, false);
+          } else {
+            // Create the user
+            const newUserMysql = {
+              username: username
+            };
       
-                await bcrypt.hash(password, saltRounds).then(function(hash) {
-                    newUserMysql.hash=hash
+            return bcrypt.hash(password, saltRounds)
+              .then(hash => {
+                newUserMysql.hash = hash;
+                const insertQuery = "INSERT INTO auth (username, hash) VALUES (?, ?)";
+                return new Promise((resolve, reject) => {
+                  connection.query(insertQuery, [username, newUserMysql.hash], (err, rows) => {
+                    if (err) {
+                      reject(err);
+                    } else {
+                      resolve(newUserMysql);
+                    }
+                  });
                 });
-
-			
-				var insertQuery = "INSERT INTO auth ( username , hash ) values ('" + username +"','"+ newUserMysql.hash +"')";
-				connection.query(insertQuery,function(err,rows){
-				
-				    return done(null, newUserMysql);
-				});	
-            }	
-		});
-    }));
+              })
+              .then(newUser => {
+                return done(null, newUser);
+              });
+          }
+        })
+        .catch(err => {
+          return done(err);
+        });
+      }));
 
     // =========================================================================
     // LOCAL LOGIN =============================================================
@@ -86,7 +99,7 @@ module.exports = function(passport) {
     }, async (req, username, password, done) => {
         try {
             const rows = await new Promise((resolve, reject) => {
-                connection.query("SELECT * FROM `auth` WHERE `username` = ?", [username],(err, rows) => {
+                connection.query("SELECT * FROM auth WHERE username = ?", [username],(err, rows) => {
                     resolve(rows);
                 });
             });
