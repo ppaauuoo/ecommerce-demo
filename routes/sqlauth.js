@@ -6,21 +6,12 @@ const passportConfig = require("../passport.js");
 
 passportConfig(passport);
 
-var con = require("../database");
 const sql = require("../helper/sqlCommand.js");
 
-const mongoose = require("mongoose");
-const ObjectId = require("mongodb").ObjectId;
-const User = mongoose.model("User");
 
-const ThailandSchema = new mongoose.Schema({
-  TambonThaiShort: String,
-  DistrictThaiShort: String,
-  ProvinceThai: String,
-  PostCodeMain: Number,
-});
 
-const Thailand = mongoose.model("thailand", ThailandSchema);
+
+
 
 
 router.get("/login", (req, res) => {
@@ -28,7 +19,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/register", async (req, res) => {
-  const thailand = await Thailand.find({}).exec();
+  const thailand = await sql.queryPromise("SELECT * FROM thailands")
   var userNum = await sql.getLength()
   userNum = (userNum.length).toString().padStart(4, "0");
   res.render("register", {
@@ -40,7 +31,7 @@ router.get("/register", async (req, res) => {
 
 router.get("/register/:sponsor", async (req, res) => {
   const sponsor = await sql.getUser(req.params.sponsor);
-  const thailand = await Thailand.find({}).exec();
+  const thailand = await sql.queryPromise("SELECT * FROM thailands")
   var userNum = await sql.getLength()
   userNum = (userNum.length).toString().padStart(4, "0");
   res.render("register", {

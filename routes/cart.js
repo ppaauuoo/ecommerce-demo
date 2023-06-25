@@ -3,7 +3,6 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const calculate = require("../helper/calculate.js")
 
-
 const User = mongoose.model("User");
 
 router.get("/", async (req, res) => {
