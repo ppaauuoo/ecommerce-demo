@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const ObjectId = require("mongodb").ObjectId;
 
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
+// const passport = require("passport");
+// const passportLocalMongoose = require("passport-local-mongoose");
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -56,13 +56,13 @@ const UserSchema = new mongoose.Schema({
   userCart: [CartSchema],
   isAdmin: Number
 });
-UserSchema.plugin(passportLocalMongoose);
+// UserSchema.plugin(passportLocalMongoose);
 
 //initiialize user model
 const User = mongoose.model("User", UserSchema);
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 //goods
 const GoodsSchema = new mongoose.Schema({
