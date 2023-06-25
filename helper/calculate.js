@@ -8,8 +8,10 @@ exports.pointCalculate = (total) => {
 
 exports.totalCalculate = (cart) => {
     let total=0;
-    for(var i=0;i<cart.length;i++){
-        total+=cart[i].goodsSubTotal
+    if(cart){
+        for(var i=0;i<cart.length;i++){
+            total+=cart[i].goodsSubTotal
+        }
     }
     return total;
 }
@@ -21,4 +23,29 @@ exports.searchCart = (cart, request) => {
         }
     }
     return -99;
+}
+
+exports.sponsorIncome = (sponsored) => {
+    var result=0
+    sponsored.forEach((e)=>{
+        result++
+    })
+    return result*400;
+}
+
+exports.childIncome = (child) => {
+    var result=0
+    if(child){
+        result=200
+    }
+    return result
+}
+
+exports.emptySlot = (tree) => {
+    var result=32
+    tree.forEach((e)=>{
+        if(e.lev6){result-=1}
+    })
+    if(result<0){result='>32'}
+    return result
 }
