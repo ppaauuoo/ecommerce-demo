@@ -46,6 +46,7 @@ exports.emptySlot = (tree) => {
     tree.forEach((e)=>{
         if(e.lev6){result-=1}
     })
-    if(result<0){result='>32'}
+    if(result>32){result='>32'}
     return result
 }
+

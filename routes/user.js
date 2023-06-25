@@ -23,6 +23,7 @@ router.get("/", async (req, res) => {
     const sponsorIncome = calculate.sponsorIncome(sponsored)
     const childIncome = calculate.childIncome(currentUser.childrenR)
     const emptySlot = calculate.emptySlot(sqlTree)
+    const sponsorChild = await sql.sponsorChild(currentUser.username)
     res.render('account',{
       userName: currentUser,
       Child: sqlTree,
@@ -32,7 +33,8 @@ router.get("/", async (req, res) => {
       sponsored: sponsored,
       sponsorIncome: sponsorIncome,
       childIncome: childIncome,
-      emptySlot:emptySlot
+      emptySlot:emptySlot,
+      sponsorChild: sponsorChild.length
     })
   });
   
