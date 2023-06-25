@@ -14,8 +14,12 @@ footer {
 
 .smallmlm{
   background-color: white; width: 500px; height: 350px; margin: auto; align-items: center; border-radius: 100px; border-color: black;
-  
 }
+
+.mlmcontainer{
+  background-color: white; border: 100px; border-radius: 25px; padding: 25px; border-color: black
+}
+
 
 .panel-label{
   color: black; text-align: center;

@@ -55,7 +55,6 @@ router.get("/", async (req, res) => {
     const wallet = await sql.getWallet(currentUser.walletId)
 
     const sqlTree = await sql.getTree(req.params.userId)
-    console.log(sqlTree)
 
     const day = date.getDate();
   

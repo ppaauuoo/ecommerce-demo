@@ -1,10 +1,6 @@
 <%-include("partials/header.ejs")-%>
 
 
-<div class="alert alert-warning">
-  This page is unfinish!
-</div>
-
 <div class="container" style="padding: 25px;">
   <div class="row">
     <div class="col-md-6 col-xs-12">
@@ -14,26 +10,6 @@
           <%=day%>
         </div>
       </div>
-
-        <h3 class="panel-label">รายได้จากค่าจับคู่</h3>
-        <div class="panel panel-default commissionbox">
-          <div class="panel-body">
-            <%=childIncome%> บาท
-          </div>
-        </div>
-        <h3 class="panel-label">ช่องคงเหลือในผัง</h3>
-        <div class="panel panel-default commissionbox">
-          <div class="panel-body">
-            <%if(!emptySlot){%>
-              <div style="color: red;">ผังเต็มแล้ว!</div>
-            <%}else{%>
-              <%=emptySlot%> คน
-            <%}%>
-            
-          </div>
-        </div>
-
-
     </div>
     <div class="col-md-6 col-xs-12">
       <h3 class="panel-label">รวมทั้งสิ้น</h3>
@@ -42,25 +18,50 @@
           <%=childIncome+sponsorIncome%> บาท
         </div>
       </div>
-      
-        <h3 class="panel-label">รายได้จากค่าแนะนำ</h3>
-        <div class="panel panel-default commissionbox">
-          <div class="panel-body">
-            <%=sponsorIncome%> บาท
-          </div>
-        </div>
-          <h3 class="panel-label">จำนวนคนที่เชิญ</h3>
-          <div class="panel panel-default commissionbox">
-            <div class="panel-body">
-              <%=sponsorChild%> คน
-            </div>
-          </div>
-      </div>
-    
     </div>
-
   </div>
 
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <h3 class="panel-label">รายได้จากค่าจับคู่</h3>
+<div class="panel panel-default commissionbox">
+  <div class="panel-body">
+    <%=childIncome%> บาท
+  </div>
+</div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <h3 class="panel-label">รายได้จากค่าแนะนำ</h3>
+      <div class="panel panel-default commissionbox">
+        <div class="panel-body">
+          <%=sponsorIncome%> บาท
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <h3 class="panel-label">ช่องคงเหลือในผัง</h3>
+      <div class="panel panel-default commissionbox">
+        <div class="panel-body">
+          <%if(!emptySlot){%>
+          <div style="color: red;">ผังเต็มแล้ว!</div>
+          <%}else{%>
+          <%=emptySlot%> คน
+          <%}%>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <h3 class="panel-label">จำนวนคนที่เชิญ</h3>
+      <div class="panel panel-default commissionbox">
+        <div class="panel-body">
+          <%=sponsorChild%> คน
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 

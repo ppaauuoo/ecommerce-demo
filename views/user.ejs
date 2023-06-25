@@ -3,61 +3,68 @@
 
 
 <div class="container" style="padding: 25px;">
-  <div class="row">
+  <div class="row"style="padding: 25px;">
       <h3 class="panel-label">วันที่</h3>
       <div class="panel panel-default daybox">
         <div class="panel-body">
           <%=day%>
         </div>
       </div>
-  </div>
-</div>
-
-
-<div class="alert alert-warning">
-  This page is unfinish! ล้นแถวเมื่อเปิดบนจอเล็ก
-</div>
-
-<div class="row" style="text-align: center">
-  <div class="col-md-12">
-    <a href="/user/<%=userName.username%>/sponsor">
-      <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-      <h1><%=userName.username%></h1>
-    </a>
-  </div>
-</div>
-
-<div id="lev2" class="row" style="text-align: center">
-</div>
-
-<div id="lev3" class="row" style="text-align: center">
-</div>
-
-<div id="lev4" class="row" style="text-align: center">
-</div>
-
-<div id="lev5" class="row" style="text-align: center">
-</div>
-
-<div class="row" style="text-align: center">
-  <%var count=0%>
-  <%for(var i=0; i<Child.length;i++){%>
-  <%if(!Child[i].lev6){continue}%>
-    <div class="col-xs-1" style="width: 3.1249999988%">
-    <a href="/user/<%=Child[i].lev6%>">
-      <i class="fa-solid fa-person fa-3x" style="color: gray"></i>
-      <p style="font-size: 12px"><%=Child[i].lev6%></p>
-    </a>
-  </div>
-  <%count++}%>
-  
-  <%for(var i=count;i<32;i++){%>
-    <div class="col-xs-1" style="width: 3.1249999988%">
-        <i class="fa-solid fa-person fa-3x" style="color: white"></i>
-        <p></p>
     </div>
-  <%}%>
+  <div class="row">
+    <a href="/user">
+      <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
+        <div class="panel-body">
+          Back
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
 
+<div class="container mlmcontainer">
+  <div class="row" style="text-align: center">
+    <div class="col-md-12">
+      <a href="/user">
+        <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+        <h1><%=userName.username%></h1>
+      </a>
+    </div>
+  </div>
+  
+  <div id="lev2" class="row" style="text-align: center">
+  </div>
+  
+  <div id="lev3" class="row" style="text-align: center">
+  </div>
+  
+  <div id="lev4" class="row" style="text-align: center">
+  </div>
+  
+  <div id="lev5" class="row" style="text-align: center">
+  </div>
+  
+  <div class="row" style="text-align: center ">
+    <%var count=0%>
+    <%for(var i=0; i<Child.length;i++){%>
+    <%if(!Child[i].lev6){continue}%>
+      <div class="col-xs-1" style="width: 3.1249999988%">
+      <a href="/user/<%=Child[i].lev6%>">
+        <i class="fa-solid fa-person fa-3x" style="color: gray"></i>
+        <p style="font-size: 12px"><%=Child[i].lev6%></p>
+      </a>
+    </div>
+    <%count++}%>
+    
+    <%for(var i=count;i<32;i++){%>
+      <div class="col-xs-1" style="width: 3.1249999988%">
+          <i class="fa-solid fa-person fa-3x" style="color: darkgray"></i>
+          <p></p>
+      </div>
+    <%}%>
+  
+  </div>
+  
 </div>
 
 <script>
@@ -82,7 +89,7 @@
   })
   for (var i = empty; i < 32/16; i++) {
     var temp = "<div class='col-xs-6'>"+
-      "<i class='fa-solid fa-person fa-6x' style='color: white'></i>"+
+      "<i class='fa-solid fa-person fa-6x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev2").append(temp)
   }
@@ -101,7 +108,7 @@
   })
   for (var i = empty; i < 32/8; i++) {
     var temp = "<div class='col-xs-3'>"+
-      "<i class='fa-solid fa-person fa-5x' style='color: white'></i>"+
+      "<i class='fa-solid fa-person fa-5x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev3").append(temp)
   }
@@ -120,7 +127,7 @@
   })
   for (var i = empty; i < 32/4; i++) {
     var temp = "<div class='col-xs-1' style='width: 12.499999995%'>"+
-      "<i class='fa-solid fa-person fa-4x' style='color: white'></i>"+
+      "<i class='fa-solid fa-person fa-4x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev4").append(temp)
   }
@@ -139,7 +146,7 @@
   })
   for (var i = empty; i < 32/2; i++) {
     var temp = "<div class='col-xs-1' style='width: 6.2499999975%'>"+
-      "<i class='fa-solid fa-person fa-3x' style='color: white'></i>"+
+      "<i class='fa-solid fa-person fa-3x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev5").append(temp)
   }
