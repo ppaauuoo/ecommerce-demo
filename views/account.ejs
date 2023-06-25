@@ -1,0 +1,127 @@
+<%-include("partials/header.ejs")-%>
+
+
+<div class="alert alert-warning">
+  This page is unfinish!
+</div>
+
+<div class="container" style="padding: 25px;">
+  <div class="row">
+    <div class="col-xs-6">
+      <h3 class="panel-label">วันที่</h3>
+      <div class="panel panel-default daybox">
+        <div class="panel-body">
+          <%=day%>
+        </div>
+      </div>
+
+        <h3 class="panel-label">รายได้จากค่าจับคู่</h3>
+        <div class="panel panel-default commissionbox">
+          <div class="panel-body">
+            <%=childIncome%>
+          </div>
+        </div>
+        <h3 class="panel-label">ช่องคงเหลือในผัง</h3>
+        <div class="panel panel-default commissionbox">
+          <div class="panel-body">
+            <%=emptySlot%>
+          </div>
+        </div>
+
+    </div>
+    <h3 class="panel-label">รวมทั้งสิ้น</h3>
+    <div class="panel panel-default commissionbox">
+      <div class="panel-body">
+        <%=childIncome+sponsorIncome%>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <h3 class="panel-label">รายได้จากค่าแนะนำ</h3>
+      <div class="panel panel-default commissionbox">
+        <div class="panel-body">
+          <%=sponsorIncome%>
+        </div>
+      </div>
+        <h3 class="panel-label">จำนวนคนที่เชิญ</h3>
+        <div class="panel panel-default commissionbox">
+          <div class="panel-body">
+            <%=day%>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<div class="container" style="padding: 25px;">
+  <div class="row">
+    <div class="col-xs-6">
+        <div class="well well-lg" style="background-color: #B8F170; width: 500px; height: 400px; margin: auto; align-items: center; border-radius: 100px; border-color: black;">
+            <a href="user/<%=userName.username%>">
+                <div class="row" style="text-align: center">
+                    <div class="col-md-12">
+                        <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+                        <h1><%=userName.username%></h1>
+                    </div>
+                </div>
+                  
+                <div class="row" style="text-align: center">
+                  <%var count=0%>
+                  <%for(var i=0; i<Child.length;i+=16){%>
+                  <%if(!Child[i].lev2){continue}%>
+                  <div class="col-xs-6">
+                    <i class="fa-solid fa-person fa-6x" style="color: blue"></i>
+                    <p style="font-size: 30px"><%=Child[i].lev2%></p>
+                  </div>
+                    <%count++}%>
+                    
+                    <%for(var i=count;i<2;i++){%>
+                    <div class="col-xs-6">
+                      <i class="fa-solid fa-person fa-6x" style="color: white"></i>
+                      <p></p>
+                    </div>
+                    <%}%>
+                </div>
+              </a>
+          </div>
+      </div>
+    <div class="col-xs-6">
+        <a href="user/<%=userName.username%>/sponsor">
+            <div class="well well-lg" style="background-color: #B8F170; width: 500px; height: 400px; margin: auto; align-items: center; border-radius: 100px; border-color: black;">
+
+                <div class="row" style="text-align: center">
+                    <div class="col-md-12">
+                        <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+                        <h1><%=userName.username%></h1>
+                    </div>
+                  </div>
+                            
+                  <div class="row" style="text-align: center">
+                    <%sponsored.slice(-3).forEach((element)=>{%>
+                    <div class="col-xs-4">
+                        <i class="fa-solid fa-person fa-6x" style="color: darkorange"></i>
+                        <p style="font-size: 30px"><%=element.username%></p>
+                    </div>
+                    <%})%>
+                  </div>
+            </a>
+        </div>
+        </a>
+        
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<%-include("partials/footer.ejs")-%>
