@@ -2,13 +2,17 @@
 
 
 
-<h3 style="color: black; margin-left: 75px;">วันที่</h3>
-<div class="panel panel-default daybox">
-  
-  <div class="panel-body">
-    <%=day%>
+<div class="container" style="padding: 25px;">
+  <div class="row">
+      <h3 class="panel-label">วันที่</h3>
+      <div class="panel panel-default daybox">
+        <div class="panel-body">
+          <%=day%>
+        </div>
+      </div>
   </div>
 </div>
+
 
 <div class="alert alert-warning">
   This page is unfinish! ล้นแถวเมื่อเปิดบนจอเล็ก
@@ -16,83 +20,39 @@
 
 <div class="row" style="text-align: center">
   <div class="col-md-12">
-    <a href="/user/<%=userName._id%>/sponsor">
+    <a href="/user/<%=userName.username%>/sponsor">
       <i class="fa-solid fa-person fa-7x" style="color: red"></i>
       <h1><%=userName.username%></h1>
     </a>
   </div>
 </div>
 
-<div class="row" style="text-align: center">
-  <%var count=0%>
-  <%for(var i=0; i<2;i++){%>
-  <div class="col-xs-6">
-    <a href="/user/<%=Child.lev2id%>">
-      <i class="fa-solid fa-person fa-6x" style="color: blue"></i>
-      <p style="font-size: 30px"><%=Child.lev2%></p>
-    </a>
-  </div>
-  <%count++}%>
-  
-  <%for(var i=count;i<2;i++){%>
-    <div class="col-xs-6">
-      <i class="fa-solid fa-person fa-6x" style="color: white"></i>
-        <p></p>
-    </div>
-  <%}%>
+<div id="lev2" class="row" style="text-align: center">
 </div>
 
-<div class="row" style="text-align: center">
-  <%var count=0%>
-  <%for(var i=0; i<2;i++){%>
-  <div class="col-xs-3">
-    <a href="/user/<%=Child.lev2id%>">
-      <i class="fa-solid fa-person fa-5x" style="color: darkgreen"></i>
-      <p style="font-size: 30px"><%=Child.lev2%></p>
-    </a>
-  </div>
-  <%count++}%>
-  
-  <%for(var i=count;i<4;i++){%>
-    <div class="col-xs-3">
-      <i class="fa-solid fa-person fa-5x" style="color: white"></i>
-        <p></p>
-    </div>
-  <%}%>
+<div id="lev3" class="row" style="text-align: center">
 </div>
 
-<div class="row" style="text-align: center">
-  <%var count=0%>
-  <%for(var i=0; i<2;i++){%>
-  <div class="col-xs-1" style="width: 12.499999995%">
-    <a href="/user/<%=Child.lev2id%>">
-      <i class="fa-solid fa-person fa-4x" style="color: purple"></i>
-      <p style="font-size: 20px"><%=Child.lev2%></p>
-    </a>
-  </div>
-  <%count++}%>
-  
-  <%for(var i=count;i<8;i++){%>
-    <div class="col-xs-1" style="width: 12.499999995%">
-        <i class="fa-solid fa-person fa-4x" style="color: white"></i>
-        <p></p>
-    </div>
-  <%}%>
+<div id="lev4" class="row" style="text-align: center">
+</div>
+
+<div id="lev5" class="row" style="text-align: center">
 </div>
 
 <div class="row" style="text-align: center">
   <%var count=0%>
   <%for(var i=0; i<Child.length;i++){%>
-  <div class="col-xs-1" style="width: 6.2499999975%">
-    <a href="/user/<%=Child[i].lev5id%>">
-      <i class="fa-solid fa-person fa-3x" style="color: palevioletred"></i>
-      <p style="font-size: 12px"><%=Child[i].lev5%></p>
+  <%if(!Child[i].lev6){continue}%>
+    <div class="col-xs-1" style="width: 3.1249999988%">
+    <a href="/user/<%=Child[i].lev6%>">
+      <i class="fa-solid fa-person fa-3x" style="color: gray"></i>
+      <p style="font-size: 12px"><%=Child[i].lev6%></p>
     </a>
   </div>
   <%count++}%>
   
-  <%for(var i=count;i<16;i++){%>
-    <div class="col-xs-1" style="width: 6.2499999975%">
+  <%for(var i=count;i<32;i++){%>
+    <div class="col-xs-1" style="width: 3.1249999988%">
         <i class="fa-solid fa-person fa-3x" style="color: white"></i>
         <p></p>
     </div>
@@ -100,49 +60,91 @@
 
 </div>
 
-<div id="lev6" class="row" data-id="lev6" style="text-align: center">
-
-  
-</div>
-
 <script>
-   $(()=>{
-    const Child = <%-JSON.stringify(Child)%>;
-      const lev2=[]
-      const lev3=[]
-      const lev4=[]
-      const lev5=[]
-      const lev6=[]
-      Child.forEach((element)=>{
-        lev2.push({name: element.lev2,id: element.lev2id})
-        lev3.push({name: element.lev3,id: element.lev3id})
-        lev4.push({name: element.lev4,id: element.lev4id})
-        lev5.push({name: element.lev5,id: element.lev5id})
-        lev6.push({name: element.lev6,id: element.lev6id})
-      })
-      lev2=[...new Set(lev2)];
-      lev3=[...new Set(lev3)];
-      lev4=[...new Set(lev4)];
-      lev5=[...new Set(lev5)];
-      lev6=[...new Set(lev6)];
+  const Child = <%-JSON.stringify(Child)%>;
+  const lev2Array = [...new Set(Child.map(item => item.lev2))];
+  const lev3Array = [...new Set(Child.map(item => item.lev3))];
+  const lev4Array = [...new Set(Child.map(item => item.lev4))];
+  const lev5Array = [...new Set(Child.map(item => item.lev5))];
 
-      lev6.forEach((element)=>{
-        var temp = '<div class="col-xs-1" style="width: 3.1249999988%">'+
-    '<a href="/user/'+element.id+'">'+
-      '<i class="fa-solid fa-person fa-2x" style="color: grey"></i>'+
-      '<p style="font-size: 10">'+element.name+'</p>'+
-    '</a>'+
-  '</div>'
-      $("lev6").html(temp)
-      })
+  var empty=0
+  if(!lev2Array){empty++}
+  lev2Array.forEach((e)=>{
+    if(!e){return}
+    var temp = "<div class='col-xs-6'>"+
+    "<a href='/user/"+e+"'>"+
+      "<i class='fa-solid fa-person fa-6x' style='color: blue'></i>"+
+      "<p style='font-size: 30px'>"+e+"</p>"+
+    "</a>"+
+  "</div>"
+    $("#lev2").append(temp)
+    empty++
+  })
+  for (var i = empty; i < 32/16; i++) {
+    var temp = "<div class='col-xs-6'>"+
+      "<i class='fa-solid fa-person fa-6x' style='color: white'></i>"+
+      "</div>"
+    $("#lev2").append(temp)
+  }
 
+  empty=0
+  lev3Array.forEach((e)=>{
+    if(!e){return}
+    var temp = "<div class='col-xs-3'>"+
+    "<a href='/user/"+e+"'>"+
+      "<i class='fa-solid fa-person fa-5x' style='color: darkgreen'></i>"+
+      "<p style='font-size: 30px'>"+e+"</p>"+
+    "</a>"+
+  "</div>"
+    $("#lev3").append(temp)
+    empty++
+  })
+  for (var i = empty; i < 32/8; i++) {
+    var temp = "<div class='col-xs-3'>"+
+      "<i class='fa-solid fa-person fa-5x' style='color: white'></i>"+
+      "</div>"
+    $("#lev3").append(temp)
+  }
 
-      
+  empty=0
+  lev4Array.forEach((e)=>{
+    if(!e){return}
+    var temp = "<div class='col-xs-1' style='width: 12.499999995%'>"+
+    "<a href='/user/"+e+"'>"+
+      "<i class='fa-solid fa-person fa-4x' style='color: purple'></i>"+
+      "<p style='font-size: 20px'>"+e+"</p>"+
+    "</a>"+
+  "</div>"
+    $("#lev4").append(temp)
+    empty++
+  })
+  for (var i = empty; i < 32/4; i++) {
+    var temp = "<div class='col-xs-1' style='width: 12.499999995%'>"+
+      "<i class='fa-solid fa-person fa-4x' style='color: white'></i>"+
+      "</div>"
+    $("#lev4").append(temp)
+  }
 
-
-   })
-   
-
+  empty=0
+  lev5Array.forEach((e)=>{
+    if(!e){return}
+    var temp = "<div class='col-xs-1' style='width: 6.2499999975%'>"+
+    "<a href='/user/"+e+"'>"+
+      "<i class='fa-solid fa-person fa-3x' style='color: palevioletred'></i>"+
+      "<p style='font-size: 12px'>"+e+"</p>"+
+    "</a>"+
+  "</div>"
+    $("#lev5").append(temp)
+    empty++
+  })
+  for (var i = empty; i < 32/2; i++) {
+    var temp = "<div class='col-xs-1' style='width: 6.2499999975%'>"+
+      "<i class='fa-solid fa-person fa-3x' style='color: white'></i>"+
+      "</div>"
+    $("#lev5").append(temp)
+  }
 </script>
+
+
 
 <%-include("partials/footer.ejs")-%>
