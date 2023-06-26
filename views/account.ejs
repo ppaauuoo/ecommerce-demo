@@ -80,22 +80,7 @@
                     </div>
                 </div>
                   
-                <div class="row" style="text-align: center">
-                  <%var count=0%>
-                  <%for(var i=0; i<Child.length;i+=16){%>
-                  <%if(!Child[i].lev2){continue}%>
-                  <div class="col-xs-6">
-                    <i class="fa-solid fa-person fa-6x" style="color: blue"></i>
-                    <p style="font-size: 30px"><%=Child[i].lev2%></p>
-                  </div>
-                    <%count++}%>
-                    
-                    <%for(var i=count;i<2;i++){%>
-                    <div class="col-xs-6">
-                      <i class="fa-solid fa-person fa-6x" style="color: white"></i>
-                      <p></p>
-                    </div>
-                    <%}%>
+                <div id="lev2" class="row" style="text-align: center">
                 </div>
               </a>
           </div>
@@ -129,7 +114,30 @@
 </div>
 </div>
 
+<script>
+    const Child = <%-JSON.stringify(Child)%>;
+    const lev2Array = [...new Set(Child.map(item => item.lev2))];
 
+    var empty=0
+  if(!lev2Array){empty++}
+  lev2Array.forEach((e)=>{
+    if(!e){return}
+    var temp = "<div class='col-xs-6'>"+
+    "<a href='/user/"+e+"'>"+
+      "<i class='fa-solid fa-person fa-6x' style='color: blue'></i>"+
+      "<p style='font-size: 30px'>"+e+"</p>"+
+    "</a>"+
+  "</div>"
+    $("#lev2").append(temp)
+    empty++
+  })
+  for (var i = empty; i < 32/16; i++) {
+    var temp = "<div class='col-xs-6'>"+
+      "<i class='fa-solid fa-person fa-6x' style='color: darkgray'></i>"+
+      "</div>"
+    $("#lev2").append(temp)
+  }
+</script>
 
 
 
