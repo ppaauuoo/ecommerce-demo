@@ -45,6 +45,7 @@ exports.emptySlot = (tree) => {
     var result=32
     tree.forEach((e)=>{
         if(e.lev6){result-=1}
+        console.log(result)
     })
     if(result==32){result='>=32'}
     return result
