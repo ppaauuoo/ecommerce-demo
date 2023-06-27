@@ -4,6 +4,8 @@ const router = express.Router();
 const passport = require("passport");
 const passportConfig = require("../passport.js");
 
+const https = require('https')
+
 passportConfig(passport);
 
 const sql = require("../helper/sqlCommand.js");
@@ -119,7 +121,7 @@ router.post("/register", async (req, res, next) => {
 
 
 
-router.post("/login", (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   passport.authenticate("local-login", (err, user, info) => {
     if (err) {
       return next(err);
