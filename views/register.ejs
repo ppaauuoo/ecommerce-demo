@@ -328,6 +328,8 @@
               <p>กรุณาบันทึกหน้าจอ / จดบันทึกข้อมูลของคุณเพื่อการเข้าสู่ระบบ</p>
             </div>
             <div class="modal-footer">
+              <div class="g-recaptcha" data-sitekey="6LftBNcmAAAAAF0Pb7ncvfbjkuR-pTyX8ojCRH0M"></div>
+              <input hidden name="userResponse" id="userResponse">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
               <button id="confirm" type="submit" class="btn btn-primary">ยืนยัน</button>
             </div>
@@ -423,6 +425,8 @@
       
     })
   </script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <script src="/js/auth_script.js"></script>
 </html>

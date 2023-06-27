@@ -108,8 +108,14 @@ function reverse(s) {
     $(form).on(
       "submit",
       (event) => {
+
         if ($(form).find('#confirm').is(':focus')) {
-          return;
+          const test = grecaptcha.getResponse()
+          if(test){
+            $('#userResponse').val(test)
+            return;
+          }
+          confirm("กรุณายืนยันตัวตน.")
         }
         event.preventDefault();
         
