@@ -31,6 +31,8 @@ $(() => {
   });
 
   $("#cityfloatingSelectGrid").on("input", async () => {
+
+
     var cityselected = $("#cityfloatingSelectGrid").find(":selected").val();
     $("#districtfloatingSelectGrid optgroup").show();
     $("#districtfloatingSelectGrid  optgroup")

@@ -90,15 +90,15 @@
         <div class="form-floating">
           <textarea
             name="address"
-            class="form-control middle loadaddress"
+            class="form-control bottom loadaddress"
             id="addressfloatingInput"
             placeholder="Last Name"
             required
           ></textarea>
           <label for="addressfloatingInput">ที่อยู่</label>
         </div>
-
-        <div class="row g-0">
+        
+        <div class="row g-0 subaddress" style="display:none">
           <div class="col-6">
             <div class="form-floating">
               <select
@@ -127,7 +127,7 @@
           </div>
         </div>
 
-        <div class="row g-0">
+        <div class="row g-0 subaddress" style="display:none">
           <div class="col-6">
             <div class="form-floating">
               <select
@@ -409,14 +409,15 @@
         })
 
       $('.loadaddress').one('focus',()=> {
+        $('.loadaddress').removeClass('bottom')
+        $('.loadaddress').addClass('middle')
+        $('.subaddress').show()
         uniqueDistrict.forEach((district)=>{
         $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
-          thailand.forEach((element)=>{
-            if(element.DistrictThaiShort==district){
-              $('#subdistrictfloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
-            }
-          })
         })
+        thailand.forEach((element)=>{
+              $('#subdistrictfloatingSelectGrid optgroup[data-id="'+element.DistrictThaiShort+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
+          })
       })
       
       
