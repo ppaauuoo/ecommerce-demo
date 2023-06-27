@@ -20,7 +20,7 @@
       <form
         action="/register"
         method="POST"
-        id="registrationForm loadaddress"
+        id="registrationForm"
         class="needs-validation"
         autocomplete="off"
         novalidate
@@ -90,7 +90,7 @@
         <div class="form-floating">
           <textarea
             name="address"
-            class="form-control middle"
+            class="form-control middle loadaddress"
             id="addressfloatingInput"
             placeholder="Last Name"
             required
@@ -408,7 +408,7 @@
           })
         })
 
-      $('.loadaddress').one('click',()=> {
+      $('.loadaddress').one('focus',()=> {
         uniqueDistrict.forEach((district)=>{
         $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
           thailand.forEach((element)=>{
