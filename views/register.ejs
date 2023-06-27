@@ -7,22 +7,9 @@
     <meta name="description" content="" />
     <title>แบบลงทะเบียน</title>
 
-    <link
-      rel="canonical"
-      href="https://getbootstrap.com/docs/5.3/examples/sign-in/"
-    />
 
     <!-- bootstrap sheet -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="/css/auth_style.css" rel="stylesheet" />
@@ -33,6 +20,7 @@
       <form
         action="/register"
         method="POST"
+        id="registrationForm loadaddress"
         class="needs-validation"
         autocomplete="off"
         novalidate
@@ -64,17 +52,40 @@
           </div>
         </div>
 
-        <div class="form-floating">
-          <input
-            type="text"
-            name="fullName"
-            class="form-control middle"
-            id="fullNamefloatingInput"
-            placeholder="Full Name"
-            required
-          />
-          <label for="fullNamefloatingInput">ชื่อ-นามสกุล</label>
+        <div class="row g-0">
+          <div class="col-6">
+            <div class="form-floating">
+              <input
+                type="text"
+                name="firstName"
+                class="form-control middle"
+                id="firstNamefloatingInput"
+                placeholder="First Name"
+                maxlength="50"
+                required
+              />
+              <label for="firstNamefloatingInput">ชื่อ</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-floating">
+              <input
+                type="text"
+                name="lastName"
+                class="form-control middle"
+                id="lastNamefloatingInput"
+                placeholder="Last Name"
+                maxlength="50"
+                required
+              />
+              <label for="lastNamefloatingInput">นามสกุล</label>
+            </div>
+          </div>
         </div>
+
+
+
+
 
         <div class="form-floating">
           <textarea
@@ -97,7 +108,7 @@
                 placeholder="City"
                 
                 required
-              ></select>
+              ><option selected hidden>จังหวัด</option></select>
               <label for="cityfloatingSelectGrid">จังหวัด</label>
             </div>
           </div>
@@ -110,7 +121,7 @@
                 id="districtfloatingSelectGrid"
                 placeholder="District"
                 required
-              ></select>
+              ><option selected hidden>อำเภอ</option></select>
               <label for="districtfloatingSelectGrid">อำเภอ</label>
             </div>
           </div>
@@ -125,7 +136,7 @@
                 id="subdistrictfloatingSelectGrid"
                 placeholder="Subdistrict"
                 required
-              ></select>
+              ><option selected hidden>ตำบล</option></select>
               <label for="subdistrictfloatingSelectGrid">ตำบล</label>
             </div>
           </div>
@@ -138,7 +149,7 @@
                 id="postCodefloatingSelectGrid"
                 placeholder="Post Code"
                 required
-              ></select>
+              ><option selected hidden>รหัสไปรษณีย์</option></select>
               <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
             </div>
           </div>
@@ -300,14 +311,38 @@
         </div>
         <p></p>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
-          Register
+        <button type="submit" class="w-100 btn btn-lg btn-primary">
+          ลงทะเบียน
         </button>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">ยืนยันข้อมูล</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>ชื่อผู้ใช้ของคุณคือ :</p><p id="usernameConfirm"></p>
+              <p>รหัสผ่านของคุณคือ :</p><p id="passwordConfirm"></p>
+              <p>กรุณาบันทึกหน้าจอ / จดบันทึกข้อมูลของคุณเพื่อการเข้าสู่ระบบ</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+              <button id="confirm" type="submit" class="btn btn-primary">ยืนยัน</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
         <p class="mt-5 mb-3 text-body-secondary">
-          Already Have An Account? <a href="/login">Sign In!</a>
+          มีบัญชีผู้ใช้อยู่แล้ว? <a href="/login">ล๊อกอิน!</a>
         </p>
-      </form>
+
     </main>
+
+
   </body>
 
   <!-- Favicons -->
@@ -318,74 +353,72 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
-    crossorigin="anonymous"
-  ></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 
   <script>
     $(()=> {
+
       const thailand = <%-JSON.stringify(thailand)%>;
-      const city=[]
-      const district=[]
-      thailand.forEach((element)=>{
-        city.push(element.ProvinceThai)
-        district.push(element.DistrictThaiShort)
-      })
-      const uniqueCity = [...new Set(city)];
-      const uniqueDistrict = [...new Set(district)];
-
-      uniqueCity.forEach((element)=>{
-        $('#cityfloatingSelectGrid').append('<option value='+element+'> '+element+'</option>')
-      })
-
-      
-
-      uniqueCity.forEach((province)=>{
-      $('#districtfloatingSelectGrid').append('<optgroup label='+province+' data-id='+province+'></optgroup>')
+        const city=[]
         const district=[]
         thailand.forEach((element)=>{
-          if(element.ProvinceThai==province){
-            district.push(element.DistrictThaiShort)
-          }
+          city.push(element.ProvinceThai)
+          district.push(element.DistrictThaiShort)
         })
-        const sortDistrict = [...new Set(district)];
-        sortDistrict.forEach((element)=>{
-          $('#districtfloatingSelectGrid optgroup[data-id="'+province+'"]').append('<option value='+element+'>'+element+'</option>')
-        })
-      })
+        const uniqueCity = [...new Set(city)];
+        const uniqueDistrict = [...new Set(district)];
 
-      uniqueDistrict.forEach((district)=>{
-      $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
-        thailand.forEach((element)=>{
-          if(element.DistrictThaiShort==district){
-            $('#subdistrictfloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
-          }
+        uniqueCity.forEach((element)=>{
+          $('#cityfloatingSelectGrid').append('<option value='+element+'> '+element+'</option>')
         })
-      })
 
-      uniqueDistrict.forEach((district)=>{
-      $('#postCodefloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
-        const postlist=[]
-        thailand.forEach((element)=>{
-          if(element.DistrictThaiShort==district){
-            postlist.push(element.PostCodeMain)
-          }
+        
+
+        uniqueCity.forEach((province)=>{
+        $('#districtfloatingSelectGrid').append('<optgroup label='+province+' data-id='+province+'></optgroup>')
+          const district=[]
+          thailand.forEach((element)=>{
+            if(element.ProvinceThai==province){
+              district.push(element.DistrictThaiShort)
+            }
+          })
+          const sortDistrict = [...new Set(district)];
+          sortDistrict.forEach((element)=>{
+            $('#districtfloatingSelectGrid optgroup[data-id="'+province+'"]').append('<option value='+element+'>'+element+'</option>')
+          })
         })
-        const sortPostcode = [...new Set(postlist)];
-        sortPostcode.forEach((element)=>{
-          $('#postCodefloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element+'>'+element+'</option>')
+
+
+
+        uniqueDistrict.forEach((district)=>{
+        $('#postCodefloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
+          const postlist=[]
+          thailand.forEach((element)=>{
+            if(element.DistrictThaiShort==district){
+              postlist.push(element.PostCodeMain)
+            }
+          })
+          const sortPostcode = [...new Set(postlist)];
+          sortPostcode.forEach((element)=>{
+            $('#postCodefloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element+'>'+element+'</option>')
+          })
+        })
+
+      $('.loadaddress').one('click',()=> {
+        uniqueDistrict.forEach((district)=>{
+        $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
+          thailand.forEach((element)=>{
+            if(element.DistrictThaiShort==district){
+              $('#subdistrictfloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
+            }
+          })
         })
       })
+      
       
     })
   </script>

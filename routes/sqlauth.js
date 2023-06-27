@@ -43,14 +43,12 @@ router.get("/register/:sponsor", async (req, res) => {
 
 router.post("/register", async (req, res, next) => {
   try {
-    const user = await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       passport.authenticate("local-signup", async (err, user, info) => {
         if (err) {
           reject(err);
         } else if (!user) {
-          console.log(user);
           // Handle authentication failure
-          res.redirect("/login");
           reject();
         } else {
           resolve(user);
@@ -71,7 +69,8 @@ router.post("/register", async (req, res, next) => {
                                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const newUserValues = [
       req.body.username,
-      req.body.fullName,
+      req.body.firstName,
+      req.body.lastName,
       addressId,
       req.body.citizen,
       req.body.phoneNumber,
@@ -114,7 +113,6 @@ router.post("/register", async (req, res, next) => {
 
     res.redirect("/login");
   } catch (error) {
-    console.error(error);
     res.redirect("/register");
   }
 });
@@ -156,5 +154,6 @@ router.get("/logout", (req, res) => {
     }
   });
 });
+
 
 module.exports = router;
