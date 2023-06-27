@@ -100,10 +100,11 @@ module.exports = function(passport) {
         try {
             const rows = await new Promise((resolve, reject) => {
                 connection.query("SELECT * FROM auth WHERE username = ?", [username],(err, rows) => {
+                  
                     resolve(rows);
                 });
             });
-
+            
             if (!rows.length) {
                 // User not found
                 return done(null, false);

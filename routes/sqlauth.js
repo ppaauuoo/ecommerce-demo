@@ -10,10 +10,6 @@ const sql = require("../helper/sqlCommand.js");
 
 
 
-
-
-
-
 router.get("/login", (req, res) => {
   res.render("login");
 });
@@ -48,14 +44,12 @@ router.post("/register", async (req, res, next) => {
         if (err) {
           reject(err);
         } else if (!user) {
-          // Handle authentication failure
           reject();
         } else {
-          resolve(user);
+          resolve();
         }
       })(req, res, next);
     });
-
     const sponsortemp = await sql.getUser(req.body.sponsor);
     const addressId = "ADD-" + req.body.username;
     const bankId = "BBK-" + req.body.username;
@@ -65,8 +59,8 @@ router.post("/register", async (req, res, next) => {
     const counttemp = latestUserResult[0].count + 1;
 
     const newUserQuery = `INSERT INTO users 
-                                      (username, fullName, addressId, citizen, phoneNumber, bankId, count, sponsor, walletId) 
-                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                                      (username, firstName, lastName, addressId, citizen, phoneNumber, bankId, count, sponsor, walletId) 
+                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const newUserValues = [
       req.body.username,
       req.body.firstName,
