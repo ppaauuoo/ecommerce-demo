@@ -126,6 +126,7 @@ $(() => {
       data: { id: dataId, action: "fetch_single" },
       dataType: "JSON",
       success: (data) => {
+        
         $("#firstNamefloatingInput").val(data.firstName);
         $("#lastNamefloatingInput").val(data.lastName);
         $("#addressfloatingInput").val(data.address);
