@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
   if (action == "Edit") {
     await new Promise((resolve, reject) => {
       con.query(
-        "UPDATE users u LEFT JOIN addresses a ON u.addressId=a.addressId LEFT JOIN banks b ON u.bankId=b.bankId SET a.address=?, a.subdistrict=?, a.district=?, a.city=?, a.postCode=?, b.bank=?, b.bookBank=?, b.bookBankNumber=?, b.bookBankBranch=?, u.fullName=?, u.citizen=?, u.phoneNumber=? WHERE u.username=?",
+        "UPDATE users u LEFT JOIN addresses a ON u.addressId=a.addressId LEFT JOIN banks b ON u.bankId=b.bankId SET a.address=?, a.subdistrict=?, a.district=?, a.city=?, a.postCode=?, b.bank=?, b.bookBank=?, b.bookBankNumber=?, b.bookBankBranch=?, u.firstName=?, u.lastName=?,u.citizen=?, u.phoneNumber=? WHERE u.username=?",
         [
           req.body.address,
           req.body.subdistrict,
@@ -47,7 +47,8 @@ router.post("/", async (req, res) => {
           req.body.bookBank,
           req.body.bookBankNumber,
           req.body.bookBankBranch,
-          req.body.fullName,
+          req.body.firstName,
+          req.body.lastName,
           req.body.citizen,
           req.body.phoneNumber,
           req.body.username

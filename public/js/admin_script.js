@@ -18,14 +18,29 @@ $(() => {
           html +=
             `
             <tr>
+            <td>
+            <button
+              type="button"
+              class="btn btn-warning btn-sm edit"
+              data-id="` +
+        element.username +
+        `"
+            >
+              Edit
+            </button> 
+          </td>
               <td>
                 ` +
             element.username +
             `
               </td>
               <td>` +
-            element.fullName +
-            `</td>
+            element.firstName +
+            ` -
+                ` +
+            element.lastName +
+            `
+              </td>
               <td>
                 ` +
             element.address +
@@ -60,17 +75,7 @@ $(() => {
               <td>` +
             element.point +
             `</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-warning btn-sm edit"
-                  data-id="` +
-            element.username +
-            `"
-                >
-                  Edit
-                </button> 
-              </td>
+
             </tr>
             `;
         });
@@ -121,7 +126,8 @@ $(() => {
       data: { id: dataId, action: "fetch_single" },
       dataType: "JSON",
       success: (data) => {
-        $("#fullNamefloatingInput").val(data.fullName);
+        $("#firstNamefloatingInput").val(data.firstName);
+        $("#lastNamefloatingInput").val(data.lastName);
         $("#addressfloatingInput").val(data.address);
         $("#districtfloatingSelectGrid").val(data.district);
         $("#subdistrictfloatingSelectGrid").val(data.subdistrict);
