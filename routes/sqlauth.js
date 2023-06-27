@@ -4,8 +4,6 @@ const router = express.Router();
 const passport = require("passport");
 const passportConfig = require("../passport.js");
 
-const https = require('https')
-
 passportConfig(passport);
 
 const sql = require("../helper/sqlCommand.js");
@@ -127,7 +125,6 @@ router.post("/login", async (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      console.log(user);
       // Handle authentication failure
       return res.redirect("/login");
     }
@@ -146,7 +143,6 @@ router.get("/logout", (req, res) => {
   req.logout(function (err) {
     if (err) {
       // Handle any error that occurred during logout
-      console.error(err);
       // Optionally, send an error response to the client
       res.status(500).send("Logout failed");
     } else {
