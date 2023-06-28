@@ -1,4 +1,9 @@
 $(() => {
+  $(".pagination").on('click',()=>{
+    tabindex="-1"
+    disabled
+  })
+
   $("#searchbar").on("input", function () {
     var value = $(this).val().toLowerCase();
     $("#dataTable tr").filter(function () {
@@ -6,11 +11,11 @@ $(() => {
     });
   });
 
-  load_data = () => {
+  load_data = (num) => {
     $.ajax({
       url: "/admin",
       method: "POST",
-      data: { action: "fetch" },
+      data: { page: num,action: "fetch" },
       dataType: "JSON",
       success: function (data) {
         var html = "";
@@ -25,9 +30,16 @@ $(() => {
               data-id="` +
         element.username +
         `"
-            >
-              Edit
-            </button> 
+        >
+        แก้ไข
+      </button>
+      <button
+      type="button"
+      class="btn btn-danger btn-sm repass"
+      data-id="`+element.username+`"
+    >
+      รีเซ็ตรหัสผ่าน
+    </button>
           </td>
               <td>
                 ` +
@@ -102,8 +114,7 @@ $(() => {
         );
 
         $("#action_modal").modal("hide");
-        console.log('dog')
-        load_data();
+        load_data(0);
 
         setTimeout(function () {
           $("#message").html("");
@@ -144,4 +155,31 @@ $(() => {
       },
     });
   });
+
+  $(document).on("click", ".repass", (event) => {
+    var button = event.target;
+    var dataId = $(button).data("id");
+
+    const newpass = prompt("กรุณาใส่รหัสผ่านใหม่:");
+    if(!newpass){return}
+    const passCon = prompt("กรุณาใส่รหัสผ่านใหม่อีกครั้ง :");
+    if(newpass!=passCon){return}
+    if(confirm('ยืนยันการเปลี่ยนรหัสผ่านหรือไม่?'))
+    $.ajax({
+      url: "/admin",
+      method: "POST",
+      data: { username: dataId,password: newpass, action: "Password" },
+      dataType: "JSON",
+      success: (data) => {
+        $("#message").html(
+          '<div class="alert alert-success">' + data.message + "</div>"
+        );
+        setTimeout(function () {
+          $("#message").html("");
+        }, 5000);
+      },
+    });
+  });
+  load_data($('#currentPage').val())
+  
 });

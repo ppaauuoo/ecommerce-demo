@@ -6,25 +6,27 @@ const sql = require("../helper/sqlCommand.js");
 
 const date = require("../helper/date.js");
 
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10
+
 router.get("/", async (req, res) => {
   if (!req.isAuthenticated()) {
     res.redirect("/login");
     return;
   }
   const day = date.getDate();
-  const userData = await sql.getData();
   const user = await sql.getUser(req.user.username)
   res.render("admin", {
     user: user,
     day: day,
-    userData: userData,
   });
 });
 
 router.post("/", async (req, res) => {
   var action = req.body.action;
   if (action == "fetch") {
-    const userData = await sql.getData();
+    const userData = await sql.getData(req.body.page);
     res.json(userData);
   }
 
@@ -62,9 +64,18 @@ router.post("/", async (req, res) => {
         }
       );
     });
-    console.log('fin')
     res.json({
-      message: "ข้อมูลถูกแก้ไข",
+      message: "ข้อมูลของผู้ใช้หมายเลข "+req.body.username+" ถูกแก้ไข",
+    });
+  }
+
+  if (action == "Password") {
+    bcrypt.hash(req.body.password, saltRounds)
+    .then(hash => {
+      sql.queryPromise("UPDATE auth SET hash = ? WHERE username=?",[hash,req.body.username])
+    })
+    res.json({
+      message: "รหัสผ่านของผู้ใช้หมายเลข "+req.body.username+" ถูกแก้ไข",
     });
   }
 });
