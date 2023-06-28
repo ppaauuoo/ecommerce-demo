@@ -1,5 +1,29 @@
 var con = require("../database");
 
+exports.queryPromise = (query, values) => {
+  return new Promise((resolve, reject) => {
+    con.query(query, values, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+};
+
+queryPromise = (query, values) => {
+  return new Promise((resolve, reject) => {
+    con.query(query, values, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+};
+
 exports.getUser = async (username) => {
     return await new Promise((resolve, reject) => {
       con.query(
@@ -63,28 +87,22 @@ exports.getWallet = async (walletId) => {
     });
   };
 
-exports.getData = async () => {
-    return await new Promise((resolve, reject) => {
-      con.query(
-        "SELECT * FROM users u LEFT JOIN addresses a ON u.addressId=a.addressId LEFT JOIN banks b ON u.bankId=b.bankId LEFT JOIN wallets w ON u.walletId=w.walletId WHERE u.isAdmin!=1",
-        (err, rows) => {
-          resolve(rows);
-        }
+exports.getData = async (num) => {
+  const row = 25
+  const amount = parseInt(row*num)
+  return await queryPromise(
+        "SELECT * FROM users u LEFT JOIN addresses a ON u.addressId=a.addressId LEFT JOIN banks b ON u.bankId=b.bankId LEFT JOIN wallets w ON u.walletId=w.walletId WHERE u.isAdmin!=1 LIMIT ?, ? ",
+        [0+amount, row+amount],
       );
-    });
-  };
+  }
 
   exports.getSponsored = async (sponsor) => {
-    return await new Promise((resolve, reject) => {
-      con.query(
+    return await queryPromise(
         "SELECT * FROM users WHERE sponsor=?",
-        [sponsor],
-        (err, rows) => {
-          resolve(rows);
-        }
+        [sponsor]
       );
-    });
-  };
+  }
+
 
 exports.sponsorChild = async (sponsor) =>{
     return await new Promise((resolve, reject) => {
@@ -157,14 +175,4 @@ exports.sponsorChild = async (sponsor) =>{
     });
   };
   
-  exports.queryPromise = (query, values) => {
-    return new Promise((resolve, reject) => {
-      con.query(query, values, (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-  };
+
