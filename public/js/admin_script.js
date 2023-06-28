@@ -1,8 +1,105 @@
+load_data = (num) => {
+  $.ajax({
+    url: "/admin",
+    method: "POST",
+    data: { page: num,action: "fetch" },
+    dataType: "JSON",
+    success: function (data) {
+      var html = "";
+      data.forEach((element) => {
+        html +=
+          `
+          <tr>
+          <td>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm edit"
+            data-id="` +
+      element.username +
+      `"
+      >
+      แก้ไข
+    </button>
+    <button
+    type="button"
+    class="btn btn-danger btn-sm repass"
+    data-id="`+element.username+`"
+  >
+    รีเซ็ตรหัสผ่าน
+  </button>
+        </td>
+            <td>
+              ` +
+          element.username +
+          `
+            </td>
+            <td>` +
+          element.firstName +
+          ` -
+              ` +
+          element.lastName +
+          `
+            </td>
+            <td>
+              ` +
+          element.address +
+          ` / ` +
+          element.subdistrict +
+          `
+              / ` +
+          element.district +
+          ` / ` +
+          element.city +
+          ` /
+              ` +
+          element.postCode +
+          `
+            </td>
+            <td>
+              ` +
+          element.bank +
+          ` / ` +
+          element.bookBank +
+          ` /
+              ` +
+          element.bookBankNumber +
+          ` /
+              ` +
+          element.bookBankBranch +
+          `
+            </td>
+            <td>` +
+          element.money +
+          `</td>
+            <td>` +
+          element.point +
+          `</td>
+
+          </tr>
+          `;
+      });
+      $("#dataTable").html(html);
+    },
+  });
+};
+
+
+
 $(() => {
-  $(".pagination").on('click',()=>{
-    tabindex="-1"
-    disabled
-  })
+  $(".page-link").on('click', function(event) {
+    event.preventDefault()
+    $(".page-link").removeAttr("tabindex disabled");
+    $(this).attr({
+      "tabindex": "-1",
+      "disabled": "true"
+    });
+    if($(this).text()=='...'){
+      load_data(-1)
+      return
+    }
+    $('#currentPage').val($(this).text()-1)
+    load_data($('#currentPage').val())
+  });
 
   $("#searchbar").on("input", function () {
     var value = $(this).val().toLowerCase();
@@ -11,90 +108,7 @@ $(() => {
     });
   });
 
-  load_data = (num) => {
-    $.ajax({
-      url: "/admin",
-      method: "POST",
-      data: { page: num,action: "fetch" },
-      dataType: "JSON",
-      success: function (data) {
-        var html = "";
-        data.forEach((element) => {
-          html +=
-            `
-            <tr>
-            <td>
-            <button
-              type="button"
-              class="btn btn-warning btn-sm edit"
-              data-id="` +
-        element.username +
-        `"
-        >
-        แก้ไข
-      </button>
-      <button
-      type="button"
-      class="btn btn-danger btn-sm repass"
-      data-id="`+element.username+`"
-    >
-      รีเซ็ตรหัสผ่าน
-    </button>
-          </td>
-              <td>
-                ` +
-            element.username +
-            `
-              </td>
-              <td>` +
-            element.firstName +
-            ` -
-                ` +
-            element.lastName +
-            `
-              </td>
-              <td>
-                ` +
-            element.address +
-            ` / ` +
-            element.subdistrict +
-            `
-                / ` +
-            element.district +
-            ` / ` +
-            element.city +
-            ` /
-                ` +
-            element.postCode +
-            `
-              </td>
-              <td>
-                ` +
-            element.bank +
-            ` / ` +
-            element.bookBank +
-            ` /
-                ` +
-            element.bookBankNumber +
-            ` /
-                ` +
-            element.bookBankBranch +
-            `
-              </td>
-              <td>` +
-            element.money +
-            `</td>
-              <td>` +
-            element.point +
-            `</td>
 
-            </tr>
-            `;
-        });
-        $("#dataTable").html(html);
-      },
-    });
-  };
 
   $("#form").on("submit", function (event) {
     event.preventDefault();
