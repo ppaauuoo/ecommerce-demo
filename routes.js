@@ -48,4 +48,6 @@ router.use('/', auth);
 home = require('./routes/home.js')
 router.use('/', home);
 
+
+
 module.exports = router;
