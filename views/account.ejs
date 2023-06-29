@@ -1,22 +1,17 @@
 <%-include("partials/header.ejs")-%>
 
-
-<div class="container" style="padding: 25px;">
+<div class="container" style="padding: 25px">
   <div class="row">
     <div class="col-md-6 col-xs-12">
       <h3 class="panel-label">วันที่</h3>
       <div class="panel panel-default daybox">
-        <div class="panel-body">
-          <%=day%>
-        </div>
+        <div class="panel-body"><%=day%></div>
       </div>
     </div>
     <div class="col-md-6 col-xs-12">
       <h3 class="panel-label">รวมทั้งสิ้น</h3>
       <div class="panel panel-default commissionbox">
-        <div class="panel-body">
-          <%=childIncome+sponsorIncome%> บาท
-        </div>
+        <div class="panel-body"><%=childIncome+sponsorIncome%> บาท</div>
       </div>
     </div>
   </div>
@@ -24,18 +19,14 @@
   <div class="row">
     <div class="col-md-6 col-xs-12">
       <h3 class="panel-label">รายได้จากค่าจับคู่</h3>
-<div class="panel panel-default commissionbox">
-  <div class="panel-body">
-    <%=childIncome%> บาท
-  </div>
-</div>
+      <div class="panel panel-default commissionbox">
+        <div class="panel-body"><%=childIncome%> บาท</div>
+      </div>
     </div>
     <div class="col-md-6 col-xs-12">
       <h3 class="panel-label">รายได้จากค่าแนะนำ</h3>
       <div class="panel panel-default commissionbox">
-        <div class="panel-body">
-          <%=sponsorIncome%> บาท
-        </div>
+        <div class="panel-body"><%=sponsorIncome%> บาท</div>
       </div>
     </div>
   </div>
@@ -46,73 +37,61 @@
       <div class="panel panel-default commissionbox">
         <div class="panel-body">
           <%if(!emptySlot){%>
-          <div style="color: red;">ผังเต็มแล้ว!</div>
-          <%}else{%>
-          <%=emptySlot%> คน
-          <%}%>
+          <div style="color: red">ผังเต็มแล้ว!</div>
+          <%}else{%> <%=emptySlot%> คน <%}%>
         </div>
       </div>
     </div>
     <div class="col-md-6 col-xs-12">
       <h3 class="panel-label">จำนวนคนที่เชิญ</h3>
       <div class="panel panel-default commissionbox">
-        <div class="panel-body">
-          <%=sponsorChild%> คน
-        </div>
+        <div class="panel-body"><%=sponsorChild%> คน</div>
       </div>
     </div>
   </div>
 </div>
 
 
-
-
-
-<div class="container" style="padding: 25px;">
+<div class="container" style="padding: 25px">
   <div class="row">
-    <div class="col-lg-6 col-xs-12" style="padding: 50px;">
-        <div class="well smallmlm">
-            <a href="user/<%=userName.username%>">
-                <div class="row" style="text-align: center">
-                    <div class="col-md-12">
-                        <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-                        <h1><%=userName.username%></h1>
-                    </div>
-                </div>
-                  
-                <div id="lev2" class="row" style="text-align: center">
-                </div>
-              </a>
+    <div class="col-lg-6 col-sm-12">
+      <div class="container smallmlm">
+        <a href="user/<%=userName.username%>">
+          <div class="row" style="text-align: center">
+            <div class="col-md-12">
+              <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+              <h1><%=userName.username%></h1>
+            </div>
           </div>
+  
+          <div id="lev2" class="row" style="text-align: center"></div>
+        </a>
       </div>
-    <div class="col-lg-6 col-xs-12" style="padding: 50px;">
-      <div class="well smallmlm">
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <div class="container smallmlm" style="padding: 25px">
         <a href="user/<%=userName.username%>/sponsor">
           <div class="row" style="text-align: center">
             <div class="col-md-12">
-                <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-                <h1><%=userName.username%></h1>
+              <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+              <h1><%=userName.username%></h1>
             </div>
-                    
-          <div class="row" style="text-align: center">
-            <%sponsored.slice(-3).forEach((element)=>{%>
-            <div class="col-xs-4">
+  
+            <div class="row" style="text-align: center">
+              <%sponsored.slice(-3).forEach((element)=>{%>
+              <div class="col-xs-4">
                 <i class="fa-solid fa-person fa-6x" style="color: darkorange"></i>
                 <p style="font-size: 30px"><%=element.username%></p>
+              </div>
+              <%})%>
             </div>
-            <%})%>
           </div>
-        </div>
         </a>
-
-        </div>
-
-        </div>
-        </a>
-        
+      </div>
     </div>
+  </div>
 </div>
-</div>
+
 
 <script>
     const Child = <%-JSON.stringify(Child)%>;
@@ -138,11 +117,5 @@
     $("#lev2").append(temp)
   }
 </script>
-
-
-
-
-
-
 
 <%-include("partials/footer.ejs")-%>

@@ -23,7 +23,7 @@
 </div>
 
 <div class="container mlmcontainer">
-  <div class="row" style="text-align: center">
+  <div class="row mlmrow">
     <div class="col-md-12">
       <a href="/user">
         <i class="fa-solid fa-person fa-7x" style="color: red"></i>
@@ -32,36 +32,38 @@
     </div>
   </div>
   
-  <div id="lev2" class="row" style="text-align: center">
+  <div id="lev2" class="row mlmrow">
   </div>
   
-  <div id="lev3" class="row" style="text-align: center">
+  <div id="lev3" class="row mlmrow">
   </div>
   
-  <div id="lev4" class="row" style="text-align: center">
+  <div id="lev4" class="row mlmrow">
   </div>
   
-  <div id="lev5" class="row" style="text-align: center">
+  <div id="lev5" class="row mlmrow">
   </div>
   
-  <div class="row" style="text-align: center ">
+  <div class="row mlmrow">
     <%var count=0%>
     <%for(var i=0; i<Child.length;i++){%>
     <%if(!Child[i].lev6){continue}%>
-      <div class="col-xs-1" style="width: 3.1249999988%">
+      <div class="col-xs-1" style="width: 3.1249999988%; padding: 10px">
       <a href="/user/<%=Child[i].lev6%>">
-        <i class="fa-solid fa-person fa-3x" style="color: gray"></i>
+        <i class="fa-solid fa-person fa-2x" style="color: gray"></i>
         <p style="font-size: 12px"><%=Child[i].lev6%></p>
       </a>
     </div>
     <%count++}%>
     
     <%for(var i=count;i<32;i++){%>
-      <div class="col-xs-1" style="width: 3.1249999988%">
-          <i class="fa-solid fa-person fa-3x" style="color: darkgray"></i>
+      <div class="col-xs-1" style="width: 3.1249999988%; padding: 10px">
+          <i class="fa-solid fa-person fa-2x" style="color: darkgray"></i>
           <p></p>
       </div>
     <%}%>
+
+    
   
   </div>
   
