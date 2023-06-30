@@ -1,13 +1,23 @@
+
 <%-include("partials/header.ejs")-%>
 
-<div class="container" style="padding: 25px;">
-  <div class="row">
+<div class="container">
+  <div class="row"style="padding: 25px;">
       <h3 class="panel-label">วันที่</h3>
       <div class="panel panel-default daybox">
         <div class="panel-body">
           <%=day%>
         </div>
       </div>
+    </div>
+  <div class="row">
+    <a href="/admin">
+      <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
+        <div class="panel-body">
+          Back
+        </div>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -91,5 +101,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="/js/admin_script.js"></script>
+
+
 
 <%-include("partials/footer.ejs")-%>

@@ -17,7 +17,20 @@ router.get("/", async (req, res) => {
   }
   const day = date.getDate();
   const user = await sql.getUser(req.user.username)
-  res.render("admin", {
+  res.render("dashboard", {
+    user: user,
+    day: day,
+  });
+});
+
+router.get("/userdata", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  const day = date.getDate();
+  const user = await sql.getUser(req.user.username)
+  res.render("datatable", {
     user: user,
     day: day,
   });
