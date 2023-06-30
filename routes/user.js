@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     const day = date.getDate();
     const sponsored = await sql.getSponsored(currentUser.username)
     const sponsorIncome = calculate.sponsorIncome(sponsored)
-    const childIncome = calculate.childIncome(currentUser.childrenR)
+    const childIncome = calculate.childIncome(sqlTree)
     const emptySlot = calculate.emptySlot(sqlTree)
     const sponsorChild = await sql.sponsorChild(currentUser.username)
     res.render('account',{
