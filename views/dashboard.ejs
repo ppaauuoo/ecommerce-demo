@@ -1,28 +1,26 @@
-
 <%-include("partials/header.ejs")-%>
 
-<div class="container" style="padding: 25px;">
-    <div class="row">
-        <h3 class="panel-label">วันที่</h3>
-        <div class="panel panel-default daybox">
-          <div class="panel-body">
-            <%=day%>
-          </div>
-        </div>
-    </div>
-  </div>
-
-<div class="container" style="padding: 25px;">
+<div class="container" style="padding: 25px">
   <div class="row">
-
-    <%-include('admintools/userdata.ejs')-%>
-    <%-include('admintools/userdata.ejs')-%>
-    <%-include('admintools/userdata.ejs')-%>
-    
+    <h3 class="panel-label">วันที่</h3>
+    <div class="panel panel-default daybox">
+      <div class="panel-body"><%=day%></div>
+    </div>
   </div>
 </div>
 
-
-
+<div
+  class="container dashboard"
+>
+  <div class="row">
+    <%-include('admintools/infodata.ejs',{ShowData: "จำนวนสมาชิกในระบบ",ShowNum: usersAmount})-%>
+    <%-include('admintools/infodata.ejs',{ShowData: "จำนวนสมาชิกที่ถูกเพิ่มวันนี้",ShowNum: '+'+currentDayAmount})-%>
+    
+  </div>
+  <div class="row">
+    <%-include('admintools/userdata.ejs',{link:'userdata',icon:'fa-table fa-8x',context:'Users Data'})-%>
+    <%-include('admintools/userdata.ejs',{link:'tree',icon:' fa-timeline fa-8x',context:'Users Tree'})-%>
+  </div>
+</div>
 
 <%-include("partials/footer.ejs")-%>

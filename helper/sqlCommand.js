@@ -11,18 +11,7 @@ queryPromise = (query, values) => {
     });
   });
 };
-
-exports.queryPromise = (query, values) => {
-  return new Promise((resolve, reject) => {
-    con.query(query, values, (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result);
-      }
-    });
-  });
-};
+exports.queryPromise = queryPromise;
 
 exports.getUser = async (username) => {
   return await new Promise((resolve, reject) => {
@@ -173,4 +162,26 @@ exports.getChild = async (userid) => {
         reject(error);
       });
   });
+};
+
+
+exports.currentDayUser = async () => {
+  return await queryPromise(
+    `SELECT COUNT(*) AS amount_added
+    FROM auth
+    WHERE DATE(timestamp) = CURDATE();`
+  );
+};
+
+exports.getAllUsers = async (num) => {
+  var row = 24;
+  var amount = parseInt(row * num);
+  if(num==-1){amount=0,row=1000000}
+  return await queryPromise(
+    `SELECT username
+     FROM auth
+     WHERE isAdmin!=1 
+     LIMIT ?, ?;`,
+    [amount, row]
+  );
 };

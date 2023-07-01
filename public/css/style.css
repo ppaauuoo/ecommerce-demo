@@ -13,6 +13,12 @@ body {
   footer {
     display: none;
   }
+
+  .dashboard{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 25px;
+  }
 }
 
 footer {
@@ -24,14 +30,22 @@ footer {
   background-color: #f8f8f8; /* Set a background color for the footer */
 }
 
-.dashboarditems {
-  width: 200px;
-  height: auto;
-  text-align: center;
-  background-color: #1c3f1c;
-  border: 1.5px solid black;
+.dashboard{
+  background-color: whitesmoke;
   border-radius: 25px;
-  padding: 10px;
+  padding: 25px;
+  border: 1.5px solid black;
+}
+
+.dashboarditems {
+  background-color: white;
+  border-radius: 25px;
+  padding: 25px;
+  margin: auto;
+  border: 1.5px solid black;
+  width: 200px;
+  height: 200px;
+  text-align: center;
   margin-bottom: 25px;
 }
 
@@ -117,50 +131,4 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-#bsr-page-footer {
-  padding: 1rem 2rem 1rem;
-}
-
-hr {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Add right borders for the divs... */
-#bsr-page-footer .bsr-footer-main-links div {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* ...except no border on the right-most div */
-#bsr-page-footer .bsr-footer-main-links div:last-of-type {
-  border: none;
-}
-
-/* Remove bullets for social social icons */
-#bsr-page-footer .bsr-social-icons {
-  list-style-type: none;
-}
-
-/* Style the social icon list items further */
-#bsr-page-footer .bsr-social-icons li {
-  display: inline;
-}
-
-/* Remove styling on the main columnar links */
-.bsr-footer-links li {
-  background: transparent;
-  border: 0px;
-}
-
-/* Styling for the ancillary links */
-#bsr-page-footer .bsr-footer-ancillary-links {
-  list-style-type: none;
-}
-
-#bsr-page-footer .bsr-footer-ancillary-links li {
-  display: inline;
-  margin-right: 0.3rem;
-  text-align: right;
-  font-size: smaller;
 }

@@ -11,12 +11,11 @@ router.get("/", async (req, res) => {
       res.redirect("/login");
       return
     }
-    if(req.user.isAdmin){
+    const currentUser = await sql.getUser(req.user.username)
+    if(currentUser.isAdmin){
       res.redirect("/admin")
       return
-    }
-    const currentUser = await sql.getUser(req.user.username)
-    const wallet = await sql.getWallet(currentUser.walletId)
+    }    const wallet = await sql.getWallet(currentUser.walletId)
     const sqlTree = await sql.getTree(currentUser.username)
     const day = date.getDate();
     const sponsored = await sql.getSponsored(currentUser.username)

@@ -17,7 +17,11 @@ router.get("/", async (req, res) => {
   }
   const day = date.getDate();
   const user = await sql.getUser(req.user.username)
+  const usersAmount = await sql.getLength()
+  const currentDayAmount = await sql.currentDayUser()
   res.render("dashboard", {
+    usersAmount: usersAmount.length,
+    currentDayAmount: currentDayAmount[0].amount_added,
     user: user,
     day: day,
   });
@@ -33,6 +37,21 @@ router.get("/userdata", async (req, res) => {
   res.render("datatable", {
     user: user,
     day: day,
+  });
+});
+
+router.get("/tree", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  const day = date.getDate();
+  const user = await sql.getUser(req.user.username)
+  const allTree = await sql.getAllUsers(0)
+  res.render("tree", {
+    user: user,
+    day: day,
+    allTree: allTree,
   });
 });
 
