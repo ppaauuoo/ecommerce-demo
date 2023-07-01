@@ -1,25 +1,7 @@
 
 <%-include("partials/header.ejs")-%>
 
-<div class="container">
-  <div class="row"style="padding: 25px;">
-      <h3 class="panel-label">วันที่</h3>
-      <div class="panel panel-default daybox">
-        <div class="panel-body">
-          <%=day%>
-        </div>
-      </div>
-    </div>
-  <div class="row">
-    <a href="/admin">
-      <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
-        <div class="panel-body">
-          Back
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
+<%-include("partials/widget.ejs",{day: day, link: 'admin'})-%>
 
 <div class="container">
   <input hidden id="currentPage" value="0">
@@ -32,10 +14,6 @@
     </ul>
   </nav>
 </div>
-
-
-
-
 
 
 

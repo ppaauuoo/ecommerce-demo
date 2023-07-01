@@ -4,8 +4,6 @@ const router = express.Router();
 const con = require("../database");
 const sql = require("../helper/sqlCommand.js");
 
-const calculate = require("../helper/calculate.js");
-
 router.get("/", async (req, res) => {
   const goods = await new Promise((resolve, reject) => {
     con.query("SELECT * FROM goods ", (err, rows) => {
@@ -20,8 +18,10 @@ router.get("/", async (req, res) => {
       });},100);
     return;
   }
-
   const user = await sql.getUser(req.user.username)
+  if(user.isAdmin){
+    res.redirect('/admin')
+  }
   const wallet = await sql.getWallet(user.walletId)
 
   res.render("home", {
