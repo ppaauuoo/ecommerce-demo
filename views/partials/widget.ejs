@@ -7,13 +7,16 @@
           </div>
         </div>
       </div>
-    <div class="row">
-      <a href="/<%=link%>">
-        <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
-          <div class="panel-body">
-            Back  
+      <%if(link){%>    
+        <div class="row">
+        <a href="/<%=link%>" style="text-decoration: none;">
+          <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
+            <div class="panel-body">
+              <p class="font" style="font-family: 'Tomorrow', sans-serif; margin: 0; padding: 5px;">Back</p>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
+        </a>
+      </div>
+      <%}%>
+
   </div>
