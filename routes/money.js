@@ -9,6 +9,9 @@ router.get("/", async (req, res) => {
       return
     }
     const user = await sql.getUser(req.user.username)
+    if(user.isAdmin){
+      res.redirect('/admin')
+    }
     const wallet = await sql.getWallet(user.walletId)
     res.render("money", {
       wallet: wallet,

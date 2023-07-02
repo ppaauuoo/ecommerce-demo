@@ -3,12 +3,9 @@
 <%-include("partials/widget.ejs",{day: day, link: 'admin'})-%>
 
 
-<div class="container dashboard" style="padding: 0px; margin-bottom: 25px; margin-top: 25px;">
-  <div class="container" style="padding: 25px">
-    <div class="row">
-      <%allTree.forEach((e)=>{%> <%-include('admintools/usertree.ejs',{user:
-      e.username})-%> <%})%>
-    </div>
+<div class="container dashboard" style="padding: 25px; margin-bottom: 25px; margin-top: 25px;">
+  <div class="row">
+    <%allTree.forEach((e)=>{%> <%-include('admintools/usertree.ejs',{user: e.username})-%> <%})%>
   </div>
 </div>
 

@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
     const currentUser = await sql.getUser(req.user.username)
     if(currentUser.isAdmin){
-      res.redirect("/admin")
+      res.redirect("/admin/tree")
       return
     }    const wallet = await sql.getWallet(currentUser.walletId)
     const sqlTree = await sql.getTree(currentUser.username)
