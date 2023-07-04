@@ -1,8 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 const calculate = require("../helper/calculate.js");
 const sql = require("../helper/sqlCommand.js");
+
+
+
+
+
 
 const getCart = async (user) => {
   return await sql.queryPromise(
@@ -84,6 +91,10 @@ router.post("/", async (req, res) => {
 
 
 router.get("/checkout", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
   const user = await sql.getUser(req.user.username);
   const wallet = await sql.getWallet(user.walletId);
 
@@ -99,16 +110,26 @@ router.get("/checkout", async (req, res) => {
       [updatedMoney, updatedPoint, wallet.walletId]
     );
 
-    await sql.queryPromise("DELETE FROM cart WHERE username = ?", [
-      user.username,
-    ]);
+
 
     await sql.queryPromise("UPDATE wallets SET total = ? WHERE walletId = ?", [
       0,
       wallet.walletId,
     ]);
 
-    res.redirect("/");
+
+    const UserCart = await getCart(user);
+    const id = calculate.idGenerator()
+    UserCart.forEach(async (e)=>{
+      await sql.queryPromise("INSERT INTO orders (orderId, username, goodId, quantity) VALUES (?,?,?,?)", [
+        id,e.username, e.goodId, e.quantity
+      ]);
+    })
+    await sql.queryPromise("DELETE FROM cart WHERE username = ?", [
+      user.username,
+    ]);
+
+    res.redirect("/order/"+id);
   }
 });
 

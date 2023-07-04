@@ -1,0 +1,64 @@
+const express = require("express");
+const router = express.Router();
+
+const sql = require("../helper/sqlCommand.js");
+
+const calculate = require("../helper/calculate.js");
+const date = require("../helper/date.js")
+
+router.get("/", async (req, res) => {
+    if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  
+  const user = await sql.getUser(req.user.username);
+  const wallet = await sql.getWallet(user.walletId);
+  const orders = await sql.getOrders(user.username)
+  res.render("order",{
+    wallet: wallet,
+    user: user,
+    orders: orders
+  });
+});
+
+
+  router.get("/:id", async (req, res) => {
+    if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  
+  const user = await sql.getUser(req.user.username);
+  const wallet = await sql.getWallet(user.walletId);
+  const total = await sql.getTotalFromOrder(req.params.id)
+  const order = await sql.getOrder(req.params.id)
+  res.render("payment",{
+    wallet: wallet,
+    user: user,
+    total: total,
+    orderId: req.params.id
+  });
+});
+
+
+const multer = require('multer')
+const receipts = multer.diskStorage({
+  destination: 'public/images/receipts',
+  filename: function (req, file, callback) {
+    callback(null, file.originalname)
+  },
+})
+const upload = multer({ storage: receipts })
+
+router.post('/:id', upload.single('photo'), async (req, res) => {
+  await sql.queryPromise("UPDATE orders SET receipts=?, status=? WHERE orderId = ?", [
+    req.file.path, 'รอการยืนยันการชำระเงิน',req.params.id
+  ]);
+  res.redirect("/order")
+})
+
+
+
+
+module.exports = router;

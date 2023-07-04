@@ -65,5 +65,18 @@ exports.emptySlot = (tree) => {
     return result
 }
 
+exports.idGenerator = () => {
+    const d = new Date();
+    return d.valueOf();
+}
+
+exports.getTotalFromCart = (UserCart) =>{
+    var total = 0;
+    UserCart.forEach((e) => {
+        total += e.goodsPrice * e.quantity;
+    });
+    return total
+}
+
 
 

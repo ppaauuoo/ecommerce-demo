@@ -39,8 +39,8 @@ router.use('/cart', cart);
 money = require('./routes/money.js')
 router.use('/money', money);
 
-// auth = require('./routes/auth.js')
-// router.use('/', auth);
+order = require('./routes/order.js')
+router.use('/order', order);
 
 auth = require('./routes/sqlauth.js')
 router.use('/', auth);
