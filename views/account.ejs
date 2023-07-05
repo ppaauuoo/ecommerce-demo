@@ -42,11 +42,12 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-xs-12" style="text-align: center;">
       <h3 class="panel-label">จำนวนคนที่เชิญ</h3>
       <div class="panel panel-default commissionbox">
         <div class="panel-body"><%=sponsorChild%> คน</div>
       </div>
+      <a class="invite" href="#" style="font-weight: 400; font-size: medium;">กดเพื่อรับลิ้งค์เชิญ</a>
     </div>
   </div>
 </div>
@@ -92,30 +93,34 @@
   </div>
 </div>
 
+<input id='username' hidden value="<%=userName.username%>">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <script>
     const Child = <%-JSON.stringify(Child)%>;
     const lev2Array = [...new Set(Child.map(item => item.lev2))];
-
     var empty=0
-  if(!lev2Array){empty++}
-  lev2Array.forEach((e)=>{
+    if(!lev2Array){empty++}
+    lev2Array.forEach((e)=>{
     if(!e){return}
     var temp = "<div class='col-xs-6'>"+
     "<a href='/user/"+e+"'>"+
       "<i class='fa-solid fa-person fa-6x' style='color: blue'></i>"+
       "<p style='font-size: 30px'>"+e+"</p>"+
     "</a>"+
-  "</div>"
+    "</div>"
     $("#lev2").append(temp)
     empty++
-  })
-  for (var i = empty; i < 32/16; i++) {
+    })
+    for (var i = empty; i < 32/16; i++) {
     var temp = "<div class='col-xs-6'>"+
       "<i class='fa-solid fa-person fa-6x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev2").append(temp)
-  }
+    }
 </script>
+
+<script src="/js/account_script.js"></script>
 
 <%-include("partials/footer.ejs")-%>

@@ -26,13 +26,15 @@ router.get("/register", async (req, res) => {
 });
 
 router.get("/register/:sponsor", async (req, res) => {
-  const sponsor = await sql.getUser(req.params.sponsor);
+  const id = req.params.sponsor
+  const sponsor = await sql.getUser(id.slice(13));
+  if(!sponsor){return res.redirect('/register')}
   const thailand = await sql.queryPromise("SELECT * FROM thailands")
   var userNum = await sql.getLength()
   userNum = (userNum.length).toString().padStart(4, "0");
   res.render("register", {
     userNum: userNum,
-    sponsor: sponsor,
+    sponsor: id,
     thailand: thailand,
   });
 });
@@ -50,7 +52,8 @@ router.post("/register", async (req, res, next) => {
         }
       })(req, res, next);
     });
-    const sponsortemp = await sql.getUser(req.body.sponsor);
+    const sponsor = req.body.sponsor
+    const sponsortemp = await sql.getUser(sponsor.slice(13));
     const addressId = "ADD-" + req.body.username;
     const bankId = "BBK-" + req.body.username;
     const walletId = "WAL-" + req.body.username;
@@ -70,7 +73,7 @@ router.post("/register", async (req, res, next) => {
       req.body.phoneNumber,
       bankId,
       counttemp,
-      sponsortemp,
+      sponsortemp.username,
       walletId,
     ];
     await sql.queryPromise(newUserQuery, newUserValues);

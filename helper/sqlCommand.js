@@ -16,7 +16,7 @@ exports.queryPromise = queryPromise;
 exports.getUser = async (username) => {
   return await new Promise((resolve, reject) => {
     con.query(
-      "SELECT * FROM users WHERE username=?",
+      "SELECT username FROM users WHERE username=?",
       [username],
       (err, rows) => {
         if (rows) {
