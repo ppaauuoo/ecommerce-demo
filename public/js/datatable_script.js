@@ -1,6 +1,6 @@
 load_data = (num) => {
   $.ajax({
-    url: "/admin",
+    url: "/admin/userdata",
     method: "POST",
     data: { page: num,action: "fetch" },
     dataType: "JSON",
@@ -113,7 +113,7 @@ $(() => {
   $("#form").on("submit", function (event) {
     event.preventDefault();
     $.ajax({
-      url: "/admin",
+      url: "/admin/userdata",
       method: "POST",
       data: $("#form").serialize(),
       dataType: "JSON",
@@ -146,7 +146,7 @@ $(() => {
     $("#action_modal").modal("show");
     
     $.ajax({
-      url: "/admin",
+      url: "/admin/userdata",
       method: "POST",
       data: { id: dataId, action: "fetch_single" },
       dataType: "JSON",
@@ -180,7 +180,7 @@ $(() => {
     if(newpass!=passCon){return}
     if(confirm('ยืนยันการเปลี่ยนรหัสผ่านหรือไม่?'))
     $.ajax({
-      url: "/admin",
+      url: "/admin/userdata",
       method: "POST",
       data: { username: dataId,password: newpass, action: "Password" },
       dataType: "JSON",

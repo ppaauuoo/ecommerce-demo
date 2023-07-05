@@ -40,22 +40,8 @@ router.get("/userdata", async (req, res) => {
   });
 });
 
-router.get("/tree", async (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
-  const day = date.getDate();
-  const user = await sql.getUser(req.user.username)
-  const allTree = await sql.getAllUsers(0)
-  res.render("tree", {
-    user: user,
-    day: day,
-    allTree: allTree,
-  });
-});
 
-router.post("/", async (req, res) => {
+router.post("/userdata", async (req, res) => {
   var action = req.body.action;
   if (action == "fetch") {
     const userData = await sql.getData(req.body.page);
@@ -108,6 +94,61 @@ router.post("/", async (req, res) => {
     })
     res.json({
       message: "รหัสผ่านของผู้ใช้หมายเลข "+req.body.username+" ถูกแก้ไข",
+    });
+  }
+});
+
+router.get("/tree", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  const day = date.getDate();
+  const user = await sql.getUser(req.user.username)
+  const allTree = await sql.getAllUsers(0)
+  res.render("tree", {
+    user: user,
+    day: day,
+    allTree: allTree,
+  });
+});
+
+router.get("/ordersdata", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  const day = date.getDate();
+  const user = await sql.getUser(req.user.username)
+  res.render("ordertable", {
+    user: user,
+    day: day,
+  });
+});
+
+
+router.post("/ordersdata", async (req, res) => {
+  var action = req.body.action;
+  if (action == "fetch") {
+    const orders = await sql.getOrderData(req.body.page)
+    res.json(orders);
+  }
+
+  if (action == "fetch_single") {
+    const receipt = await queryPromise("SELECT * FROM orders WHERE orderId=?",[req.body.orderId])
+    res.json(receipt[0]);
+  }
+
+  if (action == "Confirm") {
+    await queryPromise(
+        "UPDATE orders SET status=? WHERE orderId=?",
+        [
+          'การชำระเงินถูกยืนยัน',
+          req.body.orderId
+        ],
+      )
+    res.json({
+      message: "ออเดอร์หมายเลข "+req.body.orderId+" ถูกยืนยัน",
     });
   }
 });

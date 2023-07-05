@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const _ = require('lodash')
+
 const sql = require("../helper/sqlCommand.js");
 
 const calculate = require("../helper/calculate.js");
@@ -46,14 +48,20 @@ const multer = require('multer')
 const receipts = multer.diskStorage({
   destination: 'public/images/receipts',
   filename: function (req, file, callback) {
-    callback(null, file.originalname)
+    const originalname = file.originalname;
+    const extension = originalname.split('.').pop(); // Get the file extension
+    const filename = _.camelCase(originalname.replace(`.${extension}`, '')); // Remove extension and camelCase
+    const finalFilename = `${filename}.${extension}`; // Add the extension back
+    callback(null, finalFilename);
   },
-})
+});
 const upload = multer({ storage: receipts })
 
 router.post('/:id', upload.single('photo'), async (req, res) => {
+  const path = req.file.path
+  const updatPath = path.replace(`public`, '')
   await sql.queryPromise("UPDATE orders SET receipts=?, status=? WHERE orderId = ?", [
-    req.file.path, 'รอการยืนยันการชำระเงิน',req.params.id
+    updatPath , 'รอการยืนยันการชำระเงิน',req.params.id
   ]);
   res.redirect("/order")
 })

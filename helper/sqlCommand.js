@@ -408,3 +408,13 @@ exports.getTotalFromOrder = async (orderId) => {
 
   return total
 };
+
+exports.getOrderData = async (num) => {
+  var row = 25;
+  var amount = parseInt(row * num);
+  if(num==-1){amount=0,row=1000000}
+  return await queryPromise(
+    "SELECT * FROM orders LIMIT ?, ? ",
+    [amount, row]
+  );
+};

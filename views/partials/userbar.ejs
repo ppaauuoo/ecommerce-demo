@@ -1,21 +1,32 @@
 <li>
-    <a href="/user"
-      ><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User <span class="sr-only"></span
-    ></a>
-  </li>
+  <a href="/user"
+    ><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User
+    <span class="sr-only"></span
+  ></a>
+</li>
 <li>
-  <a href="/money"
-    ><span class="badge"><%=wallet.money%></span> บาท <span class="sr-only"></span
+  <a href="/order"
+    ><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Order
+    <span class="sr-only"></span
   ></a>
 </li>
 <li>
   <a href="/money"
-    ><span class="badge"><%=wallet.point%></span> point <span class="sr-only"></span
+    ><span class="badge"><%=wallet.money%></span> บาท
+    <span class="sr-only"></span
   ></a>
-</li=>
+</li>
 <li>
-  <a href="/cart"
-    > <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>   ( <span class="badge"><%=wallet.total%></span> บาท ) <span class="sr-only"></span
+  <a href="/money"
+    ><span class="badge"><%=wallet.point%></span> point
+    <span class="sr-only"></span
+  ></a>
+</li>
+<li>
+  <a href="/cart">
+    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (
+    <span class="badge"><%=wallet.total%></span> บาท )
+    <span class="sr-only"></span
   ></a>
 </li>
 <li>
