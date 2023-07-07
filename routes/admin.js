@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
   res.render("page", 
   {
     user: user,
-    page: 'dashboard',
+    page: '/admin/dashboard',
     pagerequire: {    
       usersAmount: usersAmount.length,
       currentDayAmount: currentDayAmount[0].amount_added,
@@ -43,7 +43,7 @@ router.get("/userdata", async (req, res) => {
   res.render("page", 
   {
     user: user,
-    page: 'datatable',
+    page: '/admin/datatable',
     pagerequire: {
       day:day
     }
@@ -121,7 +121,7 @@ router.get("/tree", async (req, res) => {
   res.render("page", 
   {
     user: user,
-    page: 'tree',
+    page: '/admin/tree',
     pagerequire: {    
       day: day,
       allTree: allTree,
@@ -141,7 +141,7 @@ router.get("/ordersdata", async (req, res) => {
   res.render("page", 
   {
     user: user,
-    page: 'ordertable',
+    page: '/admin/ordertable',
     pagerequire: {    
       day: day,
     }

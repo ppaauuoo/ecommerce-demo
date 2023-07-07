@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
       user: currentUser,
       wallet: wallet,
       total: req.cookies.total,
-      page: 'account',
+      page: '/user/account',
       pagerequire: {    
         userName: currentUser,
         Child: sqlTree,
@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
       user: currentUser,
       wallet: wallet,
       total: req.cookies.total,
-      page: 'user',
+      page: '/user/user',
       pagerequire: {    
         userName: currentUser,
         Child: sqlTree,
@@ -92,7 +92,7 @@ router.get("/", async (req, res) => {
       user: currentUser,
       wallet: wallet,
       total: req.cookies.total,
-      page: 'sponsor',
+      page: '/user/sponsor',
       pagerequire: {    
         userName: currentUser,
         children: sponsored,

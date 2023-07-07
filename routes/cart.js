@@ -30,6 +30,7 @@ const updateWallet = async (UserCart, res) => {
     updatedTotal += e.goodsPrice * e.quantity;
   });
   res.cookie('total', updatedTotal);
+  console.log('updated done')
 };
 
 router.get("/", async (req, res) => {
@@ -53,6 +54,7 @@ router.get("/", async (req, res) => {
     page: 'cart',
     pagerequire: {    
       cart: UserCart,
+      total: req.cookies.total
     }
   })
 
@@ -65,7 +67,6 @@ router.post("/", async (req, res) => {
   }
 
   const user = await sql.getUser(req.user.username);
-  const wallet = await sql.getWallet(user.walletId);
   const selectedItem = await getItem(req.body.selectedItem);
   const UserCart = await getCart(user);
 
@@ -126,8 +127,6 @@ router.get("/checkout", async (req, res) => {
       await sql.queryPromise("INSERT INTO orderitems (orderId, goodId, quantity) VALUES (?,?,?)", [
         id, e.goodId, e.quantity
       ]);
-      // total+=e.goodsPrice*e.quantity
-      // totalQuantity+=e.quantity
     })
 
 

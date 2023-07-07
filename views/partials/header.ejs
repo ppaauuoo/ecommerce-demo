@@ -86,9 +86,9 @@
                   ></a>
                 </li>
                 <%if(user){%> <%if(user.isAdmin){%>
-                <%-include("adminbar.ejs")-%> <%}else{%>
-                <%-include("userbar.ejs", {wallet: wallet})-%> <%}%> <%}else{%>
-                <%-include("nonuserbar.ejs")-%> <%}%>
+                <%-include("bars/adminbar")-%> <%}else{%>
+                <%-include("bars/userbar", {wallet: wallet})-%> <%}%> <%}else{%>
+                <%-include("bars/nonuserbar")-%> <%}%>
               </ul>
             </div>
           </div>

@@ -1,5 +1,5 @@
 
-<%-include("partials/widget.ejs",{day: day, link: 'user'})-%>
+<%-include("../partials/widget.ejs",{day: day, link: 'user'})-%>
 
 <div class="container mlmcontainer">
   <div class="row" style="text-align: center">
@@ -14,7 +14,7 @@
   <div class="row" style="text-align: center">
     <%children.forEach((element)=>{%>
     <div class="col-xs-1" style="width: 12.499999995%">
-      <a href="/user/<%=element._id%>">
+      <a href="/user/<%=element.username%>">
         <i class="fa-solid fa-person fa-6x" style="color: darkorange"></i>
         <p style="font-size: 30px"><%=element.username%></p>
       </a>

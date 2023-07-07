@@ -5,8 +5,6 @@ const _ = require('lodash')
 
 const sql = require("../helper/sqlCommand.js");
 
-const calculate = require("../helper/calculate.js");
-const date = require("../helper/date.js")
 
 router.get("/", async (req, res) => {
     if (!req.isAuthenticated()) {
@@ -38,7 +36,7 @@ router.get("/", async (req, res) => {
     user: user,
     wallet: wallet,
     total: req.cookies.total,
-    page: 'order',
+    page: '/order/order',
     pagerequire: {    
       orders: orders,
     }
@@ -61,7 +59,7 @@ router.get("/", async (req, res) => {
     user: user,
     wallet: wallet,
     total: req.cookies.total,
-    page: 'payment',
+    page: '/order/payment',
     pagerequire: {    
       orderId: req.params.id
     }
