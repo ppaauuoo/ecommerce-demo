@@ -1,24 +1,5 @@
-<%-include("partials/header.ejs")-%>
 
-<div class="container" style="padding: 25px;">
-  <div class="row"style="padding: 25px;">
-      <h3 class="panel-label">วันที่</h3>
-      <div class="panel panel-default daybox">
-        <div class="panel-body">
-          <%=day%>
-        </div>
-      </div>
-    </div>
-  <div class="row">
-    <a href="/user">
-      <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
-        <div class="panel-body">
-          Back
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
+<%-include("partials/widget.ejs",{day: day, link: 'user'})-%>
 
 <div class="container mlmcontainer">
   <div class="row" style="text-align: center">
@@ -45,4 +26,3 @@
 
 
 
-<%-include("partials/footer.ejs")-%>

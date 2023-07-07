@@ -13,10 +13,16 @@ router.get("/", async (req, res) => {
       res.redirect('/admin')
     }
     const wallet = await sql.getWallet(user.walletId)
-    res.render("money", {
+    res.render("page", 
+    {
+      user: user,
       wallet: wallet,
-      user: user
-    });
+      total: req.cookies.total,
+      page: 'money',
+      pagerequire: {    
+        wallet: wallet,
+      }
+    })
   });
   
   router.get("/add", async (req, res) => {

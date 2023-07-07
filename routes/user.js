@@ -23,17 +23,23 @@ router.get("/", async (req, res) => {
     const childIncome = calculate.childIncome(sqlTree)
     const emptySlot = calculate.emptySlot(sqlTree)
     const sponsorChild = await sql.sponsorChild(currentUser.username)
-    res.render('account',{
-      userName: currentUser,
-      Child: sqlTree,
+
+    res.render("page", 
+    {
       user: currentUser,
-      day: day,
       wallet: wallet,
-      sponsored: sponsored,
-      sponsorIncome: sponsorIncome,
-      childIncome: childIncome,
-      emptySlot:emptySlot,
-      sponsorChild: sponsorChild.length
+      total: req.cookies.total,
+      page: 'account',
+      pagerequire: {    
+        userName: currentUser,
+        Child: sqlTree,
+        day: day,
+        sponsored: sponsored,
+        sponsorIncome: sponsorIncome,
+        childIncome: childIncome,
+        emptySlot:emptySlot,
+        sponsorChild: sponsorChild.length
+      }
     })
   });
   
@@ -57,13 +63,18 @@ router.get("/", async (req, res) => {
 
     const day = date.getDate();
   
-    res.render("user", {
-      userName: currentUser,
-      Child: sqlTree,
+    res.render("page", 
+    {
       user: currentUser,
-      day: day,
       wallet: wallet,
-    });
+      total: req.cookies.total,
+      page: 'user',
+      pagerequire: {    
+        userName: currentUser,
+        Child: sqlTree,
+        day: day,
+      }
+    })
   });
   
   router.get("/:userId/sponsor", async (req, res) => {
@@ -75,13 +86,19 @@ router.get("/", async (req, res) => {
     const wallet = await sql.getWallet(currentUser.walletId)
     const sponsored = await sql.getSponsored(req.params.userId)
     const day = date.getDate();
-    res.render("sponsor", {
-      userName: currentUser,
-      children: sponsored,
+
+    res.render("page", 
+    {
       user: currentUser,
-      day: day,
-      wallet: wallet
-    });
+      wallet: wallet,
+      total: req.cookies.total,
+      page: 'sponsor',
+      pagerequire: {    
+        userName: currentUser,
+        children: sponsored,
+        day: day,
+      }
+    })
   });
 
 

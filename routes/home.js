@@ -10,12 +10,18 @@ router.get("/", async (req, res) => {
       resolve(rows);
     });
   });
+
   if (!req.isAuthenticated()) {
     setTimeout(() => {
-      res.render("home", {
-        goods: goods,
-        user: null,
-      });},100);
+      res.render("page", {
+        page: 'home',
+        pagerequire: {goods: goods, user: null},
+        user: null
+      }
+      
+      
+      
+      );},100);
     return;
   }
   const user = await sql.getUser(req.user.username)
@@ -23,11 +29,15 @@ router.get("/", async (req, res) => {
     res.redirect('/admin')
   }
   const wallet = await sql.getWallet(user.walletId)
-
-  res.render("home", {
-    goods: goods,
+  res.render("page", 
+  {
     user: user,
-    wallet: wallet
+    wallet: wallet,
+    total: req.cookies.total,
+    page: 'home',
+    pagerequire: {    
+      goods: goods,
+    }
   })
 });
 

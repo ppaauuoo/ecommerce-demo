@@ -33,13 +33,17 @@ router.get("/", async (req, res) => {
     order.total = total;
   }
   
-
-
-  res.render("order",{
-    wallet: wallet,
+  res.render("page", 
+  {
     user: user,
-    orders: orders,
-  });
+    wallet: wallet,
+    total: req.cookies.total,
+    page: 'order',
+    pagerequire: {    
+      orders: orders,
+    }
+  })
+
 });
 
 
@@ -51,11 +55,18 @@ router.get("/", async (req, res) => {
   
   const user = await sql.getUser(req.user.username);
   const wallet = await sql.getWallet(user.walletId);
-  res.render("payment",{
-    wallet: wallet,
+
+  res.render("page", 
+  {
     user: user,
-    orderId: req.params.id
-  });
+    wallet: wallet,
+    total: req.cookies.total,
+    page: 'payment',
+    pagerequire: {    
+      orderId: req.params.id
+    }
+  })
+
 });
 
 

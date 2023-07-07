@@ -19,12 +19,18 @@ router.get("/", async (req, res) => {
   const user = await sql.getUser(req.user.username)
   const usersAmount = await sql.getLength()
   const currentDayAmount = await sql.currentDayUser()
-  res.render("dashboard", {
-    usersAmount: usersAmount.length,
-    currentDayAmount: currentDayAmount[0].amount_added,
+
+
+  res.render("page", 
+  {
     user: user,
-    day: day,
-  });
+    page: 'dashboard',
+    pagerequire: {    
+      usersAmount: usersAmount.length,
+      currentDayAmount: currentDayAmount[0].amount_added,
+      day: day,
+    }
+  })
 });
 
 router.get("/userdata", async (req, res) => {
@@ -34,10 +40,14 @@ router.get("/userdata", async (req, res) => {
   }
   const day = date.getDate();
   const user = await sql.getUser(req.user.username)
-  res.render("datatable", {
+  res.render("page", 
+  {
     user: user,
-    day: day,
-  });
+    page: 'datatable',
+    pagerequire: {
+      day:day
+    }
+  })
 });
 
 
@@ -106,11 +116,17 @@ router.get("/tree", async (req, res) => {
   const day = date.getDate();
   const user = await sql.getUser(req.user.username)
   const allTree = await sql.getAllUsers(0)
-  res.render("tree", {
+
+
+  res.render("page", 
+  {
     user: user,
-    day: day,
-    allTree: allTree,
-  });
+    page: 'tree',
+    pagerequire: {    
+      day: day,
+      allTree: allTree,
+    }
+  })
 });
 
 router.get("/ordersdata", async (req, res) => {
@@ -120,10 +136,16 @@ router.get("/ordersdata", async (req, res) => {
   }
   const day = date.getDate();
   const user = await sql.getUser(req.user.username)
-  res.render("ordertable", {
+
+
+  res.render("page", 
+  {
     user: user,
-    day: day,
-  });
+    page: 'ordertable',
+    pagerequire: {    
+      day: day,
+    }
+  })
 });
 
 

@@ -5,6 +5,7 @@ const passport = require("passport");
 const session = require("express-session");
 
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 
 const mongodb = require('./mongodb.js')
 
@@ -12,6 +13,7 @@ const mongodb = require('./mongodb.js')
 router.use(express.static("public"));
 router.use(express.json());
 
+router.use(cookieParser());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.use(

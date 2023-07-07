@@ -128,3 +128,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.VSCodeCounter/2023-07-07_07-34-15/details.md
+.VSCodeCounter/2023-07-07_07-34-15/diff-details.md
+.VSCodeCounter/2023-07-07_07-34-15/diff.csv
+.VSCodeCounter/2023-07-07_07-34-15/diff.md
+.VSCodeCounter/2023-07-07_07-34-15/diff.txt
+.VSCodeCounter/2023-07-07_07-34-15/results.csv
+.VSCodeCounter/2023-07-07_07-34-15/results.json
+.VSCodeCounter/2023-07-07_07-34-15/results.md
+.VSCodeCounter/2023-07-07_07-34-15/results.txt

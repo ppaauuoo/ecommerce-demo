@@ -24,15 +24,12 @@ const getItem = async (item) => {
   ]);
 };
 
-const updateWallet = async (UserCart, wallet) => {
+const updateWallet = async (UserCart, res) => {
   var updatedTotal = 0;
   UserCart.forEach((e) => {
     updatedTotal += e.goodsPrice * e.quantity;
   });
-  await sql.queryPromise("UPDATE wallets SET total = ? WHERE walletId = ?", [
-    updatedTotal,
-    wallet.walletId,
-  ]);
+  res.cookie('total', updatedTotal);
 };
 
 router.get("/", async (req, res) => {
@@ -47,13 +44,18 @@ router.get("/", async (req, res) => {
   const wallet = await sql.getWallet(user.walletId);
   const UserCart = await getCart(user);
 
-  await updateWallet(UserCart, wallet);
-
-  res.render("cart", {
-    cart: UserCart,
-    wallet: wallet,
+  await updateWallet(UserCart, res);
+  res.render("page", 
+  {
     user: user,
-  });
+    wallet: wallet,
+    total: req.cookies.total,
+    page: 'cart',
+    pagerequire: {    
+      cart: UserCart,
+    }
+  })
+
 });
 
 router.post("/", async (req, res) => {
@@ -85,7 +87,7 @@ router.post("/", async (req, res) => {
     ]);
   }
 
-  await updateWallet(UserCart, wallet)
+  await updateWallet(UserCart, res)
   res.redirect("/");
 });
 
@@ -98,11 +100,11 @@ router.get("/checkout", async (req, res) => {
   const user = await sql.getUser(req.user.username);
   const wallet = await sql.getWallet(user.walletId);
 
-  if (wallet.money < wallet.total) {
+  if (wallet.money < req.cookies.total) {
     res.redirect("/cart");
   } else {
-    const pointObtained = calculate.pointCalculate(wallet.total);
-    const updatedMoney = wallet.money - wallet.total;
+    const pointObtained = calculate.pointCalculate(req.cookies.total);
+    const updatedMoney = wallet.money - req.cookies.total;
     const updatedPoint = wallet.point + pointObtained;
 
     await sql.queryPromise(
@@ -112,10 +114,7 @@ router.get("/checkout", async (req, res) => {
 
 
 
-    await sql.queryPromise("UPDATE wallets SET total = ? WHERE walletId = ?", [
-      0,
-      wallet.walletId,
-    ]);
+    res.cookie('total', 0)
 
 
     const UserCart = await getCart(user);
