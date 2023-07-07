@@ -14,23 +14,23 @@ load_data = (num) => {
             <button
               type="button"
               class="btn btn-warning btn-sm confirm"
-              data-id="` +
-        element.orderId +
-        `"
-        >
+              data-id="${element.orderId}"${element.status === 'ยังไม่ได้ส่งหลักฐานการชำระเงิน' ? ' disabled' : ''}>
         หลักฐานการชำระเงิน
       </button>
       
           </td>
               <td>
-                ` +
-            element.orderId +
-            `
+            ${element.status}
               </td>
-              <td>` +
-            element.status +
-            `
+              <td>
+            ${element.total}
               </td>
+              <td>
+              ${element.totalQuantity}
+                </td>
+                <td>
+                ${element.orderId}
+                  </td>
             </tr>
             `;
         });

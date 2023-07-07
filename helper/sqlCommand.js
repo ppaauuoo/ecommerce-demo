@@ -373,11 +373,22 @@ exports.getAllUsers = async (num) => {
   );
 };
 
+exports.getOrderItems = async (orderId) => {
+  return await queryPromise(
+    `SELECT ot.*, g.goodsPrice
+    FROM orderitems ot
+    INNER JOIN goods g
+    ON ot.goodId= g.goodId
+    WHERE ot.orderId = ?;`,
+    [orderId]
+  );
+};
+
 exports.getOrders = async (username) => {
   return await queryPromise(
-    `SELECT DISTINCT orderId, goodId, quantity, status
-    FROM orders
-    WHERE username = ?;`,
+    `SELECT *
+     FROM orders
+     WHERE username = ?`,
     [username]
   );
 };
@@ -391,30 +402,36 @@ exports.getOrder = async (orderId) => {
   );
 };
 
-exports.getTotalFromOrder = async (orderId) => {
-  const order =  await queryPromise(
-    `SELECT g.goodsPrice, o.quantity
-     FROM orders o
-     INNER JOIN goods g
-     ON o.goodId = g.goodId
-     WHERE o.orderId = ?`,
-    [orderId]
-  );
-  let total=0
-
-  order.forEach((e)=>{
-    total += e.goodsPrice*e.quantity
-  })
-
-  return total
-};
 
 exports.getOrderData = async (num) => {
   var row = 25;
   var amount = parseInt(row * num);
   if(num==-1){amount=0,row=1000000}
-  return await queryPromise(
+  const orders=  await queryPromise(
     "SELECT * FROM orders LIMIT ?, ? ",
     [amount, row]
   );
+  for (const order of orders) {
+    const thing = await queryPromise(
+      `SELECT ot.*, g.goodsPrice
+      FROM orderitems ot
+      INNER JOIN goods g
+      ON ot.goodId= g.goodId
+      WHERE ot.orderId = ?;`,
+      [order.orderId]
+    );
+    let totalQuantity = 0;
+    let total = 0;
+  
+    for (const item of thing) {
+      totalQuantity += item.quantity;
+      total += item.quantity * item.goodsPrice;
+    }
+  
+    order.totalQuantity = totalQuantity;
+    order.total = total;
+  }
+
+  return orders
 };
+

@@ -16,11 +16,29 @@ router.get("/", async (req, res) => {
   
   const user = await sql.getUser(req.user.username);
   const wallet = await sql.getWallet(user.walletId);
-  const orders = await sql.getOrders(user.username)
+  
+  const orders = await sql.getOrders(user.username);
+
+  for (const order of orders) {
+    const thing = await sql.getOrderItems(order.orderId);
+    let totalQuantity = 0;
+    let total = 0;
+  
+    for (const item of thing) {
+      totalQuantity += item.quantity;
+      total += item.quantity * item.goodsPrice;
+    }
+  
+    order.totalQuantity = totalQuantity;
+    order.total = total;
+  }
+  
+
+
   res.render("order",{
     wallet: wallet,
     user: user,
-    orders: orders
+    orders: orders,
   });
 });
 
@@ -33,12 +51,9 @@ router.get("/", async (req, res) => {
   
   const user = await sql.getUser(req.user.username);
   const wallet = await sql.getWallet(user.walletId);
-  const total = await sql.getTotalFromOrder(req.params.id)
-  const order = await sql.getOrder(req.params.id)
   res.render("payment",{
     wallet: wallet,
     user: user,
-    total: total,
     orderId: req.params.id
   });
 });

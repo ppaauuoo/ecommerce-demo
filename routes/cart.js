@@ -120,11 +120,18 @@ router.get("/checkout", async (req, res) => {
 
     const UserCart = await getCart(user);
     const id = calculate.idGenerator()
+    await sql.queryPromise("INSERT INTO orders (orderId, username) VALUES (?,?)", [
+      id,user.username
+    ]);
     UserCart.forEach(async (e)=>{
-      await sql.queryPromise("INSERT INTO orders (orderId, username, goodId, quantity) VALUES (?,?,?,?)", [
-        id,e.username, e.goodId, e.quantity
+      await sql.queryPromise("INSERT INTO orderitems (orderId, goodId, quantity) VALUES (?,?,?)", [
+        id, e.goodId, e.quantity
       ]);
+      // total+=e.goodsPrice*e.quantity
+      // totalQuantity+=e.quantity
     })
+
+
     await sql.queryPromise("DELETE FROM cart WHERE username = ?", [
       user.username,
     ]);
@@ -136,8 +143,8 @@ router.get("/checkout", async (req, res) => {
 router.post("/delete", async (req, res) => {
   const selectedItem = await getItem(req.body.selectedItem);
 
-  await sql.queryPromise("DELETE FROM cart WHERE goodId = ?", [
-    selectedItem[0].goodId,
+  await sql.queryPromise("DELETE FROM cart WHERE goodId = ? AND username=?", [
+    selectedItem[0].goodId,req.user.username
   ]);
 
   res.redirect("/cart");
