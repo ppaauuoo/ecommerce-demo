@@ -14,6 +14,29 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local-login", (err, user, info) => {
+    if (err) {
+      // Handle authentication error
+      return next(err);
+    }
+    if (!user) {
+      // Handle authentication failure
+      return res.redirect("/login");
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        // Handle login error
+        return next(err);
+      }
+      // Authentication and login successful
+      return res.redirect("/");
+    });
+  })(req, res, next);
+});
+
+
+
 router.get("/register", async (req, res) => {
   const thailand = await sql.queryPromise("SELECT * FROM thailands")
   var userNum = await sql.getLength()
@@ -116,25 +139,7 @@ router.post("/register", async (req, res, next) => {
 
 
 
-router.post("/login", async (req, res, next) => {
-  passport.authenticate("local-login", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      // Handle authentication failure
-      return res.redirect("/login");
-    }
-    // Authentication successful
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      // Redirect to the homepage
-      return res.redirect("/");
-    });
-  })(req, res, next);
-});
+
 
 router.get("/logout", (req, res) => {
   req.logout(function (err) {

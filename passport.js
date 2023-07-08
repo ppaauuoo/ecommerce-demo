@@ -92,35 +92,39 @@ module.exports = function(passport) {
     // by default, if there was no name, it would just be called 'local'
 
     passport.use('local-login', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with username
-        usernameField : 'username',
-        passwordField: 'password',
-        passReqToCallback: true // allows us to pass back the entire request to the callback
-    }, async (req, username, password, done) => {
-        try {
-            const rows = await new Promise((resolve, reject) => {
-                connection.query("SELECT * FROM auth WHERE username = ?", [username],(err, rows) => {
-                  
-                    resolve(rows);
-                });
-            });
-            
-            if (!rows.length) {
-                // User not found
-                return done(null, false);
-            }
-    
-            const result = await bcrypt.compare(password, rows[0].hash);
-            if (result) {
-                // Authentication successful
-                return done(null, rows[0]);
-            } else {
-                // Incorrect password
-                return done(null, false);
-            }
-        } catch (err) {
-            // Handle database or other errors
-            return done(err);
-        }
-    }));
+      // by default, local strategy uses username and password, we will override with username
+      usernameField : 'username',
+      passwordField: 'password',
+      passReqToCallback: true // allows us to pass back the entire request to the callback
+  }, async (req, username, password, done) => {
+      try {
+          const rows = await new Promise((resolve, reject) => {
+              connection.query("SELECT * FROM auth WHERE username = ?", [username], (err, rows) => {
+                  if (err) {
+                      reject(err); // Reject the promise in case of an error
+                  } else {
+                      resolve(rows); // Resolve the promise with the query result
+                  }
+              });
+          });
+  
+          if (!rows.length) {
+              // User not found
+              return done(null, false);
+          }
+  
+          const result = await bcrypt.compare(password, rows[0].hash);
+          if (result) {
+              // Authentication successful
+              return done(null, rows[0]);
+          } else {
+              // Incorrect password
+              return done(null, false);
+          }
+      } catch (err) {
+          // Handle database or other errors
+          return done(err);
+      }
+  }));
+  
 }

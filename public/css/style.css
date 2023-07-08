@@ -4,23 +4,6 @@ body {
   background-color: #b8f170;
 }
 
-@media (max-width: 767px) {
-  body {
-    padding-top: 50px;
-    padding-bottom: 0px;
-  }
-
-  footer {
-    display: none;
-  }
-
-  .dashboard{
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-bottom: 25px;
-  }
-}
-
 footer,.dashboard,.navbar {
   background-color: whitesmoke;
 }
@@ -133,4 +116,24 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-top: 50px;
+    padding-bottom: 0px;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .dashboard{
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+  }
+  .dashboarditems {
+
+  }
 }

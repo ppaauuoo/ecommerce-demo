@@ -29,15 +29,11 @@ exports.getUser = async (username) => {
 };
 
 exports.getLength = async () => {
-  return await new Promise((resolve, reject) => {
-    con.query("SELECT COUNT(*) AS length FROM users", (err, rows) => {
-      if (rows) {
-        resolve(rows[0]);
-      }
-      resolve(null);
-    });
-  });
+  return await queryPromise(
+    `SELECT COUNT(*) AS length FROM users`
+  );
 };
+
 
 exports.getWallet = async (walletId) => {
   return await new Promise((resolve, reject) => {

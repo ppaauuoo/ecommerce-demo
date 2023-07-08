@@ -12,18 +12,13 @@ router.get("/", async (req, res) => {
   });
 
   if (!req.isAuthenticated()) {
-    setTimeout(() => {
-      res.render("page", {
-        page: 'home',
-        pagerequire: {goods: goods, user: null},
-        user: null
-      }
-      
-      
-      
-      );},100);
-    return;
+    return res.render("page", {
+      page: 'home',
+      user: null,
+      pagerequire: {goods: goods},
+    })
   }
+
   const user = await sql.getUser(req.user.username)
   if(user.isAdmin){
     res.redirect('/admin')
