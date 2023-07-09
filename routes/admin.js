@@ -115,7 +115,6 @@ router.get("/tree", async (req, res) => {
   }
   const day = date.getDate();
   const user = await sql.getUser(req.user.username)
-  const allTree = await sql.getAllUsers(0)
 
 
   res.render("page", 
@@ -124,10 +123,17 @@ router.get("/tree", async (req, res) => {
     page: '/admin/tree',
     pagerequire: {    
       day: day,
-      allTree: allTree,
     }
   })
 });
+
+router.post("/tree", async (req, res) => {
+  var action = req.body.action;
+  if (action == "fetch") {
+    const allTree = await sql.getAllUsers(req.body.page)
+    res.json(allTree);
+  }
+})
 
 router.get("/ordersdata", async (req, res) => {
   if (!req.isAuthenticated()) {
