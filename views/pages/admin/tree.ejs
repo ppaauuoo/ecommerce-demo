@@ -1,17 +1,10 @@
 
 <%-include("../partials/widget.ejs",{day: day, link: 'admin'})-%>
 
-<div class="container">
-  <input hidden id="currentPage" value="0">
-  <nav aria-label="..." style="text-align: center;">
-    <ul class="pagination pagination-lg">
-      <li class="page-item "><a class="page-link" href="">1</a></li>
-      <li class="page-item"><a class="page-link" href="">2</a></li>
-      <li class="page-item"><a class="page-link" href="">3</a></li>
-      <li class="page-item"><a class="page-link" href="">...</a></li>
-    </ul>
-  </nav>
-</div>
+<%-include("../partials/pagination.ejs")-%>
+
+
+<input type="text" class="form-control" id="searchbar" placeholder="Search Data..." style="margin-bottom: 20px; background-color: wheat;"/>
 
 <div class="container dashboard" style="padding: 25px; margin-bottom: 25px; margin-top: 25px;">
   <div class="row" id="tree">
@@ -19,57 +12,4 @@
 </div>
 
 
-<script>
-  load_data = (num) => {
-    $.ajax({
-      url: "/admin/tree",
-      method: "POST",
-      data: { page: num, action: "fetch" },
-      dataType: "JSON",
-      success: function (data) {
-        
-        var html = "";
-        data.forEach((e) => {
-          html += `<div class="col-md-3 col-sm-4 col-xs-6 col-12">
-  <div class="container dashboarditems " style="text-align: center;">
-    <a href="/user/${e.username}">
-      <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-      <h1
-        style="
-          font-family: 'Roboto', sans-serif;
-          font-size: 25px;
-          font-weight: 400;
-          line-height: 30px;
-        "
-      >
-        ${e.username}
-      </h1>
-    </a>
-  </div>
-</div>
-`;
-        });
-        $("#tree").html(html);
-      },
-    });
-  };
-
-
-  $(() => {
-    $(".page-link").on('click', function(event) {
-      event.preventDefault()
-      $(".page-link").removeAttr("tabindex disabled");
-      $(this).attr({
-        "tabindex": "-1",
-        "disabled": "true"
-      });
-      if($(this).text()=='...'){
-        load_data(-1)
-        return
-      }
-      $('#currentPage').val($(this).text()-1)
-      load_data($('#currentPage').val())
-    });
-    load_data(0)
-  })
-</script>
+<script src="/js/tree_script.js"></script>

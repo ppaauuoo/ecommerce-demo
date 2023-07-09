@@ -2,17 +2,8 @@
 
 <%-include("../partials/widget.ejs",{day: day, link: 'admin'})-%>
 
-<div class="container">
-  <input hidden id="currentPage" value="0">
-  <nav aria-label="..." style="text-align: center;">
-    <ul class="pagination pagination-lg">
-      <li class="page-item "><a class="page-link" href="">1</a></li>
-      <li class="page-item"><a class="page-link" href="">2</a></li>
-      <li class="page-item"><a class="page-link" href="">3</a></li>
-      <li class="page-item"><a class="page-link" href="">...</a></li>
-    </ul>
-  </nav>
-</div>
+
+<%-include("../partials/pagination.ejs")-%>
 
 
 
