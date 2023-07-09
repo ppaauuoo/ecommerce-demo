@@ -5,13 +5,18 @@
 <div class="container dashboard">
   <div class="row">
     <%-include('admintools/infodata.ejs',{ShowData: "จำนวนสมาชิกในระบบ",ShowNum:usersAmount})-%> 
-    <%-include('admintools/infodata.ejs',{ShowData:"จำนวนสมาชิกที่ถูกเพิ่มวันนี้",ShowNum: '+'+currentDayAmount})-%>
+    <%-include('admintools/infodata.ejs',{ShowData:"สมาชิกที่ถูกเพิ่มวันนี้",ShowNum: '+'+currentDayAmount})-%>
     <%-include('admintools/infodata.ejs',{ShowData:"Temp",ShowNum: 'Temp'})-%>
     <%-include('admintools/infodata.ejs',{ShowData:"Temp",ShowNum: 'Temp'})-%>
-    <%-include('admintools/userdata.ejs',{link:'userdata',icon:'fa-table fa-8x',context:'Users Data'})-%> 
-    <%-include('admintools/userdata.ejs',{link:'tree',icon:' fa-timeline fa-8x',context:'Users Tree'})-%>
-    <%-include('admintools/userdata.ejs',{link:'ordersdata',icon:'fa-cubes fa-8x',context:'Orders Data'})-%>
-    <%-include('admintools/userdata.ejs',{link:'',icon:'fa-bug fa-8x',context:'Temp'})-%>
   </div>
+  <div class="row">
+    <%-include('admintools/userdata.ejs',{link:'userdata',icon:'fa-table fa-5x',context:'Users Data'})-%> 
+    <%-include('admintools/userdata.ejs',{link:'tree',icon:' fa-timeline fa-5x',context:'Users Tree'})-%>
+    <%-include('admintools/userdata.ejs',{link:'ordersdata',icon:'fa-cubes fa-5x',context:'Orders Data'})-%>
+    <%-include('admintools/userdata.ejs',{link:'',icon:'fa-bug fa-5x',context:'Temp'})-%>
+  </div>
+
+
+
 </div>
 
