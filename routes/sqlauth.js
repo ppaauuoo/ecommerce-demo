@@ -22,7 +22,7 @@ router.post("/login", (req, res, next) => {
     }
     if (!user) {
       // Handle authentication failure
-      return res.redirect("/login");
+      return res.redirect("/login?authFailure=true");
     }
     req.logIn(user, (err) => {
       if (err) {
@@ -75,8 +75,13 @@ router.post("/register", async (req, res, next) => {
         }
       })(req, res, next);
     });
+    const sponsortemp = null
     const sponsor = req.body.sponsor
-    const sponsortemp = await sql.getUser(sponsor.slice(13));
+    if(sponsor){    
+      sponsortemp = await sql.getUser(sponsor.slice(13));
+      sponsortemp = sponsortemp.username
+    }
+
     const addressId = "ADD-" + req.body.username;
     const bankId = "BBK-" + req.body.username;
     const walletId = "WAL-" + req.body.username;
@@ -96,7 +101,7 @@ router.post("/register", async (req, res, next) => {
       req.body.phoneNumber,
       bankId,
       counttemp,
-      sponsortemp.username,
+      sponsortemp,
       walletId,
     ];
     await sql.queryPromise(newUserQuery, newUserValues);
@@ -133,7 +138,7 @@ router.post("/register", async (req, res, next) => {
 
     res.redirect("/login");
   } catch (error) {
-    res.redirect("/register");
+    res.redirect("/register?authFailure=true");
   }
 });
 

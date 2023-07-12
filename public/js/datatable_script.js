@@ -83,6 +83,14 @@ load_data = (num) => {
   });
 };
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+})
+
 
 
 $(() => {
@@ -123,9 +131,10 @@ $(() => {
       success: function (data) {
         $("#action_button").attr("disabled", false);
 
-        $("#message").html(
-          '<div class="alert alert-success">' + data.message + "</div>"
-        );
+        Toast.fire({
+          icon: 'success',
+          title: data.message
+        })
 
         $("#action_modal").modal("hide");
         load_data(0);
@@ -170,27 +179,43 @@ $(() => {
     });
   });
 
-  $(document).on("click", ".repass", (event) => {
+  $(document).on("click", ".repass", async (event) => {
     var button = event.target;
     var dataId = $(button).data("id");
 
-    const newpass = prompt("กรุณาใส่รหัสผ่านใหม่:");
+    const { value: newpass } = await Swal.fire({
+      title: 'กรุณาใส่รหัสผ่านใหม่',
+      input: 'password',
+      inputPlaceholder: 'Enter your password',
+      inputAttributes: {
+        maxlength: 10,
+        autocapitalize: 'off',
+        autocorrect: 'off'
+      }
+    })
     if(!newpass){return}
-    const passCon = prompt("กรุณาใส่รหัสผ่านใหม่อีกครั้ง :");
+    const { value: passCon } = await Swal.fire({
+      title: 'กรุณายืนยันรหัสผ่าน',
+      input: 'password',
+      inputPlaceholder: 'Enter your password',
+      inputAttributes: {
+        maxlength: 10,
+        autocapitalize: 'off',
+        autocorrect: 'off'
+      }
+    })
     if(newpass!=passCon){return}
-    if(confirm('ยืนยันการเปลี่ยนรหัสผ่านหรือไม่?'))
+
     $.ajax({
       url: "/admin/userdata",
       method: "POST",
       data: { username: dataId,password: newpass, action: "Password" },
       dataType: "JSON",
       success: (data) => {
-        $("#message").html(
-          '<div class="alert alert-success">' + data.message + "</div>"
-        );
-        setTimeout(function () {
-          $("#message").html("");
-        }, 5000);
+        Toast.fire({
+          icon: 'success',
+          title: data.message
+        })
       },
     });
   });

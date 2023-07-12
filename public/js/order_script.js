@@ -1,3 +1,11 @@
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+})
+
 load_data = (num) => {
     $.ajax({
       url: "/admin/ordersdata",
@@ -14,7 +22,8 @@ load_data = (num) => {
             <button
               type="button"
               class="btn btn-warning btn-sm confirm"
-              data-id="${element.orderId}"${element.status === 'ยังไม่ได้ส่งหลักฐานการชำระเงิน' ? ' disabled' : ''}>
+              data-id="${element.orderId}"${element.status === 'ยังไม่ได้ส่งหลักฐานการชำระเงิน' || element.status === 'การชำระเงินถูกยืนยัน' ? ' disabled' : ''}>
+
         หลักฐานการชำระเงิน
       </button>
       
@@ -79,16 +88,14 @@ load_data = (num) => {
         success: function (data) {
           $("#action_button").attr("disabled", false);
   
-          $("#message").html(
-            '<div class="alert alert-success">' + data.message + "</div>"
-          );
+          Toast.fire({
+            icon: 'success',
+            title: data.message
+          })
   
           $("#action_modal").modal("hide");
           load_data(0);
   
-          setTimeout(function () {
-            $("#message").html("");
-          }, 5000);
         },
       });
     });

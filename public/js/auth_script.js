@@ -115,7 +115,11 @@ function reverse(s) {
             $('#userResponse').val(test)
             return;
           }
-          confirm("กรุณายืนยันตัวตน.")
+          Swal.fire({
+            title: "กรุณายืนยันตัวตน",
+            icon: "error",
+            heightAuto: false,
+          });
         }
         event.preventDefault();
         

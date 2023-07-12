@@ -24,13 +24,12 @@ const getItem = async (item) => {
   ]);
 };
 
-const updateWallet = async (UserCart, res) => {
+const updateWallet =  (UserCart, res) => {
   var updatedTotal = 0;
   UserCart.forEach((e) => {
     updatedTotal += e.goodsPrice * e.quantity;
   });
   res.cookie('total', updatedTotal);
-  console.log('updated done')
 };
 
 router.get("/", async (req, res) => {
@@ -45,7 +44,7 @@ router.get("/", async (req, res) => {
   const wallet = await sql.getWallet(user.walletId);
   const UserCart = await getCart(user);
 
-  await updateWallet(UserCart, res);
+  updateWallet(UserCart, res);
   res.render("page", 
   {
     user: user,
@@ -88,7 +87,7 @@ router.post("/", async (req, res) => {
     ]);
   }
 
-  await updateWallet(UserCart, res)
+  updateWallet(UserCart, res)
   res.redirect("/");
 });
 
