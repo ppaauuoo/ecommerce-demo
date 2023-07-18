@@ -21,8 +21,11 @@ load_data = (num) => {
             <td>
             <button
               type="button"
-              class="btn btn-warning btn-sm confirm"
-              data-id="${element.orderId}"${element.status === 'ยังไม่ได้ส่งหลักฐานการชำระเงิน' || element.status === 'การชำระเงินถูกยืนยัน' ? ' disabled' : ''}>
+              
+              data-id="${element.orderId}"
+              ${element.status === 'การชำระเงินถูกยืนยัน' ? 'class="btn btn-success btn-sm confirm" inert' : element.status === 'ยังไม่ได้ส่งหลักฐานการชำระเงิน' ? 'class="btn btn-error btn-sm confirm" inert' : 'class="btn btn-warning btn-sm confirm"'}>
+
+              
 
         หลักฐานการชำระเงิน
       </button>
@@ -103,7 +106,8 @@ load_data = (num) => {
     $(document).on("click", ".confirm", (event) => {
       var button = event.target;
       var dataId = $(button).data("id");
-  
+      
+      console.log('clicked!')
       $("#dynamic_modal_title").text("Confirm Data");
   
       $("#action_modal").modal("show");

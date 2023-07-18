@@ -220,5 +220,10 @@ $(() => {
     });
   });
   load_data($('#currentPage').val())
+
+  $("#action_modal").on("hidden.bs.modal", function () {
+    // Reset the overflow property of the body to its original value
+    $("body").css("overflow", "auto");
+});
   
 });

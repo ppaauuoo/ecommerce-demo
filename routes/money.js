@@ -16,11 +16,11 @@ router.get("/", async (req, res) => {
     res.render("page", 
     {
       user: user,
-      wallet: wallet,
+      wallet: wallet||null,
       total: req.cookies.total,
       page: 'money',
       pagerequire: {    
-        wallet: wallet,
+        wallet: wallet||null,
       }
     })
   });

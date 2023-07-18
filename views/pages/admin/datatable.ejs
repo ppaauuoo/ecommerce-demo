@@ -16,15 +16,15 @@
       <div class="table-responsive">
         <input type="text" class="form-control" id="searchbar" placeholder="Search Data..." style="margin-bottom: 20px; background-color: wheat;"/>
         <!-- Table -->
-        <table class="table table-striped table-bordered" id="Table">
+        <table class="table table-striped table-bordered text-center" id="Table">
           <tr>
-            <th>การแก้ไข</th>
-            <th>Username</th>
-            <th>ชื่อ-นามสกุล</th>
-            <th>ที่อยู่</th>
-            <th>ธนาคาร</th>
-            <th>เงิน</th>
-            <th>พ้อย</th>
+            <th class="text-center" style="width: 15%;">การแก้ไข</th>
+            <th class="text-center" style="width: 5%;">Username</th>
+            <th class="text-center" style="width: 20%;">ชื่อ-นามสกุล</th>
+            <th class="text-center" style="width: 30%;">ที่อยู่</th>
+            <th class="text-center" style="width: 30%;">ธนาคาร</th>
+            <th class="text-center" style="width: 5%;">เงิน</th>
+            <th class="text-center" style="width: 5%;">พ้อย</th>
             
           </tr>
           <tbody id="dataTable">
@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="modal" tabindex="-1" id="action_modal">
+<dialog class="modal" tabindex="-1" id="action_modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <form method="post" id="form">
@@ -63,7 +63,7 @@
       </form>
     </div>
   </div>
-</div>
+</dialog>
 
 
 

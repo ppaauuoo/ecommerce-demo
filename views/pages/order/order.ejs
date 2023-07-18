@@ -3,23 +3,24 @@
 
 
 <div class="container" style="padding: 25px;">
-    <table id="cart" class="table" style="background-color: white; border: 100px; border-radius: 25px;">
+    <table id="cart" class="table table-striped table-bordered text-center" style="background-color: white; border: 100px; border-radius: 25px;">
         <thead>
           <tr>
-            <th style="width: 30%;">Status</th>
-            <th style="width: 20%;">Total</th>
-            <th style="width: 20%;">Quantity</th>
-            <th style="width: 30%;">OrderId</th>
+            <th class="text-center" style="width: 10%;">การจัดการ</th>
+            <th class="text-center" style="width: 30%;">สถานะ</th>
+            <th class="text-center" style="width: 20%;">มูลค่า</th>
+            <th class="text-center" style="width: 10%;">จำนวนสิ่งของ</th>
+            <th class="text-center" style="width: 30%;">Order Id</th>
           </tr>
         </thead>
           <%orders.forEach((element)=>{%>
           <tbody>
             <tr>
-              <td  data-th="Status"><%=element.status%></td>
-              <td  data-th="Total"><%=element.total%></td>
-              <td  data-th="Quantity"><%=element.totalQuantity%></td>
-              <td  data-th="OrderId"><a href="/order/<%=element.orderId%>" <%if(element.status!='ยังไม่ได้ส่งหลักฐานการชำระเงิน'){%>style="pointer-events: none;"<%}%>><%=element.orderId%></a></td>
-
+              <td  data-th="จัดการ"><a class="btn btn-warning" href="/order/<%=element.orderId%>" <%if(element.status!='ยังไม่ได้ส่งหลักฐานการชำระเงิน'){%>inert<%}%>>ส่งหลักฐานยึนยันการชำระเงิน</a></td>
+              <td  data-th="สถานะ"><%=element.status%></td>
+              <td  data-th="มูลค่า"><%=element.total%></td>
+              <td  data-th="จำนวนสิ่งของ"><%=element.totalQuantity%></td>
+              <td  data-th="Order Id"><%=element.orderId%></td>
             </tr>
           </tbody>
           <%})%>

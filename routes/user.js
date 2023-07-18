@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     res.render("page", 
     {
       user: currentUser,
-      wallet: wallet,
+      wallet: wallet||null,
       total: req.cookies.total,
       page: '/user/account',
       pagerequire: {    
@@ -66,7 +66,7 @@ router.get("/", async (req, res) => {
     res.render("page", 
     {
       user: currentUser,
-      wallet: wallet,
+      wallet: wallet||null,
       total: req.cookies.total,
       page: '/user/user',
       pagerequire: {    
@@ -90,7 +90,7 @@ router.get("/", async (req, res) => {
     res.render("page", 
     {
       user: currentUser,
-      wallet: wallet,
+      wallet: wallet||null,
       total: req.cookies.total,
       page: '/user/sponsor',
       pagerequire: {    

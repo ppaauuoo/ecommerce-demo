@@ -5,7 +5,7 @@
   <div class="flex-1 px-2 mx-2">
     <div class="block" style="@media (max-width: 767px){display: none;}">
       <%if(user){%> <%if(user.isAdmin){%> <%-include("bars/adminbar")-%>
-      <%}else{%> <%-include("bars/userbar", {wallet: wallet})-%> <%}%>
+      <%}else{%> <%-include("bars/userbar", {wallet: wallet||null})-%> <%}%>
       <%}else{%> <%-include("bars/nonuserbar")-%> <%}%>
     </div>
   </div>
