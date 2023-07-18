@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
     return res.render("page", {
       page: 'home',
       user: null,
+      wallet: null,
       pagerequire: {goods: goods},
     })
   }

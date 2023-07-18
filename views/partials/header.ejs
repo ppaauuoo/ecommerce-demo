@@ -23,6 +23,8 @@
     <link href="/css/style.css" rel="stylesheet" />
 
     <!-- js plugin -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.all.min.js"></script>
@@ -50,55 +52,6 @@
     />
   </head>
 
-  <body>
-    <!-- navbar -->
-    <form action="/cart" method="POST">
-      <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header" style="justify-content: center">
-              <button
-                type="button"
-                class="navbar-toggle collapsed"
-                data-toggle="collapse"
-                data-target="#navbar"
-                aria-expanded="false"
-                aria-controls="navbar"
-              >
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a href="/">
-                <img
-                  src="/images/logo1.png"
-                  style="height: auto; width: 100px; padding-left: 15px"
-                />
-              </a>
-            </div>
+  <body class="flex flex-col h-max min-h-screen justify-between">
 
-            <div id="navbar" class="navbar-collapse collapse navbar-center">
-              <ul class="nav navbar-nav navbar-right">
-                <li>
-                  <a href="/"
-                    ><span
-                      class="glyphicon glyphicon-home"
-                      aria-hidden="true"
-                    ></span>
-                    Home <span class="sr-only"></span
-                  ></a>
-                </li>
-                <%if(user){%> <%if(user.isAdmin){%>
-                <%-include("bars/adminbar")-%> <%}else{%>
-                <%-include("bars/userbar", {wallet: wallet})-%> <%}%> <%}else{%>
-                <%-include("bars/nonuserbar")-%> <%}%>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <!-- Fixed navbar -->
-    </form>
-  </body>
-</html>
+

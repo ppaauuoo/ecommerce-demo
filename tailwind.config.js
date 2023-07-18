@@ -13,6 +13,7 @@ module.exports = {
         tailwindcss: {},
         autoprefixer: {},
       },
+      require('daisyui'),
     ],
   }
   

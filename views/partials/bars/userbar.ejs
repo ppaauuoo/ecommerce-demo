@@ -1,28 +1,23 @@
-<li>
-  <a href="/user"
-    ><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User
-    <span class="sr-only"></span
-  ></a>
-</li>
-<li>
-  <a href="/order"
-    ><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Order
-    <span class="sr-only"></span
-  ></a>
-</li>
-<li>
-  <a href="/money"
-    ><span class="badge"><%=wallet.money%></span> บาท
-    <span class="sr-only"></span
-  ></a>
-</li>
-<li>
-  <a href="/cart">
-    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (
-    <span class="badge"><%=total%></span> บาท )
-    <span class="sr-only"></span
-  ></a>
-</li>
-<li>
-  <a href="/logout">Log out<span class="sr-only"></span></a>
-</li>
+<a
+  href="/"
+  class="btn btn-ghost btn-lg rounded-btn"><span class="glyphicon glyphicon-home"></span></span> HOME</a
+>
+
+<a
+  href="/user"
+  class="btn btn-ghost btn-lg rounded-btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a
+>
+<a
+  href="/order"
+  class="btn btn-ghost btn-lg rounded-btn"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Order</a
+>
+<a
+  href="/money"
+  class="btn btn-ghost btn-lg rounded-btn"><div class="badge badge-lg ml-2"><%=wallet.money%></div>บาท</a
+>
+<a
+  href="/cart"
+  class="btn btn-ghost btn-lg rounded-btn"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>(
+    <div class="badge badge-lg ml-2"><%if(total){%><%=total%><%}else{%>0<%}%></div> บาท ) </a
+>
+

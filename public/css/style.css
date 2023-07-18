@@ -1,10 +1,26 @@
-body {
-  padding-top: 100px;
-  padding-bottom: 100px;
+html {
   background-color: #b8f170;
 }
 
-footer,.dashboard,.navbar {
+body{
+  background-color: #b8f170;
+}
+
+h3{
+  font-size: x-large;
+  margin-top: 5px;
+  margin-bottom: 5;
+}
+
+h1{
+  font-size: xx-large;
+}
+
+td,th{
+  font-size: large;
+}
+
+.dashboard  ,.navbar {
   background-color: whitesmoke;
 }
 
@@ -16,12 +32,6 @@ footer,.dashboard,.navbar {
   color: #1c3f1c;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
 
 .dashboard{
   border-radius: 25px;
@@ -127,7 +137,6 @@ footer {
 
 @media (max-width: 767px) {
   body {
-    padding-top: 50px;
     padding-bottom: 25px;
   }
 
