@@ -29,69 +29,6 @@ $(() => {
       $("#citizen").get(0).setCustomValidity("");
     }
   });
-
-  $("#cityfloatingSelectGrid").on("input", async () => {
-
-
-    var cityselected = $("#cityfloatingSelectGrid").find(":selected").val();
-    $("#districtfloatingSelectGrid optgroup").show();
-    $("#districtfloatingSelectGrid  optgroup")
-      .not("[data-id='" + cityselected + "']")
-      .hide();
-    $(
-      "#districtfloatingSelectGrid optgroup[data-id='" +
-        cityselected +
-        "'] option:first"
-    ).attr("selected", "selected");
-
-    var districtselected = $("#districtfloatingSelectGrid")
-      .find(":selected")
-      .val();
-    $("#subdistrictfloatingSelectGrid optgroup").show();
-    $("#subdistrictfloatingSelectGrid  optgroup")
-      .not("[data-id='" + districtselected + "']")
-      .hide();
-    $(
-      "#subdistrictfloatingSelectGrid optgroup[data-id='" +
-        districtselected +
-        "'] option:first"
-    ).attr("selected", "selected");
-    $("#postCodefloatingSelectGrid optgroup").show();
-    $("#postCodefloatingSelectGrid optgroup")
-      .not("[data-id='" + districtselected + "']")
-      .hide();
-    $(
-      "#postCodefloatingSelectGrid optgroup[data-id='" +
-        districtselected +
-        "'] option:first"
-    ).attr("selected", "selected");
-  });
-
-  $("#districtfloatingSelectGrid").on("input", () => {
-    var selected = $("#districtfloatingSelectGrid").find(":selected").val();
-    $("#subdistrictfloatingSelectGrid optgroup").show();
-    $("#subdistrictfloatingSelectGrid  optgroup")
-      .not("[data-id='" + selected + "']")
-      .hide();
-    $(
-      "#subdistrictfloatingSelectGrid optgroup[data-id='" +
-        selected +
-        "'] option:first"
-    ).attr("selected", "selected");
-  });
-
-  $("#districtfloatingSelectGrid").on("input", () => {
-    var selected = $("#districtfloatingSelectGrid").find(":selected").val();
-    $("#postCodefloatingSelectGrid optgroup").show();
-    $("#postCodefloatingSelectGrid optgroup")
-      .not("[data-id='" + selected + "']")
-      .hide();
-    $(
-      "#postCodefloatingSelectGrid optgroup[data-id='" +
-        selected +
-        "'] option:first"
-    ).attr("selected", "selected");
-  });
 });
 
 function reverse(s) {

@@ -7,9 +7,13 @@
     <meta name="description" content="" />
     <title>แบบลงทะเบียน</title>
 
-
     <!-- bootstrap sheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
 
     <!-- Custom styles for this template -->
     <link href="/css/auth_style.css" rel="stylesheet" />
@@ -25,11 +29,15 @@
         autocomplete="off"
         novalidate
       >
-      <div class="row">
-        <div clsas="col">
-          <img src="/images/logo1.png" class="img-fluid" style="margin-left: 50px; height: auto; width: 250px;">
+        <div class="row">
+          <div clsas="col">
+            <img
+              src="/images/logo1.png"
+              class="img-fluid"
+              style="margin-left: 50px; height: auto; width: 250px"
+            />
+          </div>
         </div>
-      </div>
         <p></p>
 
         <h1 class="h3 mb-3 fw-bold">แบบลงทะเบียน</h1>
@@ -83,10 +91,6 @@
           </div>
         </div>
 
-
-
-
-
         <div class="form-floating">
           <textarea
             name="address"
@@ -97,8 +101,8 @@
           ></textarea>
           <label for="addressfloatingInput">ที่อยู่</label>
         </div>
-        
-        <div class="row g-0 subaddress" style="display:none">
+
+        <div class="row g-0 subaddress" style="display: none">
           <div class="col-6">
             <div class="form-floating">
               <select
@@ -106,9 +110,10 @@
                 class="form-select middle"
                 id="cityfloatingSelectGrid"
                 placeholder="City"
-                
                 required
-              ><option selected hidden>จังหวัด</option></select>
+              >
+                <option selected hidden>จังหวัด</option>
+              </select>
               <label for="cityfloatingSelectGrid">จังหวัด</label>
             </div>
           </div>
@@ -121,13 +126,15 @@
                 id="districtfloatingSelectGrid"
                 placeholder="District"
                 required
-              ><option selected hidden>อำเภอ</option></select>
+              >
+                <option selected hidden>อำเภอ</option>
+              </select>
               <label for="districtfloatingSelectGrid">อำเภอ</label>
             </div>
           </div>
         </div>
 
-        <div class="row g-0 subaddress" style="display:none">
+        <div class="row g-0 subaddress" style="display: none">
           <div class="col-6">
             <div class="form-floating">
               <select
@@ -136,7 +143,9 @@
                 id="subdistrictfloatingSelectGrid"
                 placeholder="Subdistrict"
                 required
-              ><option selected hidden>ตำบล</option></select>
+              >
+                <option selected hidden>ตำบล</option>
+              </select>
               <label for="subdistrictfloatingSelectGrid">ตำบล</label>
             </div>
           </div>
@@ -149,7 +158,9 @@
                 id="postCodefloatingSelectGrid"
                 placeholder="Post Code"
                 required
-              ><option selected hidden>รหัสไปรษณีย์</option></select>
+              >
+                <option selected hidden>รหัสไปรษณีย์</option>
+              </select>
               <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
             </div>
           </div>
@@ -189,47 +200,64 @@
         </div>
         <p></p>
         <p></p>
-          <div class="form-floating">
-            <select
-              name="bank"
-              class="form-select top"
-              id="bankfloatingSelectGrid"
-              placeholder="Bank"
-              required
-            >
-            <option value="ธนาคารอิสลามแห่งประเทศไทย">ธนาคารอิสลามแห่งประเทศไทย</option>
+        <div class="form-floating">
+          <select
+            name="bank"
+            class="form-select top"
+            id="bankfloatingSelectGrid"
+            placeholder="Bank"
+            required
+          >
+            <option value="ธนาคารอิสลามแห่งประเทศไทย">
+              ธนาคารอิสลามแห่งประเทศไทย
+            </option>
             <option value="ธนาคารอาคารสงเคราะห์">ธนาคารอาคารสงเคราะห์</option>
-            <option value="ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย">ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย</option>
-            <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร</option>
-            <option value="ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย">ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย</option>
+            <option value="ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย">
+              ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย
+            </option>
+            <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">
+              ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร
+            </option>
+            <option value="ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย">
+              ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย
+            </option>
             <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
             <option value="ธนาคารทิสโก้">ธนาคารทิสโก้</option>
             <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
             <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
-              <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
-              <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
-              <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
-              <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
-              <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
-              <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
-              <option value="ธนาคารซีไอเอ็มบี">ธนาคารซีไอเอ็มบี</option>
-              <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
-              <option value="ธนาคารสแตนดาร์ดชาร์เตอร์ด">ธนาคารสแตนดาร์ดชาร์เตอร์ด</option>
-              <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
-              <option value="ธนาคารทิสโก้">ธนาคารทิสโก้</option>
-              <option value="ธนาคารเกียรตินาคินภัทร">ธนาคารเกียรตินาคินภัทร</option>
-              <option value="ธนาคารแลนด์ แอนด์ เฮ้าส์">ธนาคารแลนด์ แอนด์ เฮ้าส์</option>
-              <option value="ธนาคารไอซีบีซี">ธนาคารไอซีบีซี</option>
-              <option value="ธนาคารไทยเครดิตเพื่อรายย่อย">ธนาคารไทยเครดิตเพื่อรายย่อย</option>
-              <option value="ธนาคารเมกะ สากลพาณิชย์">ธนาคารเมกะ สากลพาณิชย์</option>
-              <option value="ธนาคารแห่งประเทศจีน">ธนาคารแห่งประเทศจีน</option>
-              <option value="ธนาคารซูมิโตโมมิตซุยทรัสต์">ธนาคารซูมิโตโมมิตซุยทรัสต์</option>
-
-            </select>
-            <label for="bankfloatingSelectGrid">ธนาคาร</label>
-          </div>
+            <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+            <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+            <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+            <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+            <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+            <option value="ธนาคารทหารไทยธนชาต">ธนาคารทหารไทยธนชาต</option>
+            <option value="ธนาคารซีไอเอ็มบี">ธนาคารซีไอเอ็มบี</option>
+            <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+            <option value="ธนาคารสแตนดาร์ดชาร์เตอร์ด">
+              ธนาคารสแตนดาร์ดชาร์เตอร์ด
+            </option>
+            <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
+            <option value="ธนาคารทิสโก้">ธนาคารทิสโก้</option>
+            <option value="ธนาคารเกียรตินาคินภัทร">
+              ธนาคารเกียรตินาคินภัทร
+            </option>
+            <option value="ธนาคารแลนด์ แอนด์ เฮ้าส์">
+              ธนาคารแลนด์ แอนด์ เฮ้าส์
+            </option>
+            <option value="ธนาคารไอซีบีซี">ธนาคารไอซีบีซี</option>
+            <option value="ธนาคารไทยเครดิตเพื่อรายย่อย">
+              ธนาคารไทยเครดิตเพื่อรายย่อย
+            </option>
+            <option value="ธนาคารเมกะ สากลพาณิชย์">
+              ธนาคารเมกะ สากลพาณิชย์
+            </option>
+            <option value="ธนาคารแห่งประเทศจีน">ธนาคารแห่งประเทศจีน</option>
+            <option value="ธนาคารซูมิโตโมมิตซุยทรัสต์">
+              ธนาคารซูมิโตโมมิตซุยทรัสต์
+            </option>
+          </select>
+          <label for="bankfloatingSelectGrid">ธนาคาร</label>
         </div>
-      
 
         <div class="form-floating">
           <input
@@ -304,9 +332,7 @@
             placeholder="Sponsor"
             value="<%=sponsor%>"
             <%if(sponsor){%>
-              readonly 
-            <%}%>
-            />
+          readonly <%}%> />
           <label for="floatingInput">Sponsor</label>
         </div>
         <p></p>
@@ -315,36 +341,61 @@
           ลงทะเบียน
         </button>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">ยืนยันข้อมูล</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>ชื่อผู้ใช้ของคุณคือ :</p><p id="usernameConfirm"></p>
-              <p>รหัสผ่านของคุณคือ :</p><p id="passwordConfirm"></p>
-              <p>กรุณาบันทึกหน้าจอ / จดบันทึกข้อมูลของคุณเพื่อการเข้าสู่ระบบ</p>
-            </div>
-            <div class="modal-footer">
-              <div class="g-recaptcha" data-sitekey="6LftBNcmAAAAAF0Pb7ncvfbjkuR-pTyX8ojCRH0M"></div>
-              <input hidden name="userResponse" id="userResponse">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-              <button id="confirm" type="submit" class="btn btn-primary">ยืนยัน</button>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  ยืนยันข้อมูล
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>ชื่อผู้ใช้ของคุณคือ :</p>
+                <p id="usernameConfirm"></p>
+                <p>รหัสผ่านของคุณคือ :</p>
+                <p id="passwordConfirm"></p>
+                <p>
+                  กรุณาบันทึกหน้าจอ / จดบันทึกข้อมูลของคุณเพื่อการเข้าสู่ระบบ
+                </p>
+              </div>
+              <div class="modal-footer">
+                <div
+                  class="g-recaptcha"
+                  data-sitekey="6LftBNcmAAAAAF0Pb7ncvfbjkuR-pTyX8ojCRH0M"
+                ></div>
+                <input hidden name="userResponse" id="userResponse" />
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  ยกเลิก
+                </button>
+                <button id="confirm" type="submit" class="btn btn-primary">
+                  ยืนยัน
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
 
-        <p class="mt-5 mb-3 text-body-secondary">
-          มีบัญชีผู้ใช้อยู่แล้ว? <a href="/login">ล๊อกอิน!</a>
-        </p>
-
+      <p class="mt-5 mb-3 text-body-secondary">
+        มีบัญชีผู้ใช้อยู่แล้ว? <a href="/login">ล๊อกอิน!</a>
+      </p>
     </main>
-
-
   </body>
 
   <!-- Favicons -->
@@ -355,13 +406,69 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"
+  ></script>
 
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"
+  ></script>
 
   <script>
+    const loadData = async(province) =>{
+
+        $('#districtfloatingSelectGrid option').remove()
+        $('#postCodefloatingSelectGrid option').remove()
+        $('#subdistrictfloatingSelectGrid option').remove()
+
+
+
+        let requestProvince = province
+        let currentAddress
+        await $.ajax({
+        url: "/address",
+        method: "POST",
+        data: { province: requestProvince},
+        dataType: "JSON",
+        success: (data) => {
+          currentAddress=data
+        },
+        });
+
+        const district=[]
+        const postlist=[]
+        currentAddress.forEach((data)=>{
+          district.push(data.DistrictThaiShort)
+          postlist.push(data.PostCodeMain)
+        })
+        const sortDistrict = [...new Set(district)];
+        const sortPostcode = [...new Set(postlist)];
+        sortDistrict.forEach((element)=>{
+          $('#districtfloatingSelectGrid').append('<option value='+element+'>'+element+'</option>')
+        })
+        sortPostcode.forEach((element)=>{
+          $('#postCodefloatingSelectGrid').append('<option value='+element+'>'+element+'</option>')
+        })
+
+        currentAddress.forEach((element)=>{
+          $('#subdistrictfloatingSelectGrid').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
+        })
+        
+        $('#districtfloatingSelectGrid option:first').attr("selected", "selected");
+        $('#postCodefloatingSelectGrid option:first').attr("selected", "selected");
+        $('#subdistrictfloatingSelectGrid option:first').attr("selected", "selected");
+
+    }
+
     $(()=> {
 
       const urlParams = new URLSearchParams(window.location.search);
@@ -374,70 +481,35 @@
             });
       }
 
-      const thailand = <%-JSON.stringify(thailand)%>;
-        const city=[]
-        const district=[]
-        thailand.forEach((element)=>{
-          city.push(element.ProvinceThai)
-          district.push(element.DistrictThaiShort)
-        })
-        const uniqueCity = [...new Set(city)];
-        const uniqueDistrict = [...new Set(district)];
-
-        uniqueCity.forEach((element)=>{
-          $('#cityfloatingSelectGrid').append('<option value='+element+'> '+element+'</option>')
-        })
-
-        
-
-        uniqueCity.forEach((province)=>{
-        $('#districtfloatingSelectGrid').append('<optgroup label='+province+' data-id='+province+'></optgroup>')
-          const district=[]
-          thailand.forEach((element)=>{
-            if(element.ProvinceThai==province){
-              district.push(element.DistrictThaiShort)
-            }
-          })
-          const sortDistrict = [...new Set(district)];
-          sortDistrict.forEach((element)=>{
-            $('#districtfloatingSelectGrid optgroup[data-id="'+province+'"]').append('<option value='+element+'>'+element+'</option>')
-          })
-        })
+      const thailand = <%-JSON.stringify(thailand)-%>;
+      thailand.forEach((element)=>{
+        $('#cityfloatingSelectGrid').append('<option value='+element.ProvinceThai+'> '+element.ProvinceThai+'</option>')
+      })
 
 
+      $("#cityfloatingSelectGrid").on("input", async () => {
+        const temp = $("#cityfloatingSelectGrid").find(":selected").val()
+        loadData(temp)
 
-        uniqueDistrict.forEach((district)=>{
-        $('#postCodefloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
-          const postlist=[]
-          thailand.forEach((element)=>{
-            if(element.DistrictThaiShort==district){
-              postlist.push(element.PostCodeMain)
-            }
-          })
-          const sortPostcode = [...new Set(postlist)];
-          sortPostcode.forEach((element)=>{
-            $('#postCodefloatingSelectGrid optgroup[data-id="'+district+'"]').append('<option value='+element+'>'+element+'</option>')
-          })
-        })
+      })
+      
 
+      
       $('.loadaddress').one('focus',()=> {
         $('.loadaddress').removeClass('bottom')
         $('.loadaddress').addClass('middle')
+        
         $('.subaddress').show()
-        uniqueDistrict.forEach((district)=>{
-        $('#subdistrictfloatingSelectGrid').append('<optgroup label='+district+' data-id='+district+'></optgroup>')
-        })
-        thailand.forEach((element)=>{
-              $('#subdistrictfloatingSelectGrid optgroup[data-id="'+element.DistrictThaiShort+'"]').append('<option value='+element.TambonThaiShort+'>'+element.TambonThaiShort+'</option>')
-          })
+        loadData('กรุงเทพมหานคร')
+        $('#cityfloatingSelectGrid option:first').attr("selected", "selected");
       })
-      
-      
+
+
     })
   </script>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="/js/auth_script.js"></script>
+  <script src="/js/auth_script.js"></script>
 </html>
