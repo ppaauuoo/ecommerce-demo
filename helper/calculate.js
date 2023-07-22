@@ -51,6 +51,20 @@ exports.childIncome = (tree) => {
     var result = 0
     result += lev2Array+lev3Array+lev4Array+lev5Array+lev6Array
     result = Math.floor(result/2)
+    result *= 200
+    return result
+}
+
+exports.childIncomeBak = (tree) => {
+    const Child = tree
+    const lev2Array = [...new Set(Child.map(item => item.lev2))].length;
+    const lev3Array = [...new Set(Child.map(item => item.lev3))].length;
+    const lev4Array = [...new Set(Child.map(item => item.lev4))].length;
+    const lev5Array = [...new Set(Child.map(item => item.lev5))].length;
+    const lev6Array = Child.length
+    var result = 0
+    result += lev2Array+lev3Array+lev4Array+lev5Array+lev6Array
+    result = Math.floor(result/2)
     result = Math.floor(result/5)
     result *= 200
     return result
