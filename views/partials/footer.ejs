@@ -1,9 +1,28 @@
 </main>
-</body>
+
 <footer class="p-4 footer bg-base-300 text-base-content footer-center">
   <div>
     <p>Copyright © 2023 - All right reserved by Paul</p>
   </div>
 </footer>
 
+</div>
+
+<div class="drawer-side w-screen">
+  <label for="my-drawer-3" class="drawer-overlay"></label> 
+
+  <ul class="menu p-4 w-80 h-full bg-base-200 text-slate-200">
+    <div class="flex px-2 mx-2 justify-center py-12">
+      <img class="w-auto h-20 ml-6" src="\images\logo1.svg">
+    </div>
+    <%if(user){%> <%if(user.isAdmin){%> <%-include("bars/adminbar")-%>
+    <%}else{%> <%-include("bars/userbar", {wallet: wallet||null})-%> <%}%>
+    <%}else{%> <%-include("bars/nonuserbar")-%> <%}%>
+    
+  </ul>
+  
+</div>
+</div>
+
+</body>
 </html>

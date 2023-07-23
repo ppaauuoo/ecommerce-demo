@@ -34,10 +34,12 @@ td,th{
 
 
 .dashboard{
+  flex:auto;
   border-radius: 25px;
   padding: 25px;
   border: 1.5px solid black;
   overflow: auto;
+  margin-bottom: 25px;
 }
 
 .dashboarditems {
@@ -110,11 +112,6 @@ td,th{
 }
 
 
-.navbar {
-  display: flex;
-  align-items: center;
-}
-
 .daybox {
   font-family: "Roboto", sans-serif;
   font-size: 25px;
@@ -145,8 +142,7 @@ td,th{
   }
 
   .dashboard{
-    margin-left: 25px;
-    margin-right: 25px;
+    flex:auto;
     margin-bottom: 25px;
 
   }
