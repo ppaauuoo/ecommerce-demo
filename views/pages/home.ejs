@@ -1,21 +1,24 @@
 
 
-
-
-<div class="container" style="padding: 25px;">
-  <div class="row">
+<div class="container">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
 
     <%goods.forEach((element) => { %>
-      <%-include("partials/goods.ejs",{
-        goodsName: element.goodsName,
-        goodsDesc: element.goodsDesc,
-        goodsImage: element.goodsImage,
-        goodsPrice: element.goodsPrice,
-        goodsReview: element.goodsReview
-      })-%>
+      <div class="flex justify-center ">
+        <%-include("partials/goods.ejs",{
+          goodsName: element.goodsName,
+          goodsDesc: element.goodsDesc,
+          goodsImage: element.goodsImage,
+          goodsPrice: element.goodsPrice,
+          goodsReview: element.goodsReview
+        })-%>
+      </div>
+
     <%}) %>
-    
-  </div>
+
 </div>
+</div>
+
+
 
 

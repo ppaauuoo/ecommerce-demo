@@ -133,9 +133,6 @@ td,th{
 }
 
 @media (max-width: 767px) {
-  body {
-    padding-bottom: 25px;
-  }
 
   footer {
     display: none;

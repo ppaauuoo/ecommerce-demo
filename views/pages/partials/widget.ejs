@@ -1,22 +1,18 @@
-<div class="container">
-    <div class="row"style="padding: 25px;">
-        <h3 class="panel-label">วันที่</h3>
-        <div class="panel panel-default daybox">
-          <div class="panel-body">
-            <%=day%>
-          </div>
-        </div>
-      </div>
-      <%if(link){%>    
-        <div class="row">
-        <a href="/<%=link%>" style="text-decoration: none;">
-          <div class="panel panel-default daybox" style="background-color: palegoldenrod; color: black;">
-            <div class="panel-body">
-              <p class="font" style="font-family: 'Tomorrow', sans-serif; margin: 0; padding: 5px;">Back</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <%}%>
+<div class="grid justify-center gap-4 mb-4">
 
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-white"><%=day%></h2>
+    </div>
   </div>
+  <%if(link){%>
+  <a href="/<%=link%>" class="btn btn-primary">
+    <p
+    class="text-white"
+    style="font-family: 'Tomorrow', sans-serif; margin: 0; padding: 5px"
+  >
+    Back
+  </p>
+  </a>
+  <%}%>
+</div>

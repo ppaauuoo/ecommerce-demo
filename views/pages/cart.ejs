@@ -5,10 +5,10 @@
     <thead>
       <tr>
         <th class="text-center"  style="width: 50%">สินค้า</th>
-        <th class="text-center" style="width: 10%">ราคา</th>
-        <th class="text-center" style="width: 8%">ปริมาณ</th>
-        <th class="text-center" style="width: 22%" class="text-center">รวม</th>
-        <th class="text-center" style="width: 10%"></th>
+        <th class="text-center" style="width: 22%">รายละเอียด</th>
+        <th class="text-center" style="width: 8%">ราคา</th>
+        <th class="text-center" style="width: 10%">ปริมาณ</th>
+        <th class="text-center" style="width: 10%">รวม</th>
       </tr>
     </thead>
     <form action="/cart/delete" method="post">
@@ -44,15 +44,9 @@
     </form>
 
     <tfoot>
-      <tr class="visible-xs">
-        <td class="text-center">
-          <strong>Total <%=total%> บาท</strong>
-        </td>
-      </tr>
-      <tr>
         <td>
           <a href="/" class="btn btn-warning"
-            ><i class="fa fa-angle-left"></i> Continue Shopping</a
+            >Continue Shopping</a
           >
         </td>
         <td colspan="2" class="hidden-xs"></td>
@@ -64,8 +58,7 @@
             href="/cart/checkout"
             class="btn btn-success btn-block"
             name="total"
-            >Checkout <i class="fa fa-angle-right"></i
-          ></a>
+            >Checkout</a>
         </td>
       </tr>
     </tfoot>

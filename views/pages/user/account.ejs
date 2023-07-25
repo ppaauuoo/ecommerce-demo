@@ -1,96 +1,102 @@
+<div class="divider my-10 sm:my-20 invisible"></div>
 
-<div class="container" style="padding: 25px">
-  <div class="row">
-    <div class="col-md-6 col-xs-12">
-      <h3 class="panel-label">วันที่</h3>
-      <div class="panel panel-default daybox">
-        <div class="panel-body"><%=day%></div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <h3 class="panel-label">รวมทั้งสิ้น</h3>
-      <div class="panel panel-default commissionbox">
-        <div class="panel-body"><%=childIncome+sponsorIncome%> บาท</div>
-      </div>
+<div class="sm:container max-w-screen-md">
+  <div class="container grid grid-cols-2 sm:grid-cols-3 grid-rows-3 sm:grid-rows-2 gap-4 mx-20 mb-4 text-center justify-items-center">
+
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body justify-center">
+      <h2 class="card-title justify-center text-white"><%=day%></h2>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6 col-xs-12">
-      <h3 class="panel-label">รายได้จากค่าจับคู่</h3>
-      <div class="panel panel-default commissionbox">
-        <div class="panel-body"><%=childIncome%> บาท</div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <h3 class="panel-label">รายได้จากค่าแนะนำ</h3>
-      <div class="panel panel-default commissionbox">
-        <div class="panel-body"><%=sponsorIncome%> บาท</div>
-      </div>
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-white">รวมทั้งสิ้น</h2>
+      <h2 class="card-title justify-center text-white"><%=childIncome+sponsorIncome%> บาท</h2>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6 col-xs-12">
-      <h3 class="panel-label">ช่องคงเหลือในผัง</h3>
-      <div class="panel panel-default commissionbox">
-        <div class="panel-body">
-          <%if(!emptySlot){%>
-          <a href="/"><div style="color: red">ผังเต็มแล้ว!</div></a>
+
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-white">ค่าจับคู่ที่ได้</h2>
+      <h2 class="card-title justify-center text-white"><%=childIncome%> บาท</h2>
+    </div>
+  </div>
+
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-white">ค่าแนะนำที่ได้</h2>
+      <h2 class="card-title justify-center text-white"><%=sponsorIncome%> บาท</h2>
+    </div>
+  </div>
+
+
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-white">ผังคงเหลือ</h2>
+      <h2 class="card-title justify-center text-white">
+        <%if(!emptySlot){%>
+          <a href="/"><div class="text-white">ผังเต็มแล้ว!</div></a>
           <%}else{%> <%=emptySlot%> คน <%}%>
+      </h2>
+    </div>
+  </div>
+
+  <div class="card w-48 bg-secondary shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-white">ลูกเครือข่าย</h2>
+      <h2 class="card-title justify-center text-white">
+        <%=sponsorChild%> คน
+      </h2>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-primary invite mb-4">กดเพื่อรับลิ้งค์เชิญ</a>
+
+</div>
+
+
+
+<div class="divider my-10 sm:my-20 invisible"></div>
+
+
+
+<div class="md:container grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-4 mx-20 mb-4 text-center justify-items-center overflow-x-auto">
+    <div class="container bg-white rounded-3xl py-4">
+      <a href="user/<%=userName.username%>">
+        <div class="row" style="text-align: center">
+          <div class="col-md-12">
+            <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+            <h1><%=userName.username%></h1>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xs-12" style="text-align: center;">
-      <h3 class="panel-label">จำนวนคนที่เชิญ</h3>
-      <div class="panel panel-default commissionbox">
-        <div class="panel-body"><%=sponsorChild%> คน</div>
-      </div>
-      <a class="invite" href="#" style="font-weight: 400; font-size: medium;">กดเพื่อรับลิ้งค์เชิญ</a>
-    </div>
-  </div>
-</div>
 
-
-<div class="container" style="padding: 25px">
-  <div class="row">
-    <div class="col-lg-6 col-sm-12">
-      <div class="container smallmlm">
-        <a href="user/<%=userName.username%>">
-          <div class="row" style="text-align: center">
-            <div class="col-md-12">
-              <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-              <h1><%=userName.username%></h1>
-            </div>
-          </div>
-  
-          <div id="lev2" class="row" style="text-align: center"></div>
-        </a>
-      </div>
+        <div id="lev2" class='grid grid-cols-2'></div>
+      </a>
     </div>
-    <div class="col-lg-6 col-sm-12">
-      <div class="container smallmlm" style="padding: 25px">
-        <a href="user/<%=userName.username%>/sponsor">
-          <div class="row" style="text-align: center">
-            <div class="col-md-12">
-              <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-              <h1><%=userName.username%></h1>
-            </div>
-  
-            <div class="row" style="text-align: center">
-              <%sponsored.slice(-3).forEach((element)=>{%>
-              <div class="col-xs-4">
+    <div class="container bg-white rounded-3xl py-4">
+      <a href="user/<%=userName.username%>/sponsor">
+            <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+            <h1><%=userName.username%></h1>
+
+          <div class='grid grid-cols-3'>
+            <%sponsored.slice(-3).forEach((element)=>{%>
+              <div>
                 <i class="fa-solid fa-person fa-6x" style="color: darkorange"></i>
-                <p style="font-size: 30px"><%=element.username%></p>
+                <h1><%=element.username%></h1>
               </div>
-              <%})%>
-            </div>
+            <%})%>
           </div>
-        </a>
-      </div>
+      </a>
     </div>
-  </div>
 </div>
+
+<div class="divider my-10 sm:my-20 invisible"></div></div>
+
+
 
 <input id='username' hidden value="<%=userName.username%>">
 
@@ -104,19 +110,19 @@
     if(!lev2Array){empty++}
     lev2Array.forEach((e)=>{
     if(!e){return}
-    var temp = "<div class='col-xs-6'>"+
-    "<a href='/user/"+e+"'>"+
-      "<i class='fa-solid fa-person fa-6x' style='color: blue'></i>"+
-      "<p style='font-size: 30px'>"+e+"</p>"+
-    "</a>"+
-    "</div>"
+    var temp = `  <div>
+      <a href='/user/${e}'>
+    <i class="fa-solid fa-person fa-6x" style="color: blue;"></i>
+    <h1>${e}</h1>
+  </a>
+  </div>`
     $("#lev2").append(temp)
     empty++
     })
     for (var i = empty; i < 32/16; i++) {
-    var temp = "<div class='col-xs-6'>"+
-      "<i class='fa-solid fa-person fa-6x' style='color: darkgray'></i>"+
-      "</div>"
+    var temp = `  <div>
+    <i class="fa-solid fa-person fa-6x" style="color: darkgray;></i>
+  </div>`
     $("#lev2").append(temp)
     }
 </script>

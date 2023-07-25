@@ -3,34 +3,32 @@
 
 <%-include("../partials/widget.ejs",{day: day, link: 'user'})-%>
 
-<div class="container mlmcontainer">
-  <div class="row mlmrow">
-    <div class="col-md-12">
-      <a href="/user">
-        <i class="fa-solid fa-person fa-7x" style="color: red"></i>
-        <h1><%=userName.username%></h1>
-      </a>
-    </div>
+<div class="flex flex-col md:container overflow-x-auto  bg-white rounded-3xl p-10 mb-4">
+  <div class="grid justify-center">
+    <a href="/user">
+      <i class="fa-solid fa-person fa-7x" style="color: red"></i>
+      <h1><%=userName.username%></h1>
+    </a>
   </div>
   
-  <div id="lev2" class="row mlmrow">
+  <div id="lev2" class='flex sm:grid grid-cols-2'>
   </div>
   
-  <div id="lev3" class="row mlmrow">
+  <div id="lev3" class='flex sm:grid grid-cols-4'>
   </div>
   
-  <div id="lev4" class="row mlmrow">
+  <div id="lev4" class='flex sm:grid grid-cols-8'>
   </div>
   
-  <div id="lev5" class="row mlmrow">
+  <div id="lev5" class='flex sm:grid grid-cols-16'>
   </div>
   
-  <div class="row mlmrow">
+  <div class='flex sm:grid grid-cols-32'>
     <%var count=0%>
     <%for(var i=0; i<Child.length;i++){%>
     <%if(!Child[i].lev6){continue}%>
-      <div class="col-xs-1" style="width: 3.1249999988%; padding: 10px">
-      <a href="/user/<%=Child[i].lev6%>">
+    <div class='flex-1 justify-center'>
+      <a href="/user/<%=Child[i].lev6%>" class='flex flex-col items-center'>
         <i class="fa-solid fa-person fa-2x" style="color: gray"></i>
         <p style="font-size: 12px"><%=Child[i].lev6%></p>
       </a>
@@ -38,7 +36,7 @@
     <%count++}%>
     
     <%for(var i=count;i<32;i++){%>
-      <div class="col-xs-1" style="width: 3.1249999988%; padding: 10px">
+      <div class='flex-1 justify-center'>
           <i class="fa-solid fa-person fa-2x" style="color: darkgray"></i>
           <p></p>
       </div>
@@ -61,8 +59,8 @@
   if(!lev2Array){empty++}
   lev2Array.forEach((e)=>{
     if(!e){return}
-    var temp = "<div class='col-xs-6'>"+
-    "<a href='/user/"+e+"'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
+    "<a href='/user/"+e+"'' class='flex flex-col items-center'>"+
       "<i class='fa-solid fa-person fa-6x' style='color: blue'></i>"+
       "<p style='font-size: 30px'>"+e+"</p>"+
     "</a>"+
@@ -71,7 +69,7 @@
     empty++
   })
   for (var i = empty; i < 32/16; i++) {
-    var temp = "<div class='col-xs-6'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
       "<i class='fa-solid fa-person fa-6x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev2").append(temp)
@@ -80,8 +78,8 @@
   empty=0
   lev3Array.forEach((e)=>{
     if(!e){return}
-    var temp = "<div class='col-xs-3'>"+
-    "<a href='/user/"+e+"'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
+    "<a href='/user/"+e+"'' class='flex flex-col items-center'>"+
       "<i class='fa-solid fa-person fa-5x' style='color: darkgreen'></i>"+
       "<p style='font-size: 30px'>"+e+"</p>"+
     "</a>"+
@@ -90,7 +88,7 @@
     empty++
   })
   for (var i = empty; i < 32/8; i++) {
-    var temp = "<div class='col-xs-3'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
       "<i class='fa-solid fa-person fa-5x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev3").append(temp)
@@ -99,8 +97,8 @@
   empty=0
   lev4Array.forEach((e)=>{
     if(!e){return}
-    var temp = "<div class='col-xs-1' style='width: 12.499999995%'>"+
-    "<a href='/user/"+e+"'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
+    "<a href='/user/"+e+"'' class='flex flex-col items-center'>"+
       "<i class='fa-solid fa-person fa-4x' style='color: purple'></i>"+
       "<p style='font-size: 20px'>"+e+"</p>"+
     "</a>"+
@@ -109,7 +107,7 @@
     empty++
   })
   for (var i = empty; i < 32/4; i++) {
-    var temp = "<div class='col-xs-1' style='width: 12.499999995%'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
       "<i class='fa-solid fa-person fa-4x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev4").append(temp)
@@ -118,8 +116,8 @@
   empty=0
   lev5Array.forEach((e)=>{
     if(!e){return}
-    var temp = "<div class='col-xs-1' style='width: 6.2499999975%'>"+
-    "<a href='/user/"+e+"'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
+    "<a href='/user/"+e+"'' class='flex flex-col items-center'>"+
       "<i class='fa-solid fa-person fa-3x' style='color: palevioletred'></i>"+
       "<p style='font-size: 12px'>"+e+"</p>"+
     "</a>"+
@@ -128,7 +126,7 @@
     empty++
   })
   for (var i = empty; i < 32/2; i++) {
-    var temp = "<div class='col-xs-1' style='width: 6.2499999975%'>"+
+    var temp = "<div class='flex-1 justify-center'>"+
       "<i class='fa-solid fa-person fa-3x' style='color: darkgray'></i>"+
       "</div>"
     $("#lev5").append(temp)

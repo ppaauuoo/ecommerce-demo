@@ -36,11 +36,8 @@ load_data = (num) => {
   $(() => {
     $(".page-link").on('click', function(event) {
       event.preventDefault()
-      $(".page-link").removeAttr("tabindex disabled");
-      $(this).attr({
-        "tabindex": "-1",
-        "disabled": "true"
-      });
+      $(".page-link").removeClass("btn-active");
+      $(this).addClass("btn-active");
       if($(this).text()=='...'){
         load_data(-1)
         return

@@ -1,28 +1,22 @@
-<form action="/cart" method="POST">
-    <div class="col-md-4 col-xs-6">
-        <div class="thumbnail">
-          <img src="<%=goodsImage%>" alt="" class="img-responsive">
-          <div class="caption">
-            <h4 class="pull-right"><%=goodsPrice%> บาท</h4>
-            <h4><a href="#"><%=goodsName%></a></h4>
-            <p><%=goodsDesc%></p>
-          </div>
-          <div class="ratings">
-            <p>
-              <span class="glyphicon glyphicon-star"></span>
-              <span class="glyphicon glyphicon-star"></span>
-              <span class="glyphicon glyphicon-star"></span>
-              <span class="glyphicon glyphicon-star"></span>
-              <span class="glyphicon glyphicon-star"></span>
-               (<%=goodsReview%> reviews)
-            </p>
-          </div>
-          <div class="space-ten"></div>
-          <div class="btn-ground text-center">
-              <button type="submit" class="btn bg-blue-500 text-white" name="selectedItem" value="<%=goodsName%>"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-          </div>
-          <div class="space-ten"></div>
-        </div>
+
+  <div class="card card-compact w-96 bg-white shadow-xl">
+    <figure><img src="<%=goodsImage%>"/></figure>
+    <div class="card-body">
+      <h2 class="card-title"><%=goodsName%>
+        
+      </h2>
+      <p><%=goodsDesc%></p>
+      <div class="flex justify-end">
+        <div class="badge badge-secondary justify-end"><%=goodsPrice%> บาท</div>
       </div>
-</form>
+      <div class="card-actions justify-end">
+      <form action="/cart" method="POST">
+        <button type="submit" class="btn btn-primary" name="selectedItem" value="<%=goodsName%>"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+
 
