@@ -2,21 +2,18 @@
 <%-include("../partials/widget.ejs",{day: day, link: null})-%>
 
 
-<div class="container dashboard">
-  <div class="row">
+<div class="container bg-gray-100 rounded-3xl p-4 mb-4">
+  <div class="grid grid-cols-2 sm:grid-cols-4 grid-rows-4 sm:grid-rows-2 gap-4">
     <%-include('admintools/infodata.ejs',{ShowData: "จำนวนสมาชิกในระบบ",ShowNum:usersAmount})-%> 
     <%-include('admintools/infodata.ejs',{ShowData:"สมาชิกที่ถูกเพิ่มวันนี้",ShowNum: '+'+currentDayAmount})-%>
     <%-include('admintools/infodata.ejs',{ShowData:"Temp",ShowNum: 'Temp'})-%>
     <%-include('admintools/infodata.ejs',{ShowData:"Temp",ShowNum: 'Temp'})-%>
-  </div>
-  <div class="row">
     <%-include('admintools/userdata.ejs',{link:'userdata',icon:'fa-table fa-5x',context:'Users Data'})-%> 
     <%-include('admintools/userdata.ejs',{link:'tree',icon:' fa-timeline fa-5x',context:'Users Tree'})-%>
     <%-include('admintools/userdata.ejs',{link:'ordersdata',icon:'fa-cubes fa-5x',context:'Orders Data'})-%>
     <%-include('admintools/userdata.ejs',{link:'',icon:'fa-bug fa-5x',context:'Temp'})-%>
+
+
   </div>
-
-
-
 </div>
 

@@ -1,19 +1,22 @@
 
-<div class="container" style="padding: 25px;">
+<div class="container mb-4">
       
 
-    <div class="jumbotron"><h1><%=wallet.money%> บาท<h1><hr><%=wallet.point%> point</h1></h1>
+  <div class="hero rounded-3xl bg-white ">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <h1><%=wallet.money%> บาท<h1><hr><%=wallet.point%> point</h1></h1>
       
       
 
-    <p><a class="btn btn-lg btn-success" href="/money/add" role="button">Add Money(+100b)</a></p>
-    <p><a class="btn btn-lg btn-success" href="/money/transfer" role="button">Use Point(100p -> 20b)</a></p>
-    <p><a class="btn btn-lg btn-success" href="/" role="button">Go Back</a></p>
-
+        <p><a class="btn  btn-success" href="/money/add" role="button">Add Money(+100b)</a></p>
+        <p><a class="btn  btn-success" href="/money/transfer" role="button">Use Point(100p -> 20b)</a></p>
+        <p><a class="btn  btn-success" href="/" role="button">Go Back</a></p>
     </div>
-
+  </div>
     
 
     
 
   </div> <!-- /container -->
+
+

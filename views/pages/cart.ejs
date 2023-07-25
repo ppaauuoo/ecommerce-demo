@@ -1,34 +1,35 @@
 
 
-<div class="container" style="padding: 25px">
-  <table id="cart" class="table table-striped table-bordered text-center"  style="background-color: white; border: 100px; border-radius: 25px;">
-    <thead>
+<div class="overflow-auto mb-4 mx-4 p-0">
+  <table id="cart" class="table table-sm text-center bg-white  ">
+
       <tr>
-        <th class="text-center"  style="width: 50%">สินค้า</th>
-        <th class="text-center" style="width: 22%">รายละเอียด</th>
-        <th class="text-center" style="width: 8%">ราคา</th>
-        <th class="text-center" style="width: 10%">ปริมาณ</th>
-        <th class="text-center" style="width: 10%">รวม</th>
+        <th class="text-center" >สินค้า</th>
+        <th class="text-center" >รายละเอียด</th>
+        <th class="text-center" >ราคา</th>
+        <th class="text-center" >จำนวน</th>
+        <th class="text-center" >รวม</th>
+        <th class="text-center" >ลบ</th>
       </tr>
-    </thead>
-    <form action="/cart/delete" method="post">
+
+
       <%cart.forEach((element)=>{%>
       <tbody>
         <tr>
-          <td class="col-sm-2" data-th="Product">
-            <img src="<%=element.goodsImage%>" alt="..."
-            class="img-responsive">
+          <td data-th="Product" class="flex justify-center">
+            <img class="w-32 sm:w-56 h-auto" src="<%=element.goodsImage%>" alt="...">
           </td>
-          <td class="col-sm-2" data-th="Product">
+          <td  data-th="Product">
             <h4 class=""><%=element.goodsName%></h4>
             <p><%=element.goodsDesc%></p>
           </td>
-          <td class="col-sm-2" data-th="Price"><%=element.goodsPrice%> บาท</td>
-          <td class="col-sm-2" data-th="Quantity"><%=element.quantity%></td>
-          <td class="col-sm-2" data-th="Subtotal" class="text-center">
+          <td  data-th="Price"><%=element.goodsPrice%> บาท</td>
+          <td  data-th="Quantity"><%=element.quantity%></td>
+          <td  data-th="Subtotal" class="text-center">
             <%=element.goodsPrice*element.quantity%> บาท
           </td>
-          <td class="col-sm-2" class="actions" data-th="">
+          <td  class="actions" data-th="">
+            <form action="/cart/delete" method="post">
             <button
               type="submit"
               class="btn btn-danger btn-sm"
@@ -37,11 +38,12 @@
             >
               <i class="fa fa-trash-o"></i>
             </button>
+          </form>
           </td>
         </tr>
       </tbody>
       <%})%>
-    </form>
+
 
     <tfoot>
         <td>
