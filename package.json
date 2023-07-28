@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "node server",
-    "tailwind:css": "postcss public/css/tailwind.css -o public/css/tailwindstyle.css"
+    "tailwind:css": "tailwindcss -i ./public/src/input.css -o ./public/css/output.css --watch"
   },
   "author": "",
   "license": "ISC",

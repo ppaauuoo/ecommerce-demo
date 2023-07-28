@@ -1,66 +1,73 @@
 <div class="divider my-5 sm:my-20 invisible"></div>
 
+
+
 <div class="sm:container max-w-screen-md mx-20">
-  <div class="sm:container grid grid-cols-2 sm:grid-cols-3 grid-rows-3 sm:grid-rows-2 gap-4 mb-4  text-center justify-items-center">
 
-  <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
-    <div class="card-body justify-center">
-      <h2 class="card-title justify-center text-white"><%=day%></h2>
+  <div class="container bg-gray-100 rounded-3xl p-4 mb-4">
+    <div class="sm:container grid grid-cols-2 sm:grid-cols-3 grid-rows-3 sm:grid-rows-2 gap-4 mb-4  text-center justify-items-center">
+
+      <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
+        <div class="card-body justify-center">
+          <h2 class="card-title justify-center text-white"><%=day%></h2>
+        </div>
+      </div>
+    
+      <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title justify-center text-white">รวมทั้งสิ้น</h2>
+          <h2 class="card-title justify-center text-white"><%=childIncome+sponsorIncome%> บาท</h2>
+        </div>
+      </div>
+    
+    
+      <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title justify-center text-white">ค่าจับคู่ที่ได้</h2>
+          <h2 class="card-title justify-center text-white"><%=childIncome%> บาท</h2>
+        </div>
+      </div>
+    
+      <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title justify-center text-white">ค่าแนะนำที่ได้</h2>
+          <h2 class="card-title justify-center text-white"><%=sponsorIncome%> บาท</h2>
+        </div>
+      </div>
+    
+    
+      <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title justify-center text-white">ผังคงเหลือ</h2>
+          <h2 class="card-title justify-center text-white">
+            <%if(!emptySlot){%>
+              <a href="/"><div class="text-white">ผังเต็มแล้ว!</div></a>
+              <%}else{%> <%=emptySlot%> คน <%}%>
+          </h2>
+        </div>
+      </div>
+    
+      <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title justify-center text-white">ลูกเครือข่าย</h2>
+          <h2 class="card-title justify-center text-white">
+            <%=sponsorChild%> คน
+          </h2>
+        </div>
+      </div>
     </div>
+    
+    <div class="text-center">
+      <a class="btn btn-primary invite mb-4">กดเพื่อรับลิ้งค์เชิญ</a>
+    
+    </div>
+
   </div>
 
-  <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title justify-center text-white">รวมทั้งสิ้น</h2>
-      <h2 class="card-title justify-center text-white"><%=childIncome+sponsorIncome%> บาท</h2>
-    </div>
-  </div>
-
-
-  <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title justify-center text-white">ค่าจับคู่ที่ได้</h2>
-      <h2 class="card-title justify-center text-white"><%=childIncome%> บาท</h2>
-    </div>
-  </div>
-
-  <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title justify-center text-white">ค่าแนะนำที่ได้</h2>
-      <h2 class="card-title justify-center text-white"><%=sponsorIncome%> บาท</h2>
-    </div>
-  </div>
-
-
-  <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title justify-center text-white">ผังคงเหลือ</h2>
-      <h2 class="card-title justify-center text-white">
-        <%if(!emptySlot){%>
-          <a href="/"><div class="text-white">ผังเต็มแล้ว!</div></a>
-          <%}else{%> <%=emptySlot%> คน <%}%>
-      </h2>
-    </div>
-  </div>
-
-  <div class="col-span-2 sm:col-span-1 card w-48 bg-secondary shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title justify-center text-white">ลูกเครือข่าย</h2>
-      <h2 class="card-title justify-center text-white">
-        <%=sponsorChild%> คน
-      </h2>
-    </div>
-  </div>
-</div>
-
-<div class="text-center">
-  <a class="btn btn-primary invite mb-4">กดเพื่อรับลิ้งค์เชิญ</a>
-
-</div>
 
 
 
-<div class="divider my-10 sm:my-20 invisible"></div>
+<div class="divider my-10 sm:my-15 invisible"></div>
 
 
 

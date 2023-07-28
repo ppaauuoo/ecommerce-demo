@@ -21,7 +21,7 @@ load_data = (num) => {
             <td>
             <button
               type="button"
-              
+              onclick="action_modal.showModal()"
               data-id="${element.orderId}"
               ${element.status === 'การชำระเงินถูกยืนยัน' ? 'class="btn btn-success btn-sm confirm" inert' : element.status === 'ยังไม่ได้ส่งหลักฐานการชำระเงิน' ? 'class="btn btn-error btn-sm confirm" inert' : 'class="btn btn-warning btn-sm confirm"'}>
 
@@ -107,7 +107,6 @@ load_data = (num) => {
       console.log('clicked!')
       $("#dynamic_modal_title").text("Confirm Data");
   
-      $("#action_modal").modal("show");
       
       $.ajax({
         url: "/admin/ordersdata",

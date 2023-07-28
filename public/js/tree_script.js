@@ -8,8 +8,8 @@ load_data = (num) => {
         
         var html = "";
         data.forEach((e) => {
-          html += `<div class="col-md-3 col-sm-4 col-xs-6 col-12">
-  <div class="container dashboarditems " style="text-align: center;">
+          html += `
+  <div class="container dashboarditems">
     <a href="/user/${e.username}">
       <i class="fa-solid fa-person fa-7x" style="color: red"></i>
       <h1
@@ -24,7 +24,6 @@ load_data = (num) => {
       </h1>
     </a>
   </div>
-</div>
 `;
         });
         $("#tree").html(html);

@@ -14,6 +14,7 @@ load_data = (num) => {
           <button
             type="button"
             class="btn btn-warning btn-sm edit"
+            onclick="action_modal.showModal()"
             data-id="` +
       element.username +
       `"
@@ -145,12 +146,7 @@ $(() => {
 
   $(document).on("click", ".edit", (event) => {
     var button = event.target;
-    var dataId = $(button).data("id");
-
-    $("#dynamic_modal_title").text("Edit Data");
-
-    $("#action_modal").modal("show");
-    
+    var dataId = $(button).data("id");    
     $.ajax({
       url: "/admin/userdata",
       method: "POST",

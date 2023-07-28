@@ -1,180 +1,186 @@
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">ชื่อ</span>
+  </label>
+  <input
+    type="text"
+    name="firstName"
+    maxlength="50"
+    required
+    id="firstNamefloatingInput"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
-    <div class="form-floating">
-      <label for="firstNamefloatingInput">ชื่อ</label>
-      <input
-        type="text"
-        name="firstName"
-        class="form-control middle"
-        id="firstNamefloatingInput"
-        placeholder="First Name"
-        maxlength="50"
-        required
-      />
-      
-    </div>
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">นามสกุล</span>
+  </label>
+  <input
+    type="text"
+    name="lastName"
+    maxlength="50"
+    required
+    id="lastNamefloatingInput"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
-    <div class="form-floating">
-      <label for="lastNamefloatingInput">นามสกุล</label>
-      <input
-        type="text"
-        name="lastName"
-        class="form-control middle"
-        id="lastNamefloatingInput"
-        placeholder="Last Name"
-        maxlength="50"
-        required
-      />
-      
-    </div>
-
-
-<div class="form-floating">
-  <label for="addressfloatingInput">ที่อยู่</label>
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">ที่อยู่</span>
+  </label>
   <textarea
     name="address"
-    class="form-control middle"
     id="addressfloatingInput"
-    placeholder="ที่อยู่"
     maxlength="50"
+    class="textarea textarea-bordered"
   ></textarea>
 </div>
 
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">จังหวัด</span>
+  </label>
+  <input
+    type="text"
+    name="city"
+    maxlength="50"
+    required
+    id="cityfloatingSelectGrid"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
-    <div class="form-floating">
-  <label for="cityfloatingSelectGrid">จังหวัด</label>
-      <input
-        name="city"
-        class="form-control middle"
-        id="cityfloatingSelectGrid"
-        placeholder="จังหวัด"
-        maxlength="50"
-      ></input>
-    </div>
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">อำเภอ</span>
+  </label>
+  <input
+    type="text"
+    name="district"
+    maxlength="50"
+    required
+    id="districtfloatingSelectGrid"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">ตำบล</span>
+  </label>
+  <input
+    type="text"
+    name="subdistrict"
+    maxlength="50"
+    required
+    id="subdistrictfloatingSelectGrid"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">รหัสไปรษณีย์</span>
+  </label>
+  <input
+    type="tel"
+    name="postCode"
+    required
+    minlength="5"
+    maxlength="5"
+    pattern="[0-9]{5}"
+    id="postCodefloatingSelectGrid"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
-    <div class="form-floating">
-  <label for="districtfloatingSelectGrid">อำเภอ</label>
-      <input
-        name="district"
-        class="form-control middle"
-        id="districtfloatingSelectGrid"
-        placeholder="อำเภอ"
-        maxlength="50"
-      ></input>
-    </div>
-
-
-
-
-    <div class="form-floating">
-  <label for="subdistrictfloatingSelectGrid">ตำบล</label>
-      <input
-        name="subdistrict"
-        class="form-control bottom"
-        id="subdistrictfloatingSelectGrid"
-        placeholder="ตำบล"
-        maxlength="50"
-      ></input>
-    </div>
-
-
-
-    <div class="form-floating">
-  <label for="postCodefloatingSelectGrid">รหัสไปรษณีย์</label>
-      <input
-        type="tel"
-        name="postCode"
-        class="form-control bottom"
-        id="postCodefloatingSelectGrid"
-        placeholder="รหัสไปรษณีย์"
-        minlength="5"
-        maxlength="5"
-        pattern="[0-9]{5}"
-      ></input>
-    </div>
-
-
-<p></p>
-<div class="form-floating">
-  <label for="citizen">เลขบัตรประชาชน</label>
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">เลขบัตรประชาชน</span>
+  </label>
   <input
     type="tel"
     name="citizen"
-    class="form-control top"
-    id="citizen"
-    placeholder="เลขบัตรประชาชน"
+    required
     minlength="13"
     maxlength="13"
     pattern="[0-9]{13}"
-    
+    id="citizen"
+    class="input input-bordered w-full max-w-xs"
   />
 </div>
 
-<div class="form-floating">
-  <label for="phoneNumber">เบอร์โทร</label>
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">เบอร์โทร</span>
+  </label>
   <input
     type="tel"
     name="phoneNumber"
-    class="form-control bottom"
-    id="phoneNumber"
-    placeholder="เบอร์โทร"
+    required
     minlength="10"
     maxlength="10"
     pattern="[0]{1}[2,6,8,9]{1}[0-9]{8}"
+    id="phoneNumber"
+    class="input input-bordered w-full max-w-xs"
   />
 </div>
-<p></p>
-<p></p>
-  <div class="form-floating">
-  <label for="bankfloatingSelectGrid">ธนาคาร</label>
-    <input
-      name="bank"
-      class="form-control top"
-      id="bankfloatingSelectGrid"
-      placeholder="ธนาคาร"
-      maxlength="50"
-    >
 
-    </input>
-  </div>
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">ธนาคาร</span>
+  </label>
+  <input
+    type="text"
+    name="bank"
+    maxlength="50"
+    required
+    id="bankfloatingSelectGrid"
+    class="input input-bordered w-full max-w-xs"
+  />
+</div>
 
-
-<div class="form-floating">
-  <label for="bookBank">ชื่อบัญชีธนาคาร</label>
-  
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">ชื่อบัญชีธนาคาร</span>
+  </label>
   <input
     type="text"
     name="bookBank"
-    class="form-control middle"
-    id="bookBank"
-    placeholder="ชื่อบัญชีธนาคาร"
     maxlength="50"
+    required
+    id="bookBank"
+    class="input input-bordered w-full max-w-xs"
   />
 </div>
-<div class="form-floating">
-  <label for="bookBankNumber">เลขบัญชีธนาคาร</label>
+
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">เลขบัญชีธนาคาร</span>
+  </label>
   <input
     type="tel"
     name="bookBankNumber"
-    class="form-control middle"
-    id="bookBankNumber"
-    placeholder="เลขบัญชีธนาคาร"
     pattern="[0-9]{8,15}"
     maxlength="15"
+    required
+    id="bookBankNumber"
+    class="input input-bordered w-full max-w-xs"
   />
-  
 </div>
-<div class="form-floating">
-  <label for="bookBankBranch">สาขาที่เปิดบัญชีธนาคาร</label>
+
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">สาขาที่เปิดบัญชีธนาคาร</span>
+  </label>
   <input
     type="text"
     name="bookBankBranch"
-    class="form-control bottom"
-    id="bookBankBranch"
-    placeholder="สาขาที่เปิดบัญชีธนาคาร"
     maxlength="50"
+    required
+    id="bookBankBranch"
+    class="input input-bordered w-full max-w-xs"
   />
-  
 </div>
-<p></p>

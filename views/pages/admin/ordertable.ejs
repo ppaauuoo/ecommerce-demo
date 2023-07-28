@@ -5,62 +5,42 @@
 
 <%-include("../partials/pagination.ejs")-%>
 
-
-
-<div class="panel panel-default">
-  <span id="message"></span>
-  <div class="card">
-    <div class="card-header">
-      <div class="panel-heading">ข้อมูลผู้ใช้</div>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <input type="text" class="form-control" id="searchbar" placeholder="Search Data..." style="margin-bottom: 20px; background-color: wheat;"/>
-        <!-- Table -->
-        <table class="table table-striped table-bordered text-center" id="Table">
-          <tr>
-            <th class="text-center" style="width: 10%;">หลักฐานการชำระ</th>
-            <th class="text-center" style="width: 30%;">สภานะ</th>
-            <th class="text-center" style="width: 20%;">มูลค่า</th>
-            <th class="text-center" style="width: 20%;">จำนวนสิ่งของ</th>
-            <th class="text-center" style="width: 30%;">Order Id</th>
-          </tr>
-          <tbody id="dataTable">
-            
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<div class="container overflow-auto mb-4 p-0">
+  <%-include("../partials/searchbar.ejs")-%>
+  <table class="table bg-white text-center">
+    <tr>
+      <th >หลักฐานการชำระ</th>
+      <th >สภานะ</th>
+      <th >มูลค่า</th>
+      <th >จำนวนสิ่งของ</th>
+      <th >Order Id</th>
+    </tr>
+    <tbody id="dataTable">
+    </tbody>
+  </table>
 </div>
 
-<dialog class="modal" tabindex="-1" id="action_modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form method="post" id="form">
-        <div class="modal-header" id="dynamic_modal_title">
-          <h5 class="modal-title">ยืนยัน</h5>
-        </div>
-        <div class="modal-body">
-          <div class="receipt"></div>
-        </div>
-        <div class="modal-footer">
-          <input type="hidden" name="orderId" id="orderId" />
-          <input type="hidden" name="action" id="action" value="Confirm" />
-          <button type="submit" class="btn btn-primary" id="action_button">
-            ยืนยันการชำระเงิน
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-          >
-            ยกเลิก
-          </button>
-        </div>
-      </form>
+<dialog class="modal" id="action_modal">
+  <form method="post" id="form" class="modal-box">
+    <h5>ยืนยัน</h5>
+    <div class="receipt"></div>
+    <input type="hidden" name="orderId" id="orderId" />
+    <input type="hidden" name="action" id="action" value="Confirm" />
+    <div class="modal-action">
+
+      <button type="submit" class="btn btn-error" id="action_button" onclick="action_modal.close()"
+      >
+      ยืนยันการชำระเงิน
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="action_modal.close()"
+      >
+        ยกเลิก
+      </button>
     </div>
-  </div>
+  </form>
 </dialog>
 
 

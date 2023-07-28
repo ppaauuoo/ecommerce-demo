@@ -7,7 +7,7 @@
 
 
 <div class="container overflow-auto mb-4 p-0">
-  <input type="text" placeholder="Search..." class="input input-bordered w-full max-w-xs mb-4" />  
+  <%-include("../partials/searchbar.ejs")-%>
   <table class="table bg-white text-center">
     <tr>
       <th >การแก้ไข</th>
@@ -24,21 +24,21 @@
 </div>
 
 
-<dialog class="modal bg-white" id="action_modal">
+<dialog class="modal" id="action_modal">
   <form method="post" id="form" class="modal-box">
-
-    <h5>Edit Data</h5>
+    <h5>แก้ไขข้อมูล</h5>
     <%-include("admintools/register_form.ejs")-%>
     <input type="hidden" name="username" id="username" />
     <input type="hidden" name="action" id="action" value="Edit" />
     <div class="modal-action">
-      <button type="submit" class="btn btn-error" id="action_button">
+      <button type="submit" class="btn btn-error" id="action_button" onclick="action_modal.close()"
+      >
         แก้ไข
       </button>
       <button
         type="button"
         class="btn btn-secondary"
-        onclick="action_modal.closeModal()"
+        onclick="action_modal.close()"
       >
         ยกเลิก
       </button>
