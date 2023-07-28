@@ -1,17 +1,10 @@
-<div class="col-md-3 col-xs-6">
-  <div
-    class="container dashboarditems"
-  >
-    <p
-      class="font dashboardfont"
-      style="
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        line-height: 30px;
-      "
-    >
-        <%=ShowData%>
-    </p>
-    <h1 class="font" style="font-family: 'Tomorrow', sans-serif; font-size: 30px;"><%=ShowNum%></h1>
+<div>
+  <!-- <label class="label justify-center ">
+    <span class="label-text text-lg block sm:hidden"><%=ShowData%></span>
+  </label> -->
+  <div class="flex flex-col dashboarditems items-center justify-center">
+    <h4 class="font dashboardfont  hidden sm:block" style="font-family: 'Tomorrow', sans-serif;"><%=ShowData%></h4>
+    <h4 class="font dashboardfont" style="font-family: 'Tomorrow', sans-serif;"><%=ShowNum%></h4>
   </div>
 </div>
+
