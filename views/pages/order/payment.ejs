@@ -1,12 +1,24 @@
-<link href="/css/tailwindstyle.css" rel="stylesheet" />
-<div class="container" style="padding: 25px">
-  <div class="jumbotron">
-    <form action="/order/<%=orderId%>" method="post" enctype="multipart/form-data">
-      <div class="row-auto">
-        <input class="items-stretch" type="file" name="photo" />
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2" type="submit" value="Upload">Upload</button>
-      </div>
-    </form>
+<div class="container mb-4">
+  <div class="hero rounded-3xl bg-white">
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">กรุณาอัพโหลดหลักฐานการชำระเงิน</span>
+      </label>
+      <form
+        action="/order/<%=orderId%>"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="photo" class="file-input w-full max-w-xs" />
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2 justify-center"
+          type="submit"
+          value="Upload"
+        >
+          Upload
+        </button>
+      </form>
+    </div>
   </div>
 </div>
 <!-- /container -->
