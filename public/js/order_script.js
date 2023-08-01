@@ -35,7 +35,7 @@ load_data = (num) => {
             ${element.status}
               </td>
               <td>
-            ${element.total}
+            ${element.total} บาท
               </td>
               <td>
               ${element.totalQuantity}

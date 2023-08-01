@@ -16,7 +16,7 @@
             <tr>
               <td  data-th="จัดการ"><a href="/order/<%=element.orderId%>" <%if(element.status!='ยังไม่ได้ส่งหลักฐานการชำระเงิน'){%>class="btn btn-success" inert<%}else{%>class="btn btn-warning"<%}%>>ยึนยันการชำระเงิน</a></td>
               <td  data-th="สถานะ"><%=element.status%></td>
-              <td  data-th="มูลค่า"><%=element.total%></td>
+              <td  data-th="มูลค่า"><%=element.total%> บาท</td>
               <td  data-th="จำนวนสิ่งของ"><%=element.totalQuantity%></td>
               <td  data-th="Order Id"><%=element.orderId%></td>
             </tr>

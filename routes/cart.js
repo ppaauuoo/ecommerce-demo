@@ -98,19 +98,21 @@ router.get("/checkout", async (req, res) => {
     return;
   }
   const user = await sql.getUser(req.user.username);
-  const wallet = await sql.getWallet(user.walletId);
+  // const wallet = await sql.getWallet(user.walletId);
 
-  if (wallet.money < req.cookies.total) {
-    res.redirect("/cart");
-  } else {
-    const pointObtained = calculate.pointCalculate(req.cookies.total);
-    const updatedMoney = wallet.money - req.cookies.total;
-    const updatedPoint = wallet.point + pointObtained;
+  // if (wallet.money < req.cookies.total) {
+  //   res.redirect("/cart");
+  //    return
+  // }
 
-    await sql.queryPromise(
-      "UPDATE wallets SET money = ?,point = ? WHERE walletId = ?",
-      [updatedMoney, updatedPoint, wallet.walletId]
-    );
+  // const pointObtained = calculate.pointCalculate(req.cookies.total);
+  //   const updatedMoney = wallet.money - req.cookies.total;
+  //   const updatedPoint = wallet.point + pointObtained;
+
+  //   await sql.queryPromise(
+  //     "UPDATE wallets SET money = ?,point = ? WHERE walletId = ?",
+  //     [updatedMoney, updatedPoint, wallet.walletId]
+  //   );
 
 
 
@@ -134,7 +136,6 @@ router.get("/checkout", async (req, res) => {
     ]);
 
     res.redirect("/order/"+id);
-  }
 });
 
 router.post("/delete", async (req, res) => {
