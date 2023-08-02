@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 
-const mongodb = require('./mongodb.js')
+// const mongodb = require('./mongodb.js')
 
 router.use(flash());
 router.use(express.static("public"));
