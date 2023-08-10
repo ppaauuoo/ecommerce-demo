@@ -35,7 +35,10 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-
+router.post("/address", async (req, res) => {
+  const thailand = await sql.queryPromise("SELECT DistrictThaiShort,PostCodeMain,TambonThaiShort FROM thailands WHERE ProvinceThai=?",[req.body.province])
+  res.send(thailand)
+});
 
 router.get("/register", async (req, res) => {
   const thailand = await sql.queryPromise("SELECT DISTINCT ProvinceThai FROM thailands")
@@ -48,16 +51,13 @@ router.get("/register", async (req, res) => {
   });
 });
 
-router.post("/address", async (req, res) => {
-  const thailand = await sql.queryPromise("SELECT DistrictThaiShort,PostCodeMain,TambonThaiShort FROM thailands WHERE ProvinceThai=?",[req.body.province])
-  res.send(thailand)
-});
+
 
 router.get("/register/:sponsor", async (req, res) => {
   const id = req.params.sponsor
   const sponsor = await sql.getUser(id.slice(13));
   if(!sponsor){return res.redirect('/register')}
-  const thailand = await sql.queryPromise("SELECT * FROM thailands")
+  const thailand = await sql.queryPromise("SELECT DISTINCT ProvinceThai FROM thailands")
   var userNum = await sql.getLength()
   userNum = (userNum.length).toString().padStart(4, "0");
   res.render("register", {
